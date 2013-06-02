@@ -1,67 +1,45 @@
+
 package gestiohospitals.domini.models;
 
 import java.io.Serializable;
-import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 
 @Embeddable
 public class HabitacioId implements Serializable {
+    @Column(name="numero")
+    private int numero;
+    @ManyToOne
+    @JoinColumn(name="nom_hospital")
+    private Hospital  hospital;
 
-	private Integer numero;
+    public HabitacioId() {
+    }
+    
+    public HabitacioId(int numero, Hospital hospital) {
+        this.numero = numero;
+        this.hospital = hospital;
+    }
 
-	@ManyToOne(optional = false)    
-	private Hospital hospital;
-	
-	public HabitacioId() {
+    public int getNumero() {
+        return numero;
+    }
 
-	}
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
 
-	public HabitacioId( Integer numero, Hospital hospital ) {
-		this.numero = numero;
-		this.hospital = hospital;
-	}
+    public Hospital getHospital() {
+        return hospital;
+    }
 
-	@Override
-	public int hashCode() {
-		int hash = 7;
-		hash = 67 * hash + Objects.hashCode(this.hospital);
-		hash = 67 * hash + Objects.hashCode(this.numero);
-		return hash;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final HabitacioId other = (HabitacioId) obj;
-		if (!Objects.equals(this.hospital, other.hospital)) {
-			return false;
-		}
-		if (!Objects.equals(this.numero, other.numero)) {
-			return false;
-		}
-		return true;
-	}
-
-	public Hospital getHospital() {
-		return hospital;
-	}
-
-	public void setHospital(Hospital hospital) {
-		this.hospital = hospital;
-	}
-
-	public Integer getNumero() {
-		return numero;
-	}
-
-	public void setNumero(Integer numero) {
-		this.numero = numero;
-	}
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
+    }
+    
+    
+    
 }
