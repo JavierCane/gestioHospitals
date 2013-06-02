@@ -1,8 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gestiohospitals.domini.models;
+
 
 import java.util.Set;
 import javax.persistence.Column;
@@ -12,32 +10,27 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- *
- */
+
+
 @Entity
-@Table( name = "especialitat" )
+@Table(name = "especialitat")
 public class Especialitat {
     @Id
     @GeneratedValue
-    @Column(name="nom")
+    @Column(name = "nom")
     private String nom;
-    
-    @OneToMany(mappedBy="especialitat")
-    private Set<Habitacio> habitacions;
-    
     @OneToMany(mappedBy="especialitat")
     private Set<Metge> metges;
-    
-    
-    public Especialitat(){
-        
+    @OneToMany(mappedBy="especialitat")
+    private Set<Habitacio> habitacions;
+
+    public Especialitat() {
     }
     
-    public Especialitat(String nom){
-        this.nom=nom;
+    public Especialitat(String nom) {
+        this.nom = nom;
     }
-    
+
     public Set<Habitacio> getHabitacions() {
         return habitacions;
     }
@@ -46,6 +39,7 @@ public class Especialitat {
         this.habitacions = habitacions;
     }
 
+  
     public Set<Metge> getMetges() {
         return metges;
     }
@@ -53,7 +47,9 @@ public class Especialitat {
     public void setMetges(Set<Metge> metges) {
         this.metges = metges;
     }
-    
+
+   
+
     public String getNom() {
         return nom;
     }
@@ -61,6 +57,7 @@ public class Especialitat {
     public void setNom(String nom) {
         this.nom = nom;
     }
+    
     
     
 }
