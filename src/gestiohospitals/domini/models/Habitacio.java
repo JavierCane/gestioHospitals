@@ -1,50 +1,67 @@
+
 package gestiohospitals.domini.models;
 
+
+import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 @Entity
-@Table( name = "habitacio" )
-public class Habitacio {
+@Table(name="habitacio")
+public class Habitacio implements Serializable {
+    @EmbeddedId
+    private HabitacioId habitacioId;
+    @ManyToOne
+    @JoinColumn(name="nom_especialitat")
+    private Especialitat especialitat;
+    
+    @OneToMany(mappedBy="habitacio")
+    private Set<Ingres> ingresos;
 
-    @Id
-	@EmbeddedId HabitacioId id;
-	
-	@ManyToOne
-	@JoinColumn(name="nom_especialitat")
-	Especialitat especialitat;
-	
-	@OneToMany
-	Set<Ingres> ingressos;
-	
-	public Habitacio() {
-		this.id = new HabitacioId();
-	}
-	
-	public Habitacio( Integer numero, Hospital hospital ) {
-		this.id = new HabitacioId( numero, hospital );
-	}
-	
-	public Hospital getHospital() {
-		return this.id.getHospital();
-	}
+    public Habitacio() {
+    }
 
-	public void setHospital(Hospital hospital) {
-		this.id.setHospital( hospital );
-	}
+    public Habitacio(HabitacioId habitacioId, Especialitat especialitat, Set<Ingres> ingresos) {
+        this.habitacioId = habitacioId;
+        this.especialitat = especialitat;
+        this.ingresos = ingresos;
+    }
 
-	public Integer getNumero() {
-		return this.id.getNumero();
-	}
+    public HabitacioId getHabitacioId() {
+        return habitacioId;
+    }
 
-	public void setNumero(Integer numero) {
-		this.id.setNumero( numero );
-	}
-	
+    public void setHabitacioId(HabitacioId habitacioId) {
+        this.habitacioId = habitacioId;
+    }
+
+    public Set<Ingres> getIngresos() {
+        return ingresos;
+    }
+
+    public void setIngresos(Set<Ingres> ingresos) {
+        this.ingresos = ingresos;
+    }
+
+   
+
+
+
+    public Especialitat getEspecialitat() {
+        return especialitat;
+    }
+
+    public void setEspecialitat(Especialitat especialitat) {
+        this.especialitat = especialitat;
+    }
+
+
 }
+
+
