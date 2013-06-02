@@ -1,29 +1,25 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gestiohospitals.domini.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="metge")
-@PrimaryKeyJoinColumn(name="codi_empleat")
-public class Infermera extends Sanitari{
-    @Column( name = "torn")
-    String torn;
-    
-     public Infermera(){
-        super();
+@Table(name="Infermera")
+public class Infermera extends Sanitari {
+    @Column(name="torn")
+    private String torn; 
+
+    public Infermera() {
+    }
+
+    public Infermera(String torn, String codiEmpleat, Hospital hospital, String dni, String nom) {
+        super(codiEmpleat, hospital, dni, nom);
+        this.torn = torn;
     }
     
-    public Infermera(String dni, String nom, String codi_empleat, Hospital hospital, String torn){
-        super(dni,nom,codi_empleat,hospital);
-        this.torn=torn;
-    }
+
 
     public String getTorn() {
         return torn;
@@ -32,4 +28,5 @@ public class Infermera extends Sanitari{
     public void setTorn(String torn) {
         this.torn = torn;
     }
+    
 }
