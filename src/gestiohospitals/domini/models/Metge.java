@@ -1,45 +1,36 @@
 
 package gestiohospitals.domini.models;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="metge")
-@PrimaryKeyJoinColumn(name="codi_empleat")
-public class Metge extends Sanitari {
-    
-    @Column( name = "categoria")
-    String categoria;
-    
+public class Metge extends Sanitari  {
+    @Column(name="categoria")
+    private String categoria;
     @ManyToOne
     @JoinColumn(name="nom_especialitat")
-    Especialitat especialitat;
+    private Especialitat especialitat;
+    @OneToMany(mappedBy="metge")
+    private Set<Ingres> ingresos;
     
-    public Metge(){
+    public Metge() {
         super();
     }
-    
-    public Metge(String dni, String nom, String codi_empleat, Hospital hospital, String categoria, Especialitat especialitat){
-        super(dni,nom,codi_empleat,hospital);
-        this.categoria=categoria;
-        this.especialitat=especialitat;
-    }
 
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
+   
+    public Metge(String categoria, Especialitat especialitat, String codiEmpleat, Hospital hospital, String dni, String nom) {
+        super(codiEmpleat, hospital, dni, nom);
         this.categoria = categoria;
+        this.especialitat = especialitat;
     }
+    
 
     public Especialitat getEspecialitat() {
         return especialitat;
@@ -47,6 +38,31 @@ public class Metge extends Sanitari {
 
     public void setEspecialitat(Especialitat especialitat) {
         this.especialitat = especialitat;
+    }
+
+    public Set<Ingres> getIngres() {
+        return ingresos;
+    }
+
+    public void setIngres(Set<Ingres> ingres) {
+        this.ingresos = ingres;
+    }
+
+    public Hospital getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
+    }
+
+    
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
     
     
