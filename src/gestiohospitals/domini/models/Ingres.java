@@ -1,12 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gestiohospitals.domini.models;
 
+import java.io.Serializable;
+import java.sql.Date;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -14,52 +13,75 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="ingres")
-public class Ingres {
-    @Id
-    @GeneratedValue
-    private int id;
+public class Ingres implements Serializable {
+   @EmbeddedId
+    private IngresId ingresId;
     
+    @Column(name="data_alta")
+    private Date dataAlta;
     @ManyToOne
-    @JoinColumn(name="pacient_id")
-    private Pacient pacient;
-    
+    @JoinColumn(name="numero_habitacio")
+    private Habitacio habitacio;
     @ManyToOne
     @JoinColumn(name="nom_hospital")
     private Hospital hospital;
-    
     @ManyToOne
-    @JoinColumn(name="habitacio_id")
-    private Habitacio habitacio;
-    
-    @ManyToOne
-    @JoinColumn(name="metge_id")
-    
+    @JoinColumn(name="codi_empleat_metge")
     private Metge metge;
 
     public Ingres() {
     }
+
+    public Ingres(IngresId ingresId) {
+        this.ingresId = ingresId;
+    }
+
+    public Ingres(IngresId ingresId, Habitacio habitacio, Hospital hospital) {
+        this.ingresId = ingresId;
+        this.habitacio = habitacio;
+        this.hospital = hospital;
+    }
+
+    public Ingres(IngresId ingresId, Date dataAlta, Habitacio habitacio, Hospital hospital) {
+        this.ingresId = ingresId;
+        this.dataAlta = dataAlta;
+        this.habitacio = habitacio;
+        this.hospital = hospital;
+    }
+
+    public Ingres(IngresId ingresId, Date dataAlta, Habitacio habitacio, Hospital hospital, Metge metge) {
+        this.ingresId = ingresId;
+        this.dataAlta = dataAlta;
+        this.habitacio = habitacio;
+        this.hospital = hospital;
+        this.metge = metge;
+    }
+
+    public Ingres(IngresId ingresId, Habitacio habitacio, Hospital hospital, Metge metge) {
+        this.ingresId = ingresId;
+        this.habitacio = habitacio;
+        this.hospital = hospital;
+        this.metge = metge;
+    }
+ 
     
-    public Ingres(int id, Pacient pacient, Hospital hospital, Habitacio habitacio){
-        this.id=id;
-        this.pacient=pacient;
-        this.hospital=hospital;
-        this.habitacio=habitacio;
+    
+
+    public Date getDataAlta() {
+        return dataAlta;
     }
 
-    public int getId() {
-        return id;
+    public void setDataAlta(Date dataAlta) {
+        this.dataAlta = dataAlta;
     }
 
-    public void setId(int id) {
-        this.id = id;
+
+    public Habitacio getHabitacio() {
+        return habitacio;
     }
 
-    public Pacient getPacient() {
-        return pacient;
-    }
-
-    public void setPacient(Pacient pacient) {
-        this.pacient = pacient;
+    public void setHabitacio(Habitacio habitacio) {
+        this.habitacio = habitacio;
     }
 
     public Hospital getHospital() {
@@ -68,14 +90,6 @@ public class Ingres {
 
     public void setHospital(Hospital hospital) {
         this.hospital = hospital;
-    }
-
-    public Habitacio getHabitacio() {
-        return habitacio;
-    }
-
-    public void setHabitacio(Habitacio habitacio) {
-        this.habitacio = habitacio;
     }
 
     public Metge getMetge() {
@@ -87,6 +101,4 @@ public class Ingres {
     }
     
     
-    
 }
-
