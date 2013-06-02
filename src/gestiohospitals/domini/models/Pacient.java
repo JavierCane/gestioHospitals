@@ -1,49 +1,38 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gestiohospitals.domini.models;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="pacient")
-@AttributeOverrides({
-    @AttributeOverride(name="nom", column=@Column(name="nom"))
-})
 public class Pacient extends Persona {
     @Id
-    @Column( name="n_ts" )
-    String n_ts;
-    @Column( name="email" )
-    String email;
+    @GeneratedValue
+    @Column(name="n_ts")
+    private String nTs;
+    @Column(name="email")
+    private String email;
+    @OneToMany(mappedBy="pacient")
+    private Set<Ingres> ingresos;
     
-    public Pacient(){
-        super();
-    }
-    
-    public Pacient(String dni, String nom){
+    public Pacient(String dni, String nom, String nTs, String email){
         super(dni,nom);
-    }
-    public Pacient(String dni, String nom, String n_ts, String email){
-        super(dni,nom);
+        this.nTs=nTs;
         this.email=email;
-        this.n_ts=n_ts;
     }
 
-    public String getN_ts() {
-        return n_ts;
+    public String getnTs() {
+        return nTs;
     }
 
-    public void setN_ts(String n_ts) {
-        this.n_ts = n_ts;
+    public void setnTs(String nTs) {
+        this.nTs = nTs;
     }
 
     public String getEmail() {
@@ -53,6 +42,5 @@ public class Pacient extends Persona {
     public void setEmail(String email) {
         this.email = email;
     }
-    
     
 }
