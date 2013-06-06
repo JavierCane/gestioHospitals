@@ -13,7 +13,6 @@ import javax.persistence.Table;
 @Table(name="hospital")
 public class Hospital {
     @Id
-    @GeneratedValue
     @Column(name="nom")
     private String nom;
     @Column(name="adreca")
@@ -21,11 +20,19 @@ public class Hospital {
     @Column(name="descripcio")
     private String descripcio;
     @OneToMany(mappedBy="hospital")
-    private Set<Ingres> ingresos;
+    private ArrayList<Ingres> ingresos;
+
+	@OneToMany( mappedBy = "id.hospital", cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+	private ArrayList<Habitacio> habitacions;
+
+	//fer hibernate per escepialsts
+    private ArrayList<Especialitat> especialitats;
 
     public Hospital() {
     }
     
+	//hay que pasarle por parametro array especialitats
+	//public Hospital( String nom, String adreca, String descripcio, Especialitat nomEsp ) {
     public Hospital(String nom, String adreca, String descripcio) {
         this.nom = nom;
         this.adreca = adreca;
@@ -57,4 +64,24 @@ public class Hospital {
     }
     
     
+               
+        public Dada getHabitacionsLliures( String nom ) {
+            Dada d = new Dada();
+            Iterator it = habitacions.iterator();
+            while (it.hasNext()) {
+                Object h = it.next();
+                if ( ((Habitacio)h).esEspecialitat( nom ) ) {
+                    if ( ((Habitacio)h).estaLliure() ) { d.getHabLliures().add( ((Habitacio)h).getNumero() ); }
+                }
+            }
+            if ( d.getHabLliures().size() > 0 ) {
+                d.setNom(this.nom);
+                d.setAdreca(adreca);
+                d.setDescripcio(descripcio);
+            }
+            /*
+             dada:TupleType( nom:String, adreca:String, descripcio:String, habLliures:Set( num: Integer ))
+             * */
+            return d;
+        }
 }

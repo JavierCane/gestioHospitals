@@ -3,6 +3,8 @@ package gestiohospitals.domini.models;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Set;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -22,12 +24,12 @@ public class Habitacio implements Serializable {
     private Especialitat especialitat;
     
     @OneToMany(mappedBy="habitacio")
-    private Set<Ingres> ingresos;
+    private ArrayList<Ingres> ingresos;
 
     public Habitacio() {
     }
 
-    public Habitacio(HabitacioId habitacioId, Especialitat especialitat, Set<Ingres> ingresos) {
+    public Habitacio(HabitacioId habitacioId, Especialitat especialitat, ArrayList<Ingres> ingresos) {
         this.habitacioId = habitacioId;
         this.especialitat = especialitat;
         this.ingresos = ingresos;
@@ -37,15 +39,30 @@ public class Habitacio implements Serializable {
         return habitacioId;
     }
 
+
+        public Boolean esEspecialitat( String nom ) {
+            return nom.equals(especialitat.getNom());
+        }
+        
+        public Boolean estaLliure() {
+            Boolean lliure = true;
+            Iterator it = ingressos.iterator();
+            while ( it.hasNext() && lliure ) {
+                Object i = it.next();
+                lliure = ( ((Ingres)i).teAlta() );
+            }
+            return lliure;
+        }
+
     public void setHabitacioId(HabitacioId habitacioId) {
         this.habitacioId = habitacioId;
     }
 
-    public Set<Ingres> getIngresos() {
+    public ArrayList<Ingres> getIngresos() {
         return ingresos;
     }
 
-    public void setIngresos(Set<Ingres> ingresos) {
+    public void setIngresos(ArrayList<Ingres> ingresos) {
         this.ingresos = ingresos;
     }
 
@@ -63,5 +80,4 @@ public class Habitacio implements Serializable {
 
 
 }
-
 
