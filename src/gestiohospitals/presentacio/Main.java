@@ -8,13 +8,12 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-
 /**
  *
  * @author Otal
  */
 public class Main {
-    
+
     public Main() {
     }
 
@@ -23,14 +22,14 @@ public class Main {
             // Set cross-platform Java L&F (also called "Metal")
             UIManager.setLookAndFeel(
                     UIManager.getSystemLookAndFeelClassName());
-        } catch (UnsupportedLookAndFeelException | ClassNotFoundException 
-                | InstantiationException | IllegalAccessException e) {
+        } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             // handle exception
         }
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                BaseViewCtrl baseViewCtrl = new BaseViewCtrl();
+                IngressarPacientIntroduirEspecialitatViewCtrl viewCtrl =
+                        new IngressarPacientIntroduirEspecialitatViewCtrl();
             }
         });
     }

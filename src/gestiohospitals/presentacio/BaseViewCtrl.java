@@ -9,18 +9,14 @@ package gestiohospitals.presentacio;
  * @author Otal
  */
 public class BaseViewCtrl {
-    //private BaseView baseView;
 
-    public BaseViewCtrl(){
-        //baseView = new BaseView();
+    public BaseViewCtrl() {
     }
-    
+
     public void mostraPopUp(String text) {
-        
     }
-    
+
     public void prCancel(BaseView ventanaATancar) {
-        
+        System.exit(0);
     }
-            
 }
