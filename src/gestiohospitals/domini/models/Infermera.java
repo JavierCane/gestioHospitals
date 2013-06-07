@@ -3,10 +3,12 @@ package gestiohospitals.domini.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Infermera")
+@PrimaryKeyJoinColumn(name="codi_empleat")
 public class Infermera extends Sanitari {
     @Column(name="torn")
     private String torn; 

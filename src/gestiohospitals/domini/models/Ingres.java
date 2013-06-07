@@ -100,5 +100,8 @@ public class Ingres implements Serializable {
         this.metge = metge;
     }
     
+	public Boolean teAlta() {
+         return ( dataAlta != null );
+    }
     
 }
