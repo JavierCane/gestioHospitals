@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name="Infermera")
 @PrimaryKeyJoinColumn(name="codi_empleat")
