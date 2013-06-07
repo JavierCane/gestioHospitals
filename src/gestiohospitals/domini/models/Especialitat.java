@@ -31,10 +31,6 @@ public class Especialitat {
     private ArrayList<Hospital> hospitals=new ArrayList<Hospital> ();
 
     public Especialitat() {
-		//harenawer
-		//harenawer
-		//harenawer
-		//harenawer
     }
     
     public Especialitat(String nom) {
