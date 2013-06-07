@@ -27,6 +27,12 @@ public class Habitacio implements Serializable
 	public Habitacio()
 	{
 	}
+	
+	public Habitacio( HabitacioId habitacioId, Especialitat especialitat )
+	{
+		this.habitacioId = habitacioId;
+		this.especialitat = especialitat;
+	}
 
 	public Habitacio( HabitacioId habitacioId, Especialitat especialitat, ArrayList<Ingres> ingresos )
 	{

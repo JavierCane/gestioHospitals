@@ -18,9 +18,11 @@ public class Metge extends Sanitari
 
 	@Column( name = "categoria" )
 	private String categoria;
+	
 	@ManyToOne
 	@JoinColumn( name = "nom_especialitat" )
 	private Especialitat especialitat;
+	
 	@OneToMany( mappedBy = "metge" )
 	private ArrayList<Ingres> ingresos;
 

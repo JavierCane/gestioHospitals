@@ -20,19 +20,22 @@ public class Especialitat
 {
 
 	@Id
-	@Column( name = "nom" )
+	@Column( name = "nom_especialitat" )
 	private String nom;
+	
 	@OneToMany( mappedBy = "especialitat" )
 	private ArrayList<Metge> metges;
+	
 	@OneToMany( mappedBy = "especialitat" )
-	private ArrayList<Habitacio> habitacions;
+	private Set<Habitacio> habitacions;
+	
 	@ManyToMany( cascade = { CascadeType.ALL } )
 	@JoinTable( name = "hospital_especialitat",
 				joinColumns = {
-		@JoinColumn( name = "nom" ) },
+		@JoinColumn( name = "nom_especialitat" ) },
 				inverseJoinColumns = {
-		@JoinColumn( name = "nom" ) } )
-	private ArrayList<Hospital> hospitals = new ArrayList<Hospital>();
+		@JoinColumn( name = "nom_hospital" ) } )
+	private Set<Hospital> hospitals = new HashSet<Hospital>();
 
 	public Especialitat()
 	{
@@ -89,5 +92,10 @@ public class Especialitat
 			}
 		}
 		return llistaHabitacions;
+	}
+	
+	public Set<Hospital> getHospitals()
+	{
+		return hospitals;
 	}
 }

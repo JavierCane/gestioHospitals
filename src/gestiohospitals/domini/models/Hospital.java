@@ -1,6 +1,7 @@
 package gestiohospitals.domini.models;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import javax.persistence.Column;
@@ -18,20 +19,26 @@ public class Hospital
 {
 
 	@Id
-	@Column( name = "nom" )
+	@Column( name = "nom_hospital" )
 	private String nom;
+	
 	@Column( name = "adreca" )
 	private String adreca;
+	
 	@Column( name = "descripcio" )
 	private String descripcio;
+	
 	@OneToMany( mappedBy = "hospital" )
-	private ArrayList<Ingres> ingresos;
+	private Set<Ingres> ingresos;
+	
 	@OneToMany( mappedBy = "hospital" )
-	private ArrayList<Habitacio> habitacions;
+	private Set<Habitacio> habitacions;
+	
 	@OneToMany( mappedBy = "hospital" )
-	private ArrayList<Sanitari> sanitaris;
+	private Set<Sanitari> sanitaris;
+	
 	@ManyToMany( mappedBy = "hospitals" )
-	private ArrayList<Especialitat> especialitats = new ArrayList<Especialitat>();
+	private Set<Especialitat> especialitats = new HashSet<Especialitat>();
 
 	public Hospital()
 	{
