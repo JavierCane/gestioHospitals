@@ -27,7 +27,6 @@ public class Hospital {
     
     @OneToMany(mappedBy="hospital")
     private ArrayList<Ingres> ingresos;
-
     
     @OneToMany(mappedBy="hospital")
     private ArrayList<Habitacio> habitacions;
