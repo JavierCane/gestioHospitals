@@ -1,7 +1,10 @@
 
 package gestiohospitals.domini.models;
 
+import java.util.ArrayList;
 import java.util.Set;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,15 +14,21 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="pacient")
+@AttributeOverrides({
+    @AttributeOverride(name="dni", column=@Column(name="dni")),
+    @AttributeOverride(name="nom", column=@Column(name="nom"))
+})
 public class Pacient extends Persona {
     @Id
-    @GeneratedValue
     @Column(name="n_ts")
     private String nTs;
     @Column(name="email")
     private String email;
     @OneToMany(mappedBy="pacient")
-    private Set<Ingres> ingresos;
+    private ArrayList<Ingres> ingresos;
+
+    public Pacient() {
+    }
     
     public Pacient(String dni, String nom, String nTs, String email){
         super(dni,nom);
