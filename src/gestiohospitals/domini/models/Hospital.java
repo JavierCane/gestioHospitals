@@ -1,11 +1,15 @@
 
 package gestiohospitals.domini.models;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,20 +23,23 @@ public class Hospital {
     private String adreca;
     @Column(name="descripcio")
     private String descripcio;
+    
+    
     @OneToMany(mappedBy="hospital")
     private ArrayList<Ingres> ingresos;
-
-	@OneToMany( mappedBy = "id.hospital", cascade = CascadeType.ALL, fetch = FetchType.LAZY )
-	private ArrayList<Habitacio> habitacions;
-
-	//fer hibernate per escepialsts
-    private ArrayList<Especialitat> especialitats;
-
+    
+    @OneToMany(mappedBy="hospital")
+    private ArrayList<Habitacio> habitacions;
+    
+    @OneToMany(mappedBy="hospital")
+    private ArrayList<Sanitari> sanitaris;
+    
+    @ManyToMany(mappedBy="hospitals")
+    private ArrayList<Especialitat> especialitats = new ArrayList<Especialitat>();
+    
     public Hospital() {
     }
     
-	//hay que pasarle por parametro array especialitats
-	//public Hospital( String nom, String adreca, String descripcio, Especialitat nomEsp ) {
     public Hospital(String nom, String adreca, String descripcio) {
         this.nom = nom;
         this.adreca = adreca;
@@ -63,15 +70,13 @@ public class Hospital {
         this.descripcio = descripcio;
     }
     
-    
-               
-        public Dada getHabitacionsLliures( String nom ) {
+    public Dada getHabitacionsLliures( String nom ) {
             Dada d = new Dada();
             Iterator it = habitacions.iterator();
             while (it.hasNext()) {
                 Object h = it.next();
                 if ( ((Habitacio)h).esEspecialitat( nom ) ) {
-                    if ( ((Habitacio)h).estaLliure() ) { d.getHabLliures().add( ((Habitacio)h).getNumero() ); }
+                    if ( ((Habitacio)h).estaLliure() ) { d.getHabLliures().add( ((Habitacio)h).getHabitacioId().getNumero()); }
                 }
             }
             if ( d.getHabLliures().size() > 0 ) {
