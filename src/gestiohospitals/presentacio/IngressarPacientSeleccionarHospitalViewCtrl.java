@@ -4,6 +4,8 @@
  */
 package gestiohospitals.presentacio;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Otal
@@ -17,8 +19,12 @@ public class IngressarPacientSeleccionarHospitalViewCtrl extends IngressarPacien
     
     private InfoHosp llistaHospitals[];
     
-    public IngressarPacientSeleccionarHospitalViewCtrl() {
-        
+    private IngressarPacientSeleccionarHospitalView view;
+    
+    public IngressarPacientSeleccionarHospitalViewCtrl(ArrayList llista, String nomEsp) {
+        view = new IngressarPacientSeleccionarHospitalView();
+        view.setCtrl(this);
+        view.setInfoEsp(nomEsp);
     }
     
     public void canviarSeleccionarHospital(String nomHosp) {

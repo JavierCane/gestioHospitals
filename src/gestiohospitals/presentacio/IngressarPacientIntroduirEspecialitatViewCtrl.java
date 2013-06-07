@@ -4,6 +4,8 @@
  */
 package gestiohospitals.presentacio;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Otal
@@ -11,6 +13,8 @@ package gestiohospitals.presentacio;
 public class IngressarPacientIntroduirEspecialitatViewCtrl extends BaseViewCtrl {
 
     private IngressarPacientIntroduirEspecialitatView view;
+    private ArrayList llista;
+    //private IngressarPacient domainCtrl;
 
     public IngressarPacientIntroduirEspecialitatViewCtrl() {
         view = new IngressarPacientIntroduirEspecialitatView();
@@ -18,5 +22,19 @@ public class IngressarPacientIntroduirEspecialitatViewCtrl extends BaseViewCtrl 
     }
 
     public void prOkObteHospitals(String nomEsp) {
+        if (nomEsp.isEmpty()) {
+            view.mostraMissatge("No hi ha especialitat.");
+        } else {
+            /*
+             * try {
+             * domainCtrl.obteHospitalsLliuresPerEspecialitat(nomEsp);
+             * }
+             * catch() {
+             * 
+             */
+            view.tancar();
+            IngressarPacientSeleccionarHospitalViewCtrl ingresPacientSelecHospViewCtrl 
+                    = new IngressarPacientSeleccionarHospitalViewCtrl(llista, nomEsp);
+        }
     }
 }
