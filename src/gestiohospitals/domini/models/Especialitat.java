@@ -1,8 +1,6 @@
-
 package gestiohospitals.domini.models;
 
 
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,18 +9,26 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import java.util.*;
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.swing.JOptionPane;
 @Entity
 @Table(name = "especialitat")
 public class Especialitat {
     @Id
-    @GeneratedValue
     @Column(name = "nom")
     private String nom;
     @OneToMany(mappedBy="especialitat")
     private ArrayList<Metge> metges;
     @OneToMany(mappedBy="especialitat")
     private ArrayList<Habitacio> habitacions;
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name="hospital_especialitat", 
+                joinColumns={@JoinColumn(name="nom")}, 
+                inverseJoinColumns={@JoinColumn(name="nom")})
+    private ArrayList<Hospital> hospitals=new ArrayList<Hospital> ();
 
     public Especialitat() {
     }
