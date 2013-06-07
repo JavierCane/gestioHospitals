@@ -46,7 +46,7 @@ public class Habitacio implements Serializable {
         
         public Boolean estaLliure() {
             Boolean lliure = true;
-            Iterator it = ingressos.iterator();
+            Iterator it = ingresos.iterator();
             while ( it.hasNext() && lliure ) {
                 Object i = it.next();
                 lliure = ( ((Ingres)i).teAlta() );

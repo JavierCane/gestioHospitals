@@ -12,8 +12,6 @@ public class CtrlDataFactoria {
     
     }
     
-    
-    
     public static CtrlDataFactoria getInstance() {
         if(instancia == null){
             instancia = new CtrlDataFactoria();
