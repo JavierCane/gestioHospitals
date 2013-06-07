@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package gestiohospitals.presentacio;
 
 import javax.swing.JButton;
@@ -9,64 +5,72 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-/**
- *
- * @author Otal
- */
-public class BaseView extends javax.swing.JFrame {
+public class BaseView extends javax.swing.JFrame
+{
 
-    public BaseView() {
-        initComponents();
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
-    }
+	public BaseView()
+	{
+		initComponents();
+		this.setLocationRelativeTo( null );
+		this.setVisible( true );
+	}
 
-    protected JPanel getPanelCentral() {
-        return jPanelCentral;
-    }
+	protected JPanel getPanelCentral()
+	{
+		return jPanelCentral;
+	}
 
-    protected JPanel getPanelInfo() {
-        return jPanelInfo;
-    }
+	protected JPanel getPanelInfo()
+	{
+		return jPanelInfo;
+	}
 
-    protected JTextField getTextFieldMessageArea() {
-        return jTextFieldMessageArea;
-    }
+	protected JTextField getTextFieldMessageArea()
+	{
+		return jTextFieldMessageArea;
+	}
 
-    protected JButton getOKButton() {
-        return jButtonOK;
-    }
+	protected JButton getOKButton()
+	{
+		return jButtonOK;
+	}
 
-    protected JButton getCancelButton() {
-        return jButtonCancel;
-    }
+	protected JButton getCancelButton()
+	{
+		return jButtonCancel;
+	}
 
-    protected JLabel getLabelInfoData() {
-        return jLabelInfoData;
-    }
+	protected JLabel getLabelInfoData()
+	{
+		return jLabelInfoData;
+	}
 
-    protected JLabel getLabelInfoNTS() {
-        return jLabelInfoNTS;
-    }
+	protected JLabel getLabelInfoNTS()
+	{
+		return jLabelInfoNTS;
+	}
 
-    protected JLabel getLabelNomHosp() {
-        return jLabelInfoNomHosp;
-    }
+	protected JLabel getLabelNomHosp()
+	{
+		return jLabelInfoNomHosp;
+	}
 
-    public void mostraMissatge(String textMessageArea) {
-        jTextFieldMessageArea.setText(textMessageArea);
-    }
+	public void mostraMissatge( String textMessageArea )
+	{
+		jTextFieldMessageArea.setText( textMessageArea );
+	}
 
-    public void tancar() {
-        //this.removeAll();
-        this.setVisible(false);
-        this.dispose();
-    }
+	public void tancar()
+	{
+		//this.removeAll();
+		this.setVisible( false );
+		this.dispose();
+	}
 
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings( "unchecked" )
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
+    private void initComponents()
+    {
 
         jPanelButtons = new javax.swing.JPanel();
         jButtonOK = new javax.swing.JButton();

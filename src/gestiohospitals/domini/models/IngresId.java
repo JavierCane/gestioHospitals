@@ -1,4 +1,3 @@
-
 package gestiohospitals.domini.models;
 
 import java.io.Serializable;
@@ -9,38 +8,42 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Embeddable
-public class IngresId implements Serializable {
-    @Column(name="data_inici")
-    private Date dataInici;
-    @ManyToOne
-    @JoinColumn(name="n_ts_pacient")
-    private Pacient pacient;
+public class IngresId implements Serializable
+{
 
-    public IngresId() {
-    }
- 
-    public IngresId(Date dataInici, Pacient pacient) {
-        this.dataInici = dataInici;
-        this.pacient = pacient;
-    }
+	@Column( name = "data_inici" )
+	private Date dataInici;
+	@ManyToOne
+	@JoinColumn( name = "n_ts_pacient" )
+	private Pacient pacient;
 
-    public Date getDataInici() {
-        return dataInici;
-    }
+	public IngresId()
+	{
+	}
 
-    public void setDataInici(Date dataInici) {
-        this.dataInici = dataInici;
-    }
+	public IngresId( Date dataInici, Pacient pacient )
+	{
+		this.dataInici = dataInici;
+		this.pacient = pacient;
+	}
 
-    public Pacient getPacient() {
-        return pacient;
-    }
+	public Date getDataInici()
+	{
+		return dataInici;
+	}
 
-    public void setPacient(Pacient pacient) {
-        this.pacient = pacient;
-    }
-    
-    
+	public void setDataInici( Date dataInici )
+	{
+		this.dataInici = dataInici;
+	}
+
+	public Pacient getPacient()
+	{
+		return pacient;
+	}
+
+	public void setPacient( Pacient pacient )
+	{
+		this.pacient = pacient;
+	}
 }
- 
-    

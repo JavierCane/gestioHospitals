@@ -1,4 +1,3 @@
-
 package gestiohospitals.domini.models;
 
 import javax.persistence.AttributeOverride;
@@ -13,39 +12,42 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "sanitari")
-@Inheritance(strategy=InheritanceType.JOINED)
-@AttributeOverrides({
-    @AttributeOverride(name="dni", column=@Column(name="dni")),
-    @AttributeOverride(name="nom", column=@Column(name="nom"))
-})
+@Table( name = "sanitari" )
+@Inheritance( strategy = InheritanceType.JOINED )
+@AttributeOverrides( {
+	@AttributeOverride( name = "dni", column =
+									  @Column( name = "dni" ) ),
+	@AttributeOverride( name = "nom", column =
+									  @Column( name = "nom" ) )
+} )
+public class Sanitari extends Persona
+{
 
-public class Sanitari extends Persona {
-    @Id
-    @Column(name="codi_empleat")
-    protected String codiEmpleat;
-    @ManyToOne
-    @JoinColumn(name="nom_hospital")
-    protected Hospital hospital;
+	@Id
+	@Column( name = "codi_empleat" )
+	protected String codiEmpleat;
+	@ManyToOne
+	@JoinColumn( name = "nom_hospital" )
+	protected Hospital hospital;
 
-    public Sanitari() {
-    }
+	public Sanitari()
+	{
+	}
 
+	public Sanitari( String codiEmpleat, Hospital hospital, String dni, String nom )
+	{
+		super( dni, nom );
+		this.codiEmpleat = codiEmpleat;
+		this.hospital = hospital;
+	}
 
+	public String getCodiEmpleat()
+	{
+		return codiEmpleat;
+	}
 
-    public Sanitari(String codiEmpleat, Hospital hospital, String dni, String nom) {
-        super(dni, nom);
-        this.codiEmpleat = codiEmpleat;
-        this.hospital = hospital;
-    }
-
-    public String getCodiEmpleat() {
-        return codiEmpleat;
-    }
-
-    public void setCodiEmpleat(String codiEmpleat) {
-        this.codiEmpleat = codiEmpleat;
-    }
-    
-    
+	public void setCodiEmpleat( String codiEmpleat )
+	{
+		this.codiEmpleat = codiEmpleat;
+	}
 }

@@ -1,4 +1,3 @@
-
 package gestiohospitals.domini.models;
 
 import java.util.ArrayList;
@@ -12,60 +11,68 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="metge")
-@PrimaryKeyJoinColumn(name="codi_empleat")
-public class Metge extends Sanitari  {
-    @Column(name="categoria")
-    private String categoria;
-    @ManyToOne
-    @JoinColumn(name="nom_especialitat")
-    private Especialitat especialitat;
-    
-    @OneToMany(mappedBy="metge")
-    private ArrayList<Ingres> ingresos;
+@Table( name = "metge" )
+@PrimaryKeyJoinColumn( name = "codi_empleat" )
+public class Metge extends Sanitari
+{
 
-    public Especialitat getEspecialitat() {
-        return especialitat;
-    }
+	@Column( name = "categoria" )
+	private String categoria;
+	@ManyToOne
+	@JoinColumn( name = "nom_especialitat" )
+	private Especialitat especialitat;
+	@OneToMany( mappedBy = "metge" )
+	private ArrayList<Ingres> ingresos;
 
-    public void setEspecialitat(Especialitat especialitat) {
-        this.especialitat = especialitat;
-    }
+	public Especialitat getEspecialitat()
+	{
+		return especialitat;
+	}
 
-    public ArrayList<Ingres> getIngres() {
-        return ingresos;
-    }
+	public void setEspecialitat( Especialitat especialitat )
+	{
+		this.especialitat = especialitat;
+	}
 
-    public void setIngres(ArrayList<Ingres> ingres) {
-        this.ingresos = ingres;
-    }
+	public ArrayList<Ingres> getIngres()
+	{
+		return ingresos;
+	}
 
-    public Hospital getHospital() {
-        return hospital;
-    }
+	public void setIngres( ArrayList<Ingres> ingres )
+	{
+		this.ingresos = ingres;
+	}
 
-    public void setHospital(Hospital hospital) {
-        this.hospital = hospital;
-    }
+	public Hospital getHospital()
+	{
+		return hospital;
+	}
 
-    public Metge() {
-        super();
-    }
+	public void setHospital( Hospital hospital )
+	{
+		this.hospital = hospital;
+	}
 
-   
-    public Metge(String categoria, Especialitat especialitat, String codiEmpleat, Hospital hospital, String dni, String nom) {
-        super(codiEmpleat, hospital, dni, nom);
-        this.categoria = categoria;
-        this.especialitat = especialitat;
-    }
-    
-    public String getCategoria() {
-        return categoria;
-    }
+	public Metge()
+	{
+		super();
+	}
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-    
-    
+	public Metge( String categoria, Especialitat especialitat, String codiEmpleat, Hospital hospital, String dni, String nom )
+	{
+		super( codiEmpleat, hospital, dni, nom );
+		this.categoria = categoria;
+		this.especialitat = especialitat;
+	}
+
+	public String getCategoria()
+	{
+		return categoria;
+	}
+
+	public void setCategoria( String categoria )
+	{
+		this.categoria = categoria;
+	}
 }

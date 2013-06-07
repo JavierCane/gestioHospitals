@@ -1,4 +1,3 @@
-
 package gestiohospitals.domini.models;
 
 import java.util.ArrayList;
@@ -14,79 +13,87 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="hospital")
-public class Hospital {
-    @Id
-    @Column(name="nom")
-    private String nom;
-    @Column(name="adreca")
-    private String adreca;
-    @Column(name="descripcio")
-    private String descripcio;
-    
-    
-    @OneToMany(mappedBy="hospital")
-    private ArrayList<Ingres> ingresos;
-    
-    @OneToMany(mappedBy="hospital")
-    private ArrayList<Habitacio> habitacions;
-    
-    @OneToMany(mappedBy="hospital")
-    private ArrayList<Sanitari> sanitaris;
-    
-    @ManyToMany(mappedBy="hospitals")
-    private ArrayList<Especialitat> especialitats = new ArrayList<Especialitat>();
-    
-    public Hospital() {
-    }
-    
-    public Hospital(String nom, String adreca, String descripcio) {
-        this.nom = nom;
-        this.adreca = adreca;
-        this.descripcio = descripcio;
-    }
+@Table( name = "hospital" )
+public class Hospital
+{
 
-    public String getNom() {
-        return nom;
-    }
+	@Id
+	@Column( name = "nom" )
+	private String nom;
+	@Column( name = "adreca" )
+	private String adreca;
+	@Column( name = "descripcio" )
+	private String descripcio;
+	@OneToMany( mappedBy = "hospital" )
+	private ArrayList<Ingres> ingresos;
+	@OneToMany( mappedBy = "hospital" )
+	private ArrayList<Habitacio> habitacions;
+	@OneToMany( mappedBy = "hospital" )
+	private ArrayList<Sanitari> sanitaris;
+	@ManyToMany( mappedBy = "hospitals" )
+	private ArrayList<Especialitat> especialitats = new ArrayList<Especialitat>();
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+	public Hospital()
+	{
+	}
 
-    public String getAdreca() {
-        return adreca;
-    }
+	public Hospital( String nom, String adreca, String descripcio )
+	{
+		this.nom = nom;
+		this.adreca = adreca;
+		this.descripcio = descripcio;
+	}
 
-    public void setAdreca(String adreca) {
-        this.adreca = adreca;
-    }
+	public String getNom()
+	{
+		return nom;
+	}
 
-    public String getDescripcio() {
-        return descripcio;
-    }
+	public void setNom( String nom )
+	{
+		this.nom = nom;
+	}
 
-    public void setDescripcio(String descripcio) {
-        this.descripcio = descripcio;
-    }
-    
-    public Dada getHabitacionsLliures( String nom ) {
-            Dada d = new Dada();
-            Iterator it = habitacions.iterator();
-            while (it.hasNext()) {
-                Object h = it.next();
-                if ( ((Habitacio)h).esEspecialitat( nom ) ) {
-                    if ( ((Habitacio)h).estaLliure() ) { d.getHabLliures().add( ((Habitacio)h).getHabitacioId().getNumero()); }
-                }
-            }
-            if ( d.getHabLliures().size() > 0 ) {
-                d.setNom(this.nom);
-                d.setAdreca(adreca);
-                d.setDescripcio(descripcio);
-            }
-            /*
-             dada:TupleType( nom:String, adreca:String, descripcio:String, habLliures:Set( num: Integer ))
-             * */
-            return d;
-        }
+	public String getAdreca()
+	{
+		return adreca;
+	}
+
+	public void setAdreca( String adreca )
+	{
+		this.adreca = adreca;
+	}
+
+	public String getDescripcio()
+	{
+		return descripcio;
+	}
+
+	public void setDescripcio( String descripcio )
+	{
+		this.descripcio = descripcio;
+	}
+
+	public Dada getHabitacionsLliures( String nom )
+	{
+		Dada d = new Dada();
+		Iterator it = habitacions.iterator();
+		while ( it.hasNext() ) {
+			Object h = it.next();
+			if ( ( ( Habitacio ) h ).esEspecialitat( nom ) ) {
+				if ( ( ( Habitacio ) h ).estaLliure() ) {
+					d.getHabLliures().add( ( ( Habitacio ) h ).getHabitacioId().getNumero() );
+				}
+			}
+		}
+		if ( d.getHabLliures().size() > 0 ) {
+			d.setNom( this.nom );
+			d.setAdreca( adreca );
+			d.setDescripcio( descripcio );
+		}
+		/*
+		 dada:TupleType( nom:String, adreca:String, descripcio:String, habLliures:Set( num: Integer ))
+		 * */
+		return d;
+	}
 }
