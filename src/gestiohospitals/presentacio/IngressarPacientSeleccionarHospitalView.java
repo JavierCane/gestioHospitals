@@ -1,5 +1,6 @@
 package gestiohospitals.presentacio;
 
+import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -38,7 +39,7 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 
 	public void setInfoEsp( String nomEsp )
 	{
-		jLabelInfoEsp.setText( "Especialitat: " + nomEsp );
+		jLabelInfoEsp.setText( "ESPECIALITAT: " + nomEsp.toUpperCase() );
 	}
 
 	private void initComponents()
@@ -47,7 +48,7 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 		jLabelInfoEsp = new JLabel();
 		jLabelInfoEsp.setHorizontalAlignment( javax.swing.SwingConstants.LEFT );
 		jLabelInfoEsp.setPreferredSize( new java.awt.Dimension( 200, 14 ) );
-		jPanelInfo.add( jLabelInfoEsp, new org.netbeans.lib.awtextra.AbsoluteConstraints( 20, 5, 180, -1 ) );
+		jPanelInfo.add( jLabelInfoEsp, new org.netbeans.lib.awtextra.AbsoluteConstraints( 40, 20, 180, -1 ) );
 
 		jPanelCentral = getPanelCentral();
 
@@ -55,18 +56,15 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 
 		java.awt.GridBagConstraints gridBagConstraints;
 
-		jLabelNTS = new JLabel( "nTS:" );
+		jLabelNTS = new JLabel( "Número tarjeta sanitaria: " );
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 0;
-		gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-		gridBagConstraints.insets = new java.awt.Insets( 0, 40, 0, 40 );
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
 		jPanelCentral.add( jLabelNTS, gridBagConstraints );
 
 		jTextFieldNTS = new JTextField();
-		jTextFieldNTS.setMaximumSize( new java.awt.Dimension( 150, 24 ) );
 		jTextFieldNTS.setMinimumSize( new java.awt.Dimension( 150, 24 ) );
-		jTextFieldNTS.setPreferredSize( new java.awt.Dimension( 150, 24 ) );
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 0;
@@ -77,20 +75,21 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 1;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
 		jPanelCentral.add( jLabelHospitals, gridBagConstraints );
 
 		jTableHospitals = new JTable();
 		jScrollPaneTable = new JScrollPane();
 		jTableHospitals.setModel( new javax.swing.table.DefaultTableModel(
 				new Object[][]{
-			{ null, null, null },
-			{ null, null, null },
-			{ null, null, null },
-			{ null, null, null }
-		},
+					{ null, null, null },
+					{ null, null, null },
+					{ null, null, null },
+					{ null, null, null }
+				},
 				new String[]{
-			"Nom", "Descripció", "Adreça"
-		} )
+					"Nom", "Descripció", "Adreça"
+				} )
 		{
 			boolean[] canEdit = new boolean[]{
 				false, false, false
@@ -105,7 +104,7 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 		//jTableHospitals.setPreferredSize(new java.awt.Dimension(225, 200));
 		jTableHospitals.getTableHeader().setResizingAllowed( false );
 		jTableHospitals.getTableHeader().setReorderingAllowed( false );
-		jScrollPaneTable.setMinimumSize( new java.awt.Dimension( 400, 70 ) );
+		jScrollPaneTable.setMinimumSize( new java.awt.Dimension( 500, 380 ) );
 		jScrollPaneTable.setViewportView( jTableHospitals );
 		jTableHospitals.getColumnModel().getColumn( 1 ).setResizable( false );
 
@@ -117,12 +116,14 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 
 		jLabelHabLliures = new JLabel( "Habitacions lliures:" );
 		gridBagConstraints = new java.awt.GridBagConstraints();
-		gridBagConstraints.gridx = 0;
-		gridBagConstraints.gridy = 3;
+		gridBagConstraints.gridx = 3;
+		gridBagConstraints.gridy = 1;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+		gridBagConstraints.insets = new Insets( 0, 10, 0, 0 );
 		jPanelCentral.add( jLabelHabLliures, gridBagConstraints );
 
-		String[] options = { "VERTICAL", "HORIZONTAL_WRAP", "VERTICAL_WRAP" };
-		jListHabLliures = new JList( options );
+
+		jListHabLliures = new JList();
 		jScrollPaneList = new JScrollPane();
 		jListHabLliures.setModel( new javax.swing.AbstractListModel()
 		{
@@ -140,15 +141,14 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 				return strings[i];
 			}
 		} );
-		jListHabLliures.setVisibleRowCount( 1 );
-		jListHabLliures.setLayoutOrientation( JList.HORIZONTAL_WRAP );
-		jScrollPaneList.setMinimumSize( new java.awt.Dimension( 400, 20 ) );
+		jScrollPaneList.setMinimumSize( new java.awt.Dimension( 100, 380 ) );
 		jScrollPaneList.setViewportView( jListHabLliures );
 
 		gridBagConstraints = new java.awt.GridBagConstraints();
-		gridBagConstraints.gridx = 0;
-		gridBagConstraints.gridy = 4;
-		gridBagConstraints.gridwidth = 2;
+		gridBagConstraints.gridx = 3;
+		gridBagConstraints.gridy = 2;
+		gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+		gridBagConstraints.insets = new Insets( 0, 10, 0, 0 );
 		jPanelCentral.add( jScrollPaneList, gridBagConstraints );
 
 		jButtonCancel = getCancelButton();

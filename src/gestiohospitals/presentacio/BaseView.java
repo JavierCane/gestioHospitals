@@ -86,6 +86,7 @@ public class BaseView extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(428, 300));
         setMinimumSize(new java.awt.Dimension(428, 300));
+        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
         jPanelButtons.setPreferredSize(new java.awt.Dimension(100, 300));

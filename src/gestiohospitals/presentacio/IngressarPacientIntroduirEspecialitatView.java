@@ -31,7 +31,7 @@ public class IngressarPacientIntroduirEspecialitatView extends BaseView
 
 	private void initComponents()
 	{
-		jLabelEspecialitat = new JLabel( "Especialitat", JLabel.LEFT );
+		jLabelEspecialitat = new JLabel( "Especialitat:", JLabel.LEFT );
 
 		jTextFieldEspecialitat = new JTextField();
 		jTextFieldEspecialitat.setPreferredSize( new Dimension( 150, 24 ) );

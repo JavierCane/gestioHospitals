@@ -20,8 +20,6 @@ public class IngressarPacientSeleccionarHospitalViewCtrl extends IngressarPacien
 		view.setCtrl( this );
 		view.setInfoEsp( nomEsp );
 	}
-        
-        //dfjihsdiufhsdiuf
 
 	public void canviarSeleccionarHospital( String nomHosp )
 	{
