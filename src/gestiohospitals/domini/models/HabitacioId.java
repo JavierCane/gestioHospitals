@@ -3,6 +3,7 @@ package gestiohospitals.domini.models;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -12,7 +13,8 @@ public class HabitacioId implements Serializable
 
 	@Column( name = "numero" )
 	private int numero;
-	@ManyToOne
+	
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn( name = "nom_hospital" )
 	private Hospital hospital;
 

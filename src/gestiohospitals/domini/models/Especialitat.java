@@ -20,14 +20,14 @@ public class Especialitat
 {
 
 	@Id
-	@Column( name = "nom_especialitat" )
+	@Column( name = "nom_especialitat", nullable = false, unique = true )
 	private String nom;
 	
-	@OneToMany( mappedBy = "especialitat" )
-	private ArrayList<Metge> metges;
+//	@OneToMany( mappedBy = "especialitat" )
+//	private ArrayList<Metge> metges;
 	
-	@OneToMany( mappedBy = "especialitat" )
-	private Set<Habitacio> habitacions;
+//	@OneToMany( mappedBy = "especialitat" )
+//	private Set<Habitacio> habitacions;
 	
 	@ManyToMany( cascade = { CascadeType.ALL } )
 	@JoinTable( name = "hospital_especialitat",
@@ -35,7 +35,7 @@ public class Especialitat
 		@JoinColumn( name = "nom_especialitat" ) },
 				inverseJoinColumns = {
 		@JoinColumn( name = "nom_hospital" ) } )
-	private Set<Hospital> hospitals = new HashSet<Hospital>();
+	private List<Hospital> hospitals = new ArrayList<Hospital>();
 
 	public Especialitat()
 	{
@@ -46,25 +46,25 @@ public class Especialitat
 		this.nom = nom;
 	}
 
-	public ArrayList<Habitacio> getHabitacions()
-	{
-		return habitacions;
-	}
+//	public Set<Habitacio> getHabitacions()
+//	{
+//		return habitacions;
+//	}
+//
+//	public void setHabitacions( Set<Habitacio> habitacions )
+//	{
+//		this.habitacions = habitacions;
+//	}
 
-	public void setHabitacions( ArrayList<Habitacio> habitacions )
-	{
-		this.habitacions = habitacions;
-	}
-
-	public ArrayList<Metge> getMetges()
-	{
-		return metges;
-	}
-
-	public void setMetges( ArrayList<Metge> metges )
-	{
-		this.metges = metges;
-	}
+//	public List<Metge> getMetges()
+//	{
+//		return metges;
+//	}
+//
+//	public void setMetges( ArrayList<Metge> metges )
+//	{
+//		this.metges = metges;
+//	}
 
 	public String getNom()
 	{
@@ -76,25 +76,25 @@ public class Especialitat
 		this.nom = nom;
 	}
 
-	public List getHabitacionsLliuresHospitals()
-	{
-		ArrayList<Dada> llistaHabitacions = new ArrayList();
-		Iterator it = hospitals.iterator();
-		Dada d;
-		while ( it.hasNext() ) {
-			Object h = it.next();
-			d = ( ( Hospital ) h ).getHabitacionsLliures( nom );
-			if ( d.getHabLliures().size() > 0 ) {
-				llistaHabitacions.add( d );
-			}
-			else {
-				JOptionPane.showMessageDialog( null, "Exc: noHiHaHopstials -> habLliures no es > 0 " + ( ( Hospital ) h ).getNom() );
-			}
-		}
-		return llistaHabitacions;
-	}
+//	public List getHabitacionsLliuresHospitals()
+//	{
+//		ArrayList<Dada> llistaHabitacions = new ArrayList();
+//		Iterator it = hospitals.iterator();
+//		Dada d;
+//		while ( it.hasNext() ) {
+//			Object h = it.next();
+//			d = ( ( Hospital ) h ).getHabitacionsLliures( nom );
+//			if ( d.getHabLliures().size() > 0 ) {
+//				llistaHabitacions.add( d );
+//			}
+//			else {
+//				JOptionPane.showMessageDialog( null, "Exc: noHiHaHopstials -> habLliures no es > 0 " + ( ( Hospital ) h ).getNom() );
+//			}
+//		}
+//		return llistaHabitacions;
+//	}
 	
-	public Set<Hospital> getHospitals()
+	public List<Hospital> getHospitals()
 	{
 		return hospitals;
 	}

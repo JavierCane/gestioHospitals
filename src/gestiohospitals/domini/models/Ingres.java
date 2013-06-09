@@ -16,14 +16,18 @@ public class Ingres implements Serializable
 
 	@EmbeddedId
 	private IngresId ingresId;
+	
 	@Column( name = "data_alta" )
 	private Date dataAlta;
+	
 	@ManyToOne
 	@JoinColumn( name = "numero_habitacio" )
 	private Habitacio habitacio;
+	
 	@ManyToOne
 	@JoinColumn( name = "nom_hospital" )
 	private Hospital hospital;
+	
 	@ManyToOne
 	@JoinColumn( name = "codi_empleat_metge" )
 	private Metge metge;
@@ -43,31 +47,31 @@ public class Ingres implements Serializable
 		this.habitacio = habitacio;
 		this.hospital = hospital;
 	}
-
-	public Ingres( IngresId ingresId, Date dataAlta, Habitacio habitacio, Hospital hospital )
-	{
-		this.ingresId = ingresId;
-		this.dataAlta = dataAlta;
-		this.habitacio = habitacio;
-		this.hospital = hospital;
-	}
-
-	public Ingres( IngresId ingresId, Date dataAlta, Habitacio habitacio, Hospital hospital, Metge metge )
-	{
-		this.ingresId = ingresId;
-		this.dataAlta = dataAlta;
-		this.habitacio = habitacio;
-		this.hospital = hospital;
-		this.metge = metge;
-	}
-
-	public Ingres( IngresId ingresId, Habitacio habitacio, Hospital hospital, Metge metge )
-	{
-		this.ingresId = ingresId;
-		this.habitacio = habitacio;
-		this.hospital = hospital;
-		this.metge = metge;
-	}
+//
+//	public Ingres( IngresId ingresId, Date dataAlta, Habitacio habitacio, Hospital hospital )
+//	{
+//		this.ingresId = ingresId;
+//		this.dataAlta = dataAlta;
+//		this.habitacio = habitacio;
+////		this.hospital = hospital;
+//	}
+//
+//	public Ingres( IngresId ingresId, Date dataAlta, Habitacio habitacio, Hospital hospital, Metge metge )
+//	{
+//		this.ingresId = ingresId;
+//		this.dataAlta = dataAlta;
+//		this.habitacio = habitacio;
+////		this.hospital = hospital;
+//		this.metge = metge;
+//	}
+//
+//	public Ingres( IngresId ingresId, Habitacio habitacio, Hospital hospital, Metge metge )
+//	{
+//		this.ingresId = ingresId;
+//		this.habitacio = habitacio;
+////		this.hospital = hospital;
+//		this.metge = metge;
+//	}
 
 	public Date getDataAlta()
 	{
@@ -79,25 +83,25 @@ public class Ingres implements Serializable
 		this.dataAlta = dataAlta;
 	}
 
-	public Habitacio getHabitacio()
-	{
-		return habitacio;
-	}
+//	public Habitacio getHabitacio()
+//	{
+//		return habitacio;
+//	}
+//
+//	public void setHabitacio( Habitacio habitacio )
+//	{
+//		this.habitacio = habitacio;
+//	}
 
-	public void setHabitacio( Habitacio habitacio )
-	{
-		this.habitacio = habitacio;
-	}
-
-	public Hospital getHospital()
-	{
-		return hospital;
-	}
-
-	public void setHospital( Hospital hospital )
-	{
-		this.hospital = hospital;
-	}
+//	public Hospital getHospital()
+//	{
+//		return hospital;
+//	}
+//
+//	public void setHospital( Hospital hospital )
+//	{
+//		this.hospital = hospital;
+//	}
 
 	public Metge getMetge()
 	{

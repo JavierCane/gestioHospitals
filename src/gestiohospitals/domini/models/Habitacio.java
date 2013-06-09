@@ -3,6 +3,7 @@ package gestiohospitals.domini.models;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -18,11 +19,13 @@ public class Habitacio implements Serializable
 
 	@EmbeddedId
 	private HabitacioId habitacioId;
+	
 	@ManyToOne
 	@JoinColumn( name = "nom_especialitat" )
 	private Especialitat especialitat;
-	@OneToMany( mappedBy = "habitacio" )
-	private ArrayList<Ingres> ingresos;
+	
+//	@OneToMany( mappedBy = "habitacio" )
+//	private List<Ingres> ingresos = new ArrayList<>();
 
 	public Habitacio()
 	{
@@ -34,11 +37,11 @@ public class Habitacio implements Serializable
 		this.especialitat = especialitat;
 	}
 
-	public Habitacio( HabitacioId habitacioId, Especialitat especialitat, ArrayList<Ingres> ingresos )
+	public Habitacio( HabitacioId habitacioId, Especialitat especialitat, Set<Ingres> ingresos )
 	{
 		this.habitacioId = habitacioId;
 		this.especialitat = especialitat;
-		this.ingresos = ingresos;
+//		this.ingresos = ingresos;
 	}
 
 	public HabitacioId getHabitacioId()
@@ -51,31 +54,31 @@ public class Habitacio implements Serializable
 		return nom.equals( especialitat.getNom() );
 	}
 
-	public Boolean estaLliure()
-	{
-		Boolean lliure = true;
-		Iterator it = ingresos.iterator();
-		while ( it.hasNext() && lliure ) {
-			Object i = it.next();
-			lliure = ( ( ( Ingres ) i ).teAlta() );
-		}
-		return lliure;
-	}
+//	public Boolean estaLliure()
+//	{
+//		Boolean lliure = true;
+//		Iterator it = ingresos.iterator();
+//		while ( it.hasNext() && lliure ) {
+//			Object i = it.next();
+//			lliure = ( ( ( Ingres ) i ).teAlta() );
+//		}
+//		return lliure;
+//	}
 
 	public void setHabitacioId( HabitacioId habitacioId )
 	{
 		this.habitacioId = habitacioId;
 	}
-
-	public ArrayList<Ingres> getIngresos()
-	{
-		return ingresos;
-	}
-
-	public void setIngresos( ArrayList<Ingres> ingresos )
-	{
-		this.ingresos = ingresos;
-	}
+//
+//	public Set<Ingres> getIngresos()
+//	{
+//		return ingresos;
+//	}
+//
+//	public void setIngresos( Set<Ingres> ingresos )
+//	{
+//		this.ingresos = ingresos;
+//	}
 
 	public Especialitat getEspecialitat()
 	{

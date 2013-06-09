@@ -1,6 +1,7 @@
 package gestiohospitals.domini.models;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -13,22 +14,18 @@ import javax.persistence.Table;
 
 @Entity
 @Table( name = "pacient" )
-@AttributeOverrides( {
-	@AttributeOverride( name = "dni", column =
-									  @Column( name = "dni" ) ),
-	@AttributeOverride( name = "nom", column =
-									  @Column( name = "nom" ) )
-} )
 public class Pacient extends Persona
 {
 
 	@Id
 	@Column( name = "n_ts" )
 	private String nTs;
+	
 	@Column( name = "email" )
 	private String email;
-	@OneToMany( mappedBy = "pacient" )
-	private ArrayList<Ingres> ingresos;
+	
+//	@OneToMany( mappedBy = "pacient" )
+//	private List<Ingres> ingresos = new ArrayList<>();
 
 	public Pacient()
 	{

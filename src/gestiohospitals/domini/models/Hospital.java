@@ -3,9 +3,11 @@ package gestiohospitals.domini.models;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,17 +30,17 @@ public class Hospital
 	@Column( name = "descripcio" )
 	private String descripcio;
 	
-	@OneToMany( mappedBy = "hospital" )
-	private Set<Ingres> ingresos;
+//	@OneToMany( mappedBy = "hospital" )
+//	private Set<Ingres> ingresos;
 	
-	@OneToMany( mappedBy = "hospital" )
-	private Set<Habitacio> habitacions;
+//	@OneToMany( mappedBy = "hospital", fetch = FetchType.LAZY )
+//	private Set<Habitacio> habitacions;
 	
-	@OneToMany( mappedBy = "hospital" )
-	private Set<Sanitari> sanitaris;
+//	@OneToMany( mappedBy = "hospital" )
+//	private Set<Sanitari> sanitaris;
 	
 	@ManyToMany( mappedBy = "hospitals" )
-	private Set<Especialitat> especialitats = new HashSet<Especialitat>();
+	private List<Especialitat> especialitats = new ArrayList<Especialitat>();
 
 	public Hospital()
 	{
@@ -81,26 +83,26 @@ public class Hospital
 		this.descripcio = descripcio;
 	}
 
-	public Dada getHabitacionsLliures( String nom )
-	{
-		Dada d = new Dada();
-		Iterator it = habitacions.iterator();
-		while ( it.hasNext() ) {
-			Object h = it.next();
-			if ( ( ( Habitacio ) h ).esEspecialitat( nom ) ) {
-				if ( ( ( Habitacio ) h ).estaLliure() ) {
-					d.getHabLliures().add( ( ( Habitacio ) h ).getHabitacioId().getNumero() );
-				}
-			}
-		}
-		if ( d.getHabLliures().size() > 0 ) {
-			d.setNom( this.nom );
-			d.setAdreca( adreca );
-			d.setDescripcio( descripcio );
-		}
-		/*
-		 dada:TupleType( nom:String, adreca:String, descripcio:String, habLliures:Set( num: Integer ))
-		 * */
-		return d;
-	}
+//	public Dada getHabitacionsLliures( String nom )
+//	{
+//		Dada d = new Dada();
+//		Iterator it = habitacions.iterator();
+//		while ( it.hasNext() ) {
+//			Object h = it.next();
+//			if ( ( ( Habitacio ) h ).esEspecialitat( nom ) ) {
+//				if ( ( ( Habitacio ) h ).estaLliure() ) {
+//					d.getHabLliures().add( ( ( Habitacio ) h ).getHabitacioId().getNumero() );
+//				}
+//			}
+//		}
+//		if ( d.getHabLliures().size() > 0 ) {
+//			d.setNom( this.nom );
+//			d.setAdreca( adreca );
+//			d.setDescripcio( descripcio );
+//		}
+//		/*
+//		 dada:TupleType( nom:String, adreca:String, descripcio:String, habLliures:Set( num: Integer ))
+//		 * */
+//		return d;
+//	}
 }

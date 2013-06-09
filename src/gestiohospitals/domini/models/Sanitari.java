@@ -14,18 +14,13 @@ import javax.persistence.Table;
 @Entity
 @Table( name = "sanitari" )
 @Inheritance( strategy = InheritanceType.JOINED )
-@AttributeOverrides( {
-	@AttributeOverride( name = "dni", column =
-									  @Column( name = "dni" ) ),
-	@AttributeOverride( name = "nom", column =
-									  @Column( name = "nom" ) )
-} )
 public class Sanitari extends Persona
 {
 
 	@Id
 	@Column( name = "codi_empleat" )
 	protected String codiEmpleat;
+	
 	@ManyToOne
 	@JoinColumn( name = "nom_hospital" )
 	protected Hospital hospital;

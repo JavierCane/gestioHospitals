@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.25)
 # Database: gestio_hospitals
-# Generation Time: 2013-06-07 20:03:50 +0000
+# Generation Time: 2013-06-09 18:13:01 +0000
 # ************************************************************
 
 
@@ -57,7 +57,7 @@ DROP TABLE IF EXISTS `hospital`;
 CREATE TABLE `hospital` (
   `nom_hospital` varchar(255) NOT NULL DEFAULT '',
   `adreca` varchar(255) DEFAULT NULL,
-  `descripcio` text,
+  `descripcio` varchar(255) DEFAULT '',
   PRIMARY KEY (`nom_hospital`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -99,7 +99,7 @@ CREATE TABLE `infermera` (
 DROP TABLE IF EXISTS `ingres`;
 
 CREATE TABLE `ingres` (
-  `n_ts_pacient` char(14) NOT NULL,
+  `n_ts_pacient` varchar(14) NOT NULL DEFAULT '',
   `nom_hospital` varchar(255) NOT NULL,
   `numero_habitacio` int(11) unsigned NOT NULL,
   `codi_empleat_metge` char(9) DEFAULT NULL,
@@ -141,7 +141,7 @@ DROP TABLE IF EXISTS `pacient`;
 CREATE TABLE `pacient` (
   `dni` char(9) NOT NULL,
   `nom` varchar(100) NOT NULL,
-  `n_ts` char(14) NOT NULL DEFAULT '',
+  `n_ts` varchar(14) NOT NULL DEFAULT '',
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`n_ts`),
   UNIQUE KEY `pacient_dni_u` (`dni`)
