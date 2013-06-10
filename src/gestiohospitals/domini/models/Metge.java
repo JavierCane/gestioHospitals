@@ -23,8 +23,8 @@ public class Metge extends Sanitari
 	@JoinColumn( name = "nom_especialitat", referencedColumnName = "nom_especialitat" )
 	private Especialitat especialitat;
 	
-	@OneToMany( mappedBy = "metge" )
-	private List<Ingres> ingresos = new ArrayList<>();
+	//@OneToMany( mappedBy = "metge" )
+	//private List<Ingres> ingresos = new ArrayList<>();
 
 	public Especialitat getEspecialitat()
 	{
