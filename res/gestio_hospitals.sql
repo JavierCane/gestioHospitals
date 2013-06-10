@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.25)
 # Database: gestio_hospitals
-# Generation Time: 2013-06-10 06:13:39 +0000
+# Generation Time: 2013-06-10 14:09:06 +0000
 # ************************************************************
 
 
@@ -109,8 +109,8 @@ CREATE TABLE `ingres` (
   `nom_hospital` varchar(255) NOT NULL,
   `numero_habitacio` int(11) unsigned NOT NULL,
   `codi_empleat_metge` varchar(9) DEFAULT NULL,
-  `data_inici` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `data_alta` timestamp NULL DEFAULT NULL,
+  `data_inici` date NOT NULL,
+  `data_alta` date DEFAULT NULL,
   PRIMARY KEY (`n_ts_pacient`,`data_inici`),
   KEY `ingres_pacient_n_ts_fk` (`n_ts_pacient`),
   KEY `ingres_habitacio_nom_numero_fk` (`nom_hospital`,`numero_habitacio`),
