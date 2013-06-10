@@ -13,6 +13,7 @@ public class IngresId implements Serializable
 
 	@Column( name = "data_inici" )
 	private Date dataInici;
+	
 	@ManyToOne
 	@JoinColumn( name = "n_ts_pacient" )
 	private Pacient pacient;

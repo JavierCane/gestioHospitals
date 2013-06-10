@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.25)
 # Database: gestio_hospitals
-# Generation Time: 2013-06-01 18:35:17 +0000
+# Generation Time: 2013-06-10 14:09:06 +0000
 # ************************************************************
 
 
@@ -26,8 +26,8 @@
 DROP TABLE IF EXISTS `especialitat`;
 
 CREATE TABLE `especialitat` (
-  `nom` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`nom`)
+  `nom_especialitat` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`nom_especialitat`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -43,8 +43,12 @@ CREATE TABLE `habitacio` (
   `nom_especialitat` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`nom_hospital`,`numero`),
   KEY `habitacio_especialitat_nom_fk` (`nom_especialitat`),
-  CONSTRAINT `habitacio_especialitat_nom_fk` FOREIGN KEY (`nom_especialitat`) REFERENCES `especialitat` (`nom`) ON UPDATE CASCADE,
-  CONSTRAINT `habitacio_hospital_nom_fk` FOREIGN KEY (`nom_hospital`) REFERENCES `hospital` (`nom`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `FK91FEE03C52DA8259` (`nom_hospital`),
+  KEY `FK91FEE03C1A1CF609` (`nom_especialitat`),
+  CONSTRAINT `FK91FEE03C1A1CF609` FOREIGN KEY (`nom_especialitat`) REFERENCES `especialitat` (`nom_especialitat`),
+  CONSTRAINT `FK91FEE03C52DA8259` FOREIGN KEY (`nom_hospital`) REFERENCES `hospital` (`nom_hospital`),
+  CONSTRAINT `habitacio_especialitat_nom_fk` FOREIGN KEY (`nom_especialitat`) REFERENCES `especialitat` (`nom_especialitat`),
+  CONSTRAINT `habitacio_hospital_nom_fk` FOREIGN KEY (`nom_hospital`) REFERENCES `hospital` (`nom_hospital`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -55,10 +59,10 @@ CREATE TABLE `habitacio` (
 DROP TABLE IF EXISTS `hospital`;
 
 CREATE TABLE `hospital` (
-  `nom` varchar(255) NOT NULL DEFAULT '',
+  `nom_hospital` varchar(255) NOT NULL DEFAULT '',
   `adreca` varchar(255) DEFAULT NULL,
-  `descripcio` text,
-  PRIMARY KEY (`nom`)
+  `descripcio` varchar(255) DEFAULT '',
+  PRIMARY KEY (`nom_hospital`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -69,12 +73,12 @@ CREATE TABLE `hospital` (
 DROP TABLE IF EXISTS `hospital_especialitat`;
 
 CREATE TABLE `hospital_especialitat` (
-  `hospital_nom` varchar(255) NOT NULL DEFAULT '',
-  `especialitat_nom` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`hospital_nom`,`especialitat_nom`),
-  KEY `hospital_especialitat_especialitat_nom` (`especialitat_nom`),
-  CONSTRAINT `hospital_especialitat_especialitat_nom` FOREIGN KEY (`especialitat_nom`) REFERENCES `especialitat` (`nom`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `hospital_especialitat_hospital_nom` FOREIGN KEY (`hospital_nom`) REFERENCES `hospital` (`nom`) ON DELETE CASCADE ON UPDATE CASCADE
+  `nom_especialitat` varchar(255) NOT NULL,
+  `nom_hospital` varchar(255) NOT NULL,
+  KEY `FKE9E4CF3752DA8259` (`nom_hospital`),
+  KEY `FKE9E4CF371A1CF609` (`nom_especialitat`),
+  CONSTRAINT `FKE9E4CF371A1CF609` FOREIGN KEY (`nom_especialitat`) REFERENCES `especialitat` (`nom_especialitat`),
+  CONSTRAINT `FKE9E4CF3752DA8259` FOREIGN KEY (`nom_hospital`) REFERENCES `hospital` (`nom_hospital`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -85,9 +89,11 @@ CREATE TABLE `hospital_especialitat` (
 DROP TABLE IF EXISTS `infermera`;
 
 CREATE TABLE `infermera` (
-  `codi_empleat` char(9) NOT NULL,
+  `codi_empleat` varchar(9) NOT NULL DEFAULT '',
   `torn` varchar(50) NOT NULL,
   PRIMARY KEY (`codi_empleat`),
+  KEY `FK39616F15F95A7B25` (`codi_empleat`),
+  CONSTRAINT `FK39616F15F95A7B25` FOREIGN KEY (`codi_empleat`) REFERENCES `sanitari` (`codi_empleat`),
   CONSTRAINT `infermera_sanitari_codi_empleat_fk` FOREIGN KEY (`codi_empleat`) REFERENCES `sanitari` (`codi_empleat`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -99,12 +105,12 @@ CREATE TABLE `infermera` (
 DROP TABLE IF EXISTS `ingres`;
 
 CREATE TABLE `ingres` (
-  `n_ts_pacient` char(14) NOT NULL,
+  `n_ts_pacient` varchar(14) NOT NULL DEFAULT '',
   `nom_hospital` varchar(255) NOT NULL,
   `numero_habitacio` int(11) unsigned NOT NULL,
-  `codi_empleat_metge` char(9) DEFAULT NULL,
-  `data_inici` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `data_alta` timestamp NULL DEFAULT NULL,
+  `codi_empleat_metge` varchar(9) DEFAULT NULL,
+  `data_inici` date NOT NULL,
+  `data_alta` date DEFAULT NULL,
   PRIMARY KEY (`n_ts_pacient`,`data_inici`),
   KEY `ingres_pacient_n_ts_fk` (`n_ts_pacient`),
   KEY `ingres_habitacio_nom_numero_fk` (`nom_hospital`,`numero_habitacio`),
@@ -122,13 +128,17 @@ CREATE TABLE `ingres` (
 DROP TABLE IF EXISTS `metge`;
 
 CREATE TABLE `metge` (
-  `codi_empleat` char(9) NOT NULL,
+  `codi_empleat` varchar(9) NOT NULL DEFAULT '',
   `categoria` varchar(255) NOT NULL,
   `nom_especialitat` varchar(255) NOT NULL,
   PRIMARY KEY (`codi_empleat`),
   KEY `metge_especialitat_nom_fk` (`nom_especialitat`),
-  CONSTRAINT `metge_especialitat_nom_fk` FOREIGN KEY (`nom_especialitat`) REFERENCES `especialitat` (`nom`) ON UPDATE CASCADE,
-  CONSTRAINT `metge_sanitari_codi_empleat_fk` FOREIGN KEY (`codi_empleat`) REFERENCES `sanitari` (`codi_empleat`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `FK62FABBAF95A7B25` (`codi_empleat`),
+  KEY `FK62FABBA1A1CF609` (`nom_especialitat`),
+  CONSTRAINT `FK62FABBA1A1CF609` FOREIGN KEY (`nom_especialitat`) REFERENCES `especialitat` (`nom_especialitat`),
+  CONSTRAINT `FK62FABBAF95A7B25` FOREIGN KEY (`codi_empleat`) REFERENCES `sanitari` (`codi_empleat`),
+  CONSTRAINT `metge_especialitat_nom_fk` FOREIGN KEY (`nom_especialitat`) REFERENCES `especialitat` (`nom_especialitat`),
+  CONSTRAINT `metge_sanitari_codi_empleat_fk` FOREIGN KEY (`codi_empleat`) REFERENCES `sanitari` (`codi_empleat`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -139,9 +149,9 @@ CREATE TABLE `metge` (
 DROP TABLE IF EXISTS `pacient`;
 
 CREATE TABLE `pacient` (
-  `dni` char(9) NOT NULL,
+  `dni` varchar(9) NOT NULL DEFAULT '',
   `nom` varchar(100) NOT NULL,
-  `n_ts` char(14) NOT NULL DEFAULT '',
+  `n_ts` varchar(14) NOT NULL DEFAULT '',
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`n_ts`),
   UNIQUE KEY `pacient_dni_u` (`dni`)
@@ -155,14 +165,16 @@ CREATE TABLE `pacient` (
 DROP TABLE IF EXISTS `sanitari`;
 
 CREATE TABLE `sanitari` (
-  `dni` char(9) NOT NULL,
+  `dni` varchar(9) NOT NULL DEFAULT '',
   `nom` varchar(100) NOT NULL,
-  `codi_empleat` char(9) NOT NULL,
+  `codi_empleat` varchar(9) NOT NULL DEFAULT '',
   `nom_hospital` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`codi_empleat`),
   UNIQUE KEY `sanitari_dni_u` (`dni`),
   KEY `sanitari_hospital_nom_fk` (`nom_hospital`),
-  CONSTRAINT `sanitari_hospital_nom_fk` FOREIGN KEY (`nom_hospital`) REFERENCES `hospital` (`nom`) ON UPDATE CASCADE
+  KEY `FK7716896D52DA8259` (`nom_hospital`),
+  CONSTRAINT `FK7716896D52DA8259` FOREIGN KEY (`nom_hospital`) REFERENCES `hospital` (`nom_hospital`),
+  CONSTRAINT `sanitari_hospital_nom_fk` FOREIGN KEY (`nom_hospital`) REFERENCES `hospital` (`nom_hospital`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

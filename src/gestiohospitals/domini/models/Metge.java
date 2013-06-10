@@ -1,7 +1,7 @@
 package gestiohospitals.domini.models;
 
 import java.util.ArrayList;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -18,11 +18,13 @@ public class Metge extends Sanitari
 
 	@Column( name = "categoria" )
 	private String categoria;
+	
 	@ManyToOne
-	@JoinColumn( name = "nom_especialitat" )
+	@JoinColumn( name = "nom_especialitat", referencedColumnName = "nom_especialitat" )
 	private Especialitat especialitat;
+	
 	@OneToMany( mappedBy = "metge" )
-	private ArrayList<Ingres> ingresos;
+	private List<Ingres> ingresos = new ArrayList<>();
 
 	public Especialitat getEspecialitat()
 	{
@@ -34,12 +36,12 @@ public class Metge extends Sanitari
 		this.especialitat = especialitat;
 	}
 
-	public ArrayList<Ingres> getIngres()
+	public List<Ingres> getIngres()
 	{
 		return ingresos;
 	}
 
-	public void setIngres( ArrayList<Ingres> ingres )
+	public void setIngres( List<Ingres> ingres )
 	{
 		this.ingresos = ingres;
 	}

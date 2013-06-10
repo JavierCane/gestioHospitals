@@ -1,15 +1,14 @@
 package gestiohospitals.domini.models;
 
 import javax.persistence.Column;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
 
-@Inheritance( strategy = InheritanceType.TABLE_PER_CLASS )
-public class Persona
+@MappedSuperclass
+public abstract class Persona
 {
-
 	@Column( name = "dni" )
 	protected String dni;
+	
 	@Column( name = "nom" )
 	protected String nom;
 

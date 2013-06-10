@@ -9,15 +9,15 @@
     <property name="hibernate.connection.password">somachigun</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.hbm2ddl.auto">validate</property>
-	<property name="hibernate.jdbc.batch_size">0</property>
-    <mapping class="gestiohospitals.domini.models.Hospital"/> 
-     <mapping class="gestiohospitals.domini.models.Especialitat"/> 
-     <mapping class="gestiohospitals.domini.models.Habitacio"/> 
-     <mapping class="gestiohospitals.domini.models.Sanitari"/> 
-     <mapping class="gestiohospitals.domini.models.Persona"/> 
-     <mapping class="gestiohospitals.domini.models.Pacient"/> 
-     <mapping class="gestiohospitals.domini.models.Infermera"/> 
-     <mapping class="gestiohospitals.domini.models.Metge"/> 
-     <mapping class="gestiohospitals.domini.models.Ingres"/> 
+    <property name="hibernate.jdbc.batch_size">0</property>
+    <mapping class="gestiohospitals.domini.models.Hospital"/>
+    <mapping class="gestiohospitals.domini.models.Especialitat"/>
+    <mapping class="gestiohospitals.domini.models.Habitacio"/>
+    <mapping class="gestiohospitals.domini.models.Sanitari"/>
+    <mapping class="gestiohospitals.domini.models.Persona"/>
+    <mapping class="gestiohospitals.domini.models.Pacient"/>
+    <mapping class="gestiohospitals.domini.models.Infermera"/>
+    <mapping class="gestiohospitals.domini.models.Metge"/>
+    <mapping class="gestiohospitals.domini.models.Ingres"/>
   </session-factory>
 </hibernate-configuration>

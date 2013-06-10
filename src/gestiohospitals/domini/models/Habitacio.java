@@ -3,6 +3,7 @@ package gestiohospitals.domini.models;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -18,17 +19,25 @@ public class Habitacio implements Serializable
 
 	@EmbeddedId
 	private HabitacioId habitacioId;
+	
 	@ManyToOne
 	@JoinColumn( name = "nom_especialitat" )
 	private Especialitat especialitat;
+	
 	@OneToMany( mappedBy = "habitacio" )
-	private ArrayList<Ingres> ingresos;
+	private List<Ingres> ingresos = new ArrayList<>();
 
 	public Habitacio()
 	{
 	}
+	
+	public Habitacio( HabitacioId habitacioId, Especialitat especialitat )
+	{
+		this.habitacioId = habitacioId;
+		this.especialitat = especialitat;
+	}
 
-	public Habitacio( HabitacioId habitacioId, Especialitat especialitat, ArrayList<Ingres> ingresos )
+	public Habitacio( HabitacioId habitacioId, Especialitat especialitat, List<Ingres> ingresos )
 	{
 		this.habitacioId = habitacioId;
 		this.especialitat = especialitat;
@@ -61,12 +70,12 @@ public class Habitacio implements Serializable
 		this.habitacioId = habitacioId;
 	}
 
-	public ArrayList<Ingres> getIngresos()
+	public List<Ingres> getIngresos()
 	{
 		return ingresos;
 	}
 
-	public void setIngresos( ArrayList<Ingres> ingresos )
+	public void setIngresos( List<Ingres> ingresos )
 	{
 		this.ingresos = ingresos;
 	}

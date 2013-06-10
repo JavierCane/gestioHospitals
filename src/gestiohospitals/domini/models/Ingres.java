@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -16,14 +17,17 @@ public class Ingres implements Serializable
 
 	@EmbeddedId
 	private IngresId ingresId;
+	
 	@Column( name = "data_alta" )
 	private Date dataAlta;
+	
 	@ManyToOne
-	@JoinColumn( name = "numero_habitacio" )
+	@JoinColumns( {
+		@JoinColumn( name = "numero_habitacio", referencedColumnName = "numero" ),
+		@JoinColumn( name = "nom_hospital", referencedColumnName = "nom_hospital" )
+	} )
 	private Habitacio habitacio;
-	@ManyToOne
-	@JoinColumn( name = "nom_hospital" )
-	private Hospital hospital;
+	
 	@ManyToOne
 	@JoinColumn( name = "codi_empleat_metge" )
 	private Metge metge;
@@ -37,35 +41,17 @@ public class Ingres implements Serializable
 		this.ingresId = ingresId;
 	}
 
-	public Ingres( IngresId ingresId, Habitacio habitacio, Hospital hospital )
+	public Ingres( IngresId ingresId, Habitacio habitacio )
 	{
 		this.ingresId = ingresId;
 		this.habitacio = habitacio;
-		this.hospital = hospital;
 	}
 
-	public Ingres( IngresId ingresId, Date dataAlta, Habitacio habitacio, Hospital hospital )
+	public Ingres( IngresId ingresId, Date dataAlta, Habitacio habitacio, Metge metge )
 	{
 		this.ingresId = ingresId;
 		this.dataAlta = dataAlta;
 		this.habitacio = habitacio;
-		this.hospital = hospital;
-	}
-
-	public Ingres( IngresId ingresId, Date dataAlta, Habitacio habitacio, Hospital hospital, Metge metge )
-	{
-		this.ingresId = ingresId;
-		this.dataAlta = dataAlta;
-		this.habitacio = habitacio;
-		this.hospital = hospital;
-		this.metge = metge;
-	}
-
-	public Ingres( IngresId ingresId, Habitacio habitacio, Hospital hospital, Metge metge )
-	{
-		this.ingresId = ingresId;
-		this.habitacio = habitacio;
-		this.hospital = hospital;
 		this.metge = metge;
 	}
 
@@ -89,16 +75,16 @@ public class Ingres implements Serializable
 		this.habitacio = habitacio;
 	}
 
-	public Hospital getHospital()
-	{
-		return hospital;
-	}
+	/*	public Hospital getHospital()
+	 {
+	 return hospital;
+	 }
 
-	public void setHospital( Hospital hospital )
-	{
-		this.hospital = hospital;
-	}
-
+	 public void setHospital( Hospital hospital )
+	 {
+	 this.hospital = hospital;
+	 }
+	 */
 	public Metge getMetge()
 	{
 		return metge;

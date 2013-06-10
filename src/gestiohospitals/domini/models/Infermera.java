@@ -6,7 +6,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table( name = "Infermera" )
+@Table( name = "infermera" )
 @PrimaryKeyJoinColumn( name = "codi_empleat" )
 public class Infermera extends Sanitari
 {
