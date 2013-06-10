@@ -37,11 +37,11 @@ public class Habitacio implements Serializable
 		this.especialitat = especialitat;
 	}
 
-	public Habitacio( HabitacioId habitacioId, Especialitat especialitat, Set<Ingres> ingresos )
+	public Habitacio( HabitacioId habitacioId, Especialitat especialitat, List<Ingres> ingresos )
 	{
 		this.habitacioId = habitacioId;
 		this.especialitat = especialitat;
-//		this.ingresos = ingresos;
+		this.ingresos = ingresos;
 	}
 
 	public HabitacioId getHabitacioId()
@@ -54,31 +54,31 @@ public class Habitacio implements Serializable
 		return nom.equals( especialitat.getNom() );
 	}
 
-//	public Boolean estaLliure()
-//	{
-//		Boolean lliure = true;
-//		Iterator it = ingresos.iterator();
-//		while ( it.hasNext() && lliure ) {
-//			Object i = it.next();
-//			lliure = ( ( ( Ingres ) i ).teAlta() );
-//		}
-//		return lliure;
-//	}
+	public Boolean estaLliure()
+	{
+		Boolean lliure = true;
+		Iterator it = ingresos.iterator();
+		while ( it.hasNext() && lliure ) {
+			Object i = it.next();
+			lliure = ( ( ( Ingres ) i ).teAlta() );
+		}
+		return lliure;
+	}
 
 	public void setHabitacioId( HabitacioId habitacioId )
 	{
 		this.habitacioId = habitacioId;
 	}
-//
-//	public Set<Ingres> getIngresos()
-//	{
-//		return ingresos;
-//	}
-//
-//	public void setIngresos( Set<Ingres> ingresos )
-//	{
-//		this.ingresos = ingresos;
-//	}
+
+	public List<Ingres> getIngresos()
+	{
+		return ingresos;
+	}
+
+	public void setIngresos( List<Ingres> ingresos )
+	{
+		this.ingresos = ingresos;
+	}
 
 	public Especialitat getEspecialitat()
 	{

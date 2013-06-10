@@ -36,15 +36,15 @@ public class Metge extends Sanitari
 		this.especialitat = especialitat;
 	}
 
-//	public Set<Ingres> getIngres()
-//	{
-//		return ingresos;
-//	}
-//
-//	public void setIngres( Set<Ingres> ingres )
-//	{
-//		this.ingresos = ingres;
-//	}
+	public List<Ingres> getIngres()
+	{
+		return ingresos;
+	}
+
+	public void setIngres( List<Ingres> ingres )
+	{
+		this.ingresos = ingres;
+	}
 
 	public Hospital getHospital()
 	{

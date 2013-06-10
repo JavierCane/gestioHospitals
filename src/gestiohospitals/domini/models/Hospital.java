@@ -29,7 +29,7 @@ public class Hospital
 	//private List<Ingres> ingresos = new ArrayList<>();
 	
 	@OneToMany( mappedBy = "habitacioId.hospital", fetch = FetchType.LAZY )
-	private List<Habitacio> habitacions=new ArrayList<>();
+	private List<Habitacio> habitacions = new ArrayList<>();
 	
 	@OneToMany( mappedBy = "hospital" )
 	private List<Sanitari> sanitaris = new ArrayList<>();

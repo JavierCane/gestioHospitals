@@ -18,6 +18,6 @@
     <mapping class="gestiohospitals.domini.models.Pacient"/>
     <mapping class="gestiohospitals.domini.models.Infermera"/>
     <mapping class="gestiohospitals.domini.models.Metge"/>
-    <!--<mapping class="gestiohospitals.domini.models.Ingres"/>-->
+    <mapping class="gestiohospitals.domini.models.Ingres"/>
   </session-factory>
 </hibernate-configuration>

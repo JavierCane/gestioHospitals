@@ -33,7 +33,7 @@ public class Especialitat
 		@JoinColumn( name = "nom_especialitat" ) },
 				inverseJoinColumns = {
 		@JoinColumn( name = "nom_hospital" ) } )
-	private List<Hospital> hospitals = new ArrayList<Hospital>();
+	private List<Hospital> hospitals = new ArrayList<>();
 
 	public Especialitat()
 	{
