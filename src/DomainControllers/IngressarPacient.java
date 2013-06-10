@@ -13,12 +13,12 @@ public class IngressarPacient {
     private String dniMetge;
 
     
-//    public List obteHospitalsLliuresPerEspecialitat( String nomEsp ) {
-//        //: Set( TupleType( nom:String, adreça:String, descripció:String, habLliures:Set( núm: Integer )))
-//        nomEspecialitat = nomEsp;
-//        ConsultarHospitalsLliuresPerEspecialitat c = new ConsultarHospitalsLliuresPerEspecialitat();
-//        return c.getHospitalsLliuresPerEspecialitat( nomEsp );
-//    }
+    public List obteHospitalsLliuresPerEspecialitat( String nomEsp ) {
+        //: Set( TupleType( nom:String, adreça:String, descripció:String, habLliures:Set( núm: Integer )))
+        nomEspecialitat = nomEsp;
+        ConsultarHospitalsLliuresPerEspecialitat c = new ConsultarHospitalsLliuresPerEspecialitat();
+        return c.getHospitalsLliuresPerEspecialitat( nomEsp );
+    }
     
     public void creaIngrés( String nomHosp, Integer numHab, String nTS ) {
         

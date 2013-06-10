@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.swing.JOptionPane;
 
 @Entity
 @Table( name = "especialitat" )
@@ -79,21 +80,21 @@ public class Especialitat
 		return hospitals;
 	}
 	
-//	public List getHabitacionsLliuresHospitals()
-//	{
-//		ArrayList<Dada> llistaHabitacions = new ArrayList();
-//		Iterator it = hospitals.iterator();
-//		Dada d;
-//		while ( it.hasNext() ) {
-//			Object h = it.next();
-//			d = ( ( Hospital ) h ).getHabitacionsLliures( nom );
-//			if ( d.getHabLliures().size() > 0 ) {
-//				llistaHabitacions.add( d );
-//			}
-//			else {
-//				JOptionPane.showMessageDialog( null, "Exc: noHiHaHopstials -> habLliures no es > 0 " + ( ( Hospital ) h ).getNom() );
-//			}
-//		}
-//		return llistaHabitacions;
-//	}
+	public List getHabitacionsLliuresHospitals()
+	{
+		ArrayList<Dada> llistaHabitacions = new ArrayList();
+		Iterator it = hospitals.iterator();
+		Dada d;
+		while ( it.hasNext() ) {
+			Object h = it.next();
+			d = ( ( Hospital ) h ).getHabitacionsLliures( nom );
+			if ( d.getHabLliures().size() > 0 ) {
+				llistaHabitacions.add( d );
+			}
+			else {
+				JOptionPane.showMessageDialog( null, "Exc: noHiHaHopstials -> habLliures no es > 0 " + ( ( Hospital ) h ).getNom() );
+			}
+		}
+		return llistaHabitacions;
+	}
 }
