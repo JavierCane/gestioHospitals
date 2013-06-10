@@ -1,6 +1,7 @@
 package gestiohospitals.domini.models;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,9 +25,6 @@ public class Hospital
 	
 	@Column( name = "descripcio" )
 	private String descripcio;
-	
-	//@OneToMany( mappedBy = "hospital" )
-	//private List<Ingres> ingresos = new ArrayList<>();
 	
 	@OneToMany( mappedBy = "habitacioId.hospital", fetch = FetchType.LAZY )
 	private List<Habitacio> habitacions = new ArrayList<>();
@@ -78,26 +76,26 @@ public class Hospital
 		this.descripcio = descripcio;
 	}
 
-//	public Dada getHabitacionsLliures( String nom )
-//	{
-//		Dada d = new Dada();
-//		Iterator it = habitacions.iterator();
-//		while ( it.hasNext() ) {
-//			Object h = it.next();
-//			if ( ( ( Habitacio ) h ).esEspecialitat( nom ) ) {
-//				if ( ( ( Habitacio ) h ).estaLliure() ) {
-//					d.getHabLliures().add( ( ( Habitacio ) h ).getHabitacioId().getNumero() );
-//				}
-//			}
-//		}
-//		if ( d.getHabLliures().size() > 0 ) {
-//			d.setNom( this.nom );
-//			d.setAdreca( adreca );
-//			d.setDescripcio( descripcio );
-//		}
-//		/*
-//		 dada:TupleType( nom:String, adreca:String, descripcio:String, habLliures:Set( num: Integer ))
-//		 * */
-//		return d;
-//	}
+	public Dada getHabitacionsLliures( String nom )
+	{
+		Dada d = new Dada();
+		Iterator it = habitacions.iterator();
+		while ( it.hasNext() ) {
+			Object h = it.next();
+			if ( ( ( Habitacio ) h ).esEspecialitat( nom ) ) {
+				if ( ( ( Habitacio ) h ).estaLliure() ) {
+					d.getHabLliures().add( ( ( Habitacio ) h ).getHabitacioId().getNumero() );
+				}
+			}
+		}
+		if ( d.getHabLliures().size() > 0 ) {
+			d.setNom( this.nom );
+			d.setAdreca( adreca );
+			d.setDescripcio( descripcio );
+		}
+		/*
+		 dada:TupleType( nom:String, adreca:String, descripcio:String, habLliures:Set( num: Integer ))
+		 * */
+		return d;
+	}
 }
