@@ -53,7 +53,7 @@ public class Ingres implements Serializable
 //		this.ingresId = ingresId;
 //		this.dataAlta = dataAlta;
 //		this.habitacio = habitacio;
-////		this.hospital = hospital;
+//		this.hospital = hospital;
 //	}
 //
 //	public Ingres( IngresId ingresId, Date dataAlta, Habitacio habitacio, Hospital hospital, Metge metge )
@@ -61,7 +61,7 @@ public class Ingres implements Serializable
 //		this.ingresId = ingresId;
 //		this.dataAlta = dataAlta;
 //		this.habitacio = habitacio;
-////		this.hospital = hospital;
+//		this.hospital = hospital;
 //		this.metge = metge;
 //	}
 //
@@ -69,7 +69,7 @@ public class Ingres implements Serializable
 //	{
 //		this.ingresId = ingresId;
 //		this.habitacio = habitacio;
-////		this.hospital = hospital;
+//		this.hospital = hospital;
 //		this.metge = metge;
 //	}
 
@@ -83,25 +83,25 @@ public class Ingres implements Serializable
 		this.dataAlta = dataAlta;
 	}
 
-//	public Habitacio getHabitacio()
-//	{
-//		return habitacio;
-//	}
-//
-//	public void setHabitacio( Habitacio habitacio )
-//	{
-//		this.habitacio = habitacio;
-//	}
+	public Habitacio getHabitacio()
+	{
+		return habitacio;
+	}
 
-//	public Hospital getHospital()
-//	{
-//		return hospital;
-//	}
-//
-//	public void setHospital( Hospital hospital )
-//	{
-//		this.hospital = hospital;
-//	}
+	public void setHabitacio( Habitacio habitacio )
+	{
+		this.habitacio = habitacio;
+	}
+
+	public Hospital getHospital()
+	{
+		return hospital;
+	}
+
+	public void setHospital( Hospital hospital )
+	{
+		this.hospital = hospital;
+	}
 
 	public Metge getMetge()
 	{

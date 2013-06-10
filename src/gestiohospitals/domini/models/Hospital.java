@@ -1,15 +1,10 @@
 package gestiohospitals.domini.models;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -31,16 +26,16 @@ public class Hospital
 	private String descripcio;
 	
 //	@OneToMany( mappedBy = "hospital" )
-//	private Set<Ingres> ingresos;
+//	private List<Ingres> ingresos = new ArrayList<>();
 	
 //	@OneToMany( mappedBy = "hospital", fetch = FetchType.LAZY )
 //	private Set<Habitacio> habitacions;
 	
-//	@OneToMany( mappedBy = "hospital" )
-//	private Set<Sanitari> sanitaris;
+	@OneToMany( mappedBy = "hospital" )
+	private List<Sanitari> sanitaris = new ArrayList<>();
 	
 	@ManyToMany( mappedBy = "hospitals" )
-	private List<Especialitat> especialitats = new ArrayList<Especialitat>();
+	private List<Especialitat> especialitats = new ArrayList<>();
 
 	public Hospital()
 	{

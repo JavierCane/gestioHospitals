@@ -2,9 +2,7 @@ package gestiohospitals.domini.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import java.util.*;
@@ -12,7 +10,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.swing.JOptionPane;
+import javax.persistence.OneToMany;
 
 @Entity
 @Table( name = "especialitat" )
@@ -23,11 +21,11 @@ public class Especialitat
 	@Column( name = "nom_especialitat", nullable = false, unique = true )
 	private String nom;
 	
-//	@OneToMany( mappedBy = "especialitat" )
-//	private ArrayList<Metge> metges;
+	@OneToMany( mappedBy = "especialitat" )
+	private List<Metge> metges = new ArrayList<>();
 	
-//	@OneToMany( mappedBy = "especialitat" )
-//	private Set<Habitacio> habitacions;
+	@OneToMany( mappedBy = "especialitat" )
+	private List<Habitacio> habitacions = new ArrayList<>();
 	
 	@ManyToMany( cascade = { CascadeType.ALL } )
 	@JoinTable( name = "hospital_especialitat",
@@ -46,26 +44,6 @@ public class Especialitat
 		this.nom = nom;
 	}
 
-//	public Set<Habitacio> getHabitacions()
-//	{
-//		return habitacions;
-//	}
-//
-//	public void setHabitacions( Set<Habitacio> habitacions )
-//	{
-//		this.habitacions = habitacions;
-//	}
-
-//	public List<Metge> getMetges()
-//	{
-//		return metges;
-//	}
-//
-//	public void setMetges( ArrayList<Metge> metges )
-//	{
-//		this.metges = metges;
-//	}
-
 	public String getNom()
 	{
 		return nom;
@@ -75,7 +53,32 @@ public class Especialitat
 	{
 		this.nom = nom;
 	}
+	
+	public List<Habitacio> getHabitacions()
+	{
+		return habitacions;
+	}
 
+	public void setHabitacions( List<Habitacio> habitacions )
+	{
+		this.habitacions = habitacions;
+	}
+
+	public List<Metge> getMetges()
+	{
+		return metges;
+	}
+
+	public void setMetges( List<Metge> metges )
+	{
+		this.metges = metges;
+	}
+
+	public List<Hospital> getHospitals()
+	{
+		return hospitals;
+	}
+	
 //	public List getHabitacionsLliuresHospitals()
 //	{
 //		ArrayList<Dada> llistaHabitacions = new ArrayList();
@@ -93,9 +96,4 @@ public class Especialitat
 //		}
 //		return llistaHabitacions;
 //	}
-	
-	public List<Hospital> getHospitals()
-	{
-		return hospitals;
-	}
 }
