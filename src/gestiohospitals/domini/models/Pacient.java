@@ -1,8 +1,11 @@
 package gestiohospitals.domini.models;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,8 +20,8 @@ public class Pacient extends Persona
 	@Column( name = "email" )
 	private String email;
 	
-//	@OneToMany( mappedBy = "pacient" )
-//	private List<Ingres> ingresos = new ArrayList<>();
+	//@OneToMany( mappedBy = "ingresId.pacient" )
+	//private List<Ingres> ingresos = new ArrayList<>();
 
 	public Pacient()
 	{
