@@ -20,8 +20,8 @@ public class Pacient extends Persona
 	@Column( name = "email" )
 	private String email;
 	
-	//@OneToMany( mappedBy = "ingresId.pacient" )
-	//private List<Ingres> ingresos = new ArrayList<>();
+	@OneToMany( mappedBy = "ingresId.pacient" )
+	private List<Ingres> ingresos = new ArrayList<>();
 
 	public Pacient()
 	{
