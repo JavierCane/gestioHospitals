@@ -6,6 +6,8 @@ package DataInterface;
 public class CtrlDataFactoria {
     private CtrlEspecialitat ctrlEspecialitat;
     private CtrlHabitacio ctrlHabitacio;
+	private CtrlPacient ctrlPacient;
+	private CtrlHospital ctrlHospital;
     private static CtrlDataFactoria instancia;  
 
     private CtrlDataFactoria() {  
@@ -19,10 +21,31 @@ public class CtrlDataFactoria {
         return instancia;
     }
     
-    public CtrlEspecialitat getCtrlEspecialitat( String nomEsp ) {
+    public CtrlEspecialitat getCtrlEspecialitat() {
         if (ctrlEspecialitat == null) {
             ctrlEspecialitat = new CtrlEspecialitat();
         }
         return ctrlEspecialitat;
+    }
+	
+	public CtrlPacient getCtrlPacient() {
+        if (ctrlPacient == null) {
+            ctrlPacient = new CtrlPacient();
+        }
+        return ctrlPacient;
+    }
+	
+	public CtrlHabitacio getCtrlHabitacio() {
+        if (ctrlHabitacio == null) {
+            ctrlHabitacio = new CtrlHabitacio();
+        }
+        return ctrlHabitacio;
+    }
+	
+	public CtrlHospital getCtrlHospital() {
+        if (ctrlHospital == null) {
+            ctrlHospital = new CtrlHospital();
+        }
+        return ctrlHospital;
     }
 }

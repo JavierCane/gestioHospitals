@@ -3,23 +3,33 @@
  * and open the template in the editor.
  */
 package DataInterface;
-import gestiohospitals.domini.models.*;
+
+import gestiohospitals.domini.models.HibernateUtil;
+import gestiohospitals.domini.models.Hospital;
+import gestiohospitals.domini.models.Pacient;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.AnnotationConfiguration;
+
 /**
  *
  * @author William
  */
-public class CtrlPacient
+public class CtrlHospital
 {
-	public CtrlPacient() 
+	public CtrlHospital() 
 	{
 		
     }
+	
+	public Boolean exist( String nomHosp ) 
+	{
+		if ( this.get( nomHosp ) == null ) return false;
+		return true;
+	}
+	
 	//String dni, String nom, String nTs, String email
-	public Pacient get( String nTS )
+	public Hospital get( String nomHosp )
 	{
 				// TODO  ??????
 		SessionFactory factory = HibernateUtil.getSessionFactory();
@@ -27,7 +37,7 @@ public class CtrlPacient
 
 		Transaction tx = session.beginTransaction();
 		
-		Pacient e = (Pacient) session.get(Pacient.class, nTS);
+		Hospital e = (Hospital) session.get(Hospital.class, nomHosp);
 		tx.commit();
 		return e;
 	}

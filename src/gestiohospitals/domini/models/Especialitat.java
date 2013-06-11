@@ -97,4 +97,34 @@ public class Especialitat
 		}
 		return llistaHabitacions;
 	}
+	
+	public List<String[]> getMetgesHospital(String nomHosp) throws Exception 
+	{
+        List<String[]> metgesHospital=new ArrayList<String[]>();
+        Iterator it=metges.iterator();
+        while(it.hasNext()){
+            Metge m=(Metge) it.next();
+            if(m.getNomHospital().equals( nomHosp )){
+                String[] dades=new String[3];
+                dades[0]=m.getCategoria();
+                dades[1]=m.obteDadesPersona()[0];
+                dades[2]=m.obteDadesPersona()[1];
+                metgesHospital.add(dades);
+            }
+        }
+        if(metgesHospital.isEmpty()) throw new Exception("noHiHaMetges");
+        //Falta Ordenar!!!!!!!!
+        return metgesHospital;
+  
+    }
+
+	public boolean hospitalConteEspecialitat(String nomHosp)
+	{
+		Iterator it = hospitals.iterator();
+		while ( it.hasNext() ) {
+			Hospital h = (Hospital) it.next();
+			if( h.getNom().equals( nomHosp )  ) return true;
+		}
+		return false;
+	}
 }

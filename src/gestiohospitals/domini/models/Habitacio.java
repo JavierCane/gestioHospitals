@@ -89,4 +89,9 @@ public class Habitacio implements Serializable
 	{
 		this.especialitat = especialitat;
 	}
+	
+	public void addIngresos( Ingres i ) 
+	{
+		ingresos.add( i  );
+	}
 }

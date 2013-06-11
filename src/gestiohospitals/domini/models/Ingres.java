@@ -2,6 +2,8 @@ package gestiohospitals.domini.models;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -34,6 +36,22 @@ public class Ingres implements Serializable
 
 	public Ingres()
 	{
+		
+	}
+	
+	public Ingres( Pacient pacient, Habitacio habitacio) throws Exception
+	{
+		this.habitacio = habitacio;
+		//Ingres no tiene hospital, se encuentra en habitacion l hosp
+		java.util.Date utilDate = new java.util.Date();
+		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+//		System.out.println("utilDate:" + utilDate);
+//		System.out.println("sqlDate:" + sqlDate);
+		ingresId = new IngresId( sqlDate, pacient );
+		
+		ingresId.getPacient().addIngresos( this );
+		habitacio.addIngresos( this );
+		
 	}
 
 	public Ingres( IngresId ingresId )

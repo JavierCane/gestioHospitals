@@ -67,12 +67,12 @@ public class TestsHibernate
 		session.saveOrUpdate( habitacioTest1 );
 		session.saveOrUpdate( habitacioTest2 );
                 
-                 IngresId ingresid1=new IngresId( new Date(3,4,2013), pacient1 );
-	
+		IngresId ingresid1=new IngresId( new Date(3,4,2013), pacient1 );
 
-               
-                Ingres ingres1=new Ingres(ingresid1,new Date(5,4,2013),habitacioTest1,metge1);
-                session.saveOrUpdate(ingres1);
+
+
+	   Ingres ingres1=new Ingres(ingresid1,new Date(5,4,2013),habitacioTest1,metge1);
+	   session.saveOrUpdate(ingres1);
                 
 
 		// Vinculamos las habitaciones al hospital

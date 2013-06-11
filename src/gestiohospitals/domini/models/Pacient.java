@@ -1,12 +1,14 @@
 package gestiohospitals.domini.models;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.swing.JOptionPane;
 
 @Entity
 @Table( name = "pacient" )
@@ -52,5 +54,25 @@ public class Pacient extends Persona
 	public void setEmail( String email )
 	{
 		this.email = email;
+	}
+	
+	public Boolean estaIngressat() 
+	{
+		boolean ingressat = false;
+		Iterator it = ingresos.iterator();
+		while ( it.hasNext() && ingressat ) {
+			Object h = it.next();
+			ingressat = ( (Ingres) h).teAlta();
+		}
+		return ingressat;
+	}
+	
+	public void addIngresos( Ingres ingres) throws Exception 
+	{
+		if ( estaIngressat() ) 
+		{
+			throw new Exception( "pacientIngressat");
+		}
+		ingresos.add( ingres );
 	}
 }

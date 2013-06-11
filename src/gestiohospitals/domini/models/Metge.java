@@ -77,4 +77,16 @@ public class Metge extends Sanitari
 	{
 		this.categoria = categoria;
 	}
+	
+	public String getNomHospital()
+	{
+		return this.hospital.getNom();
+	}
+	public String[] obteDadesPersona()
+	{
+		String[] dadesPersona=new String[2];
+		dadesPersona[0]=this.getDni();
+		dadesPersona[1]=this.getNom();
+		return dadesPersona;
+	}
 }
