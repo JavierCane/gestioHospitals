@@ -1,13 +1,11 @@
 package gestiohospitals.presentacio;
 
-import java.util.ArrayList;
-
 public class IngressarPacientIntroduirEspecialitatViewCtrl extends BaseViewCtrl
 {
 
 	private IngressarPacientIntroduirEspecialitatView view;
-	private ArrayList llista;
-	//private IngressarPacient domainCtrl;
+	//private ArrayList llista;
+	private DomainControllers.IngressarPacient ingressarPacient;
 
 	public IngressarPacientIntroduirEspecialitatViewCtrl()
 	{
@@ -21,15 +19,15 @@ public class IngressarPacientIntroduirEspecialitatViewCtrl extends BaseViewCtrl
 			view.mostraMissatge( "No hi ha especialitat." );
 		}
 		else {
-			/*
-			 * try {
-			 * domainCtrl.obteHospitalsLliuresPerEspecialitat(nomEsp);
-			 * }
-			 * catch() {
-			 * 
-			 */
-			view.tancar();
-			IngressarPacientSeleccionarHospitalViewCtrl ingresPacientSelecHospViewCtrl = new IngressarPacientSeleccionarHospitalViewCtrl( llista, nomEsp );
+
+			try {
+				//ingressarPacient.obteHospitalsLliuresPerEspecialitat(nomEsp);
+				view.tancar();
+				IngressarPacientSeleccionarHospitalViewCtrl ingresPacientSelecHospViewCtrl = new IngressarPacientSeleccionarHospitalViewCtrl( null, nomEsp );
+			}
+			catch ( Exception e ) {
+			}
+
 		}
 	}
 }

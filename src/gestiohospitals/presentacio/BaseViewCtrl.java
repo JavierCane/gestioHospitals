@@ -7,10 +7,6 @@ public class BaseViewCtrl
 	{
 	}
 
-	public void mostraPopUp( String text )
-	{
-	}
-
 	public void prCancel( BaseView ventanaATancar )
 	{
 		System.exit( 0 );

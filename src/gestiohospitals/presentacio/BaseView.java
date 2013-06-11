@@ -1,16 +1,17 @@
 package gestiohospitals.presentacio;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class BaseView extends javax.swing.JFrame
+abstract public class BaseView extends javax.swing.JFrame
 {
 
 	public BaseView()
 	{
 		initComponents();
+		initButtonListeners();
 		this.setLocationRelativeTo( null );
 		this.setVisible( true );
 	}
@@ -40,21 +41,6 @@ public class BaseView extends javax.swing.JFrame
 		return jButtonCancel;
 	}
 
-	protected JLabel getLabelInfoData()
-	{
-		return jLabelInfoData;
-	}
-
-	protected JLabel getLabelInfoNTS()
-	{
-		return jLabelInfoNTS;
-	}
-
-	protected JLabel getLabelNomHosp()
-	{
-		return jLabelInfoNomHosp;
-	}
-
 	public void mostraMissatge( String textMessageArea )
 	{
 		jTextFieldMessageArea.setText( textMessageArea );
@@ -62,10 +48,38 @@ public class BaseView extends javax.swing.JFrame
 
 	public void tancar()
 	{
-		//this.removeAll();
 		this.setVisible( false );
 		this.dispose();
 	}
+
+	public void mostraPopUp( String text ) //en baseview o en baseviewCtrl?
+	{
+		JOptionPane.showMessageDialog( this, text, "Ingressar pacient", JOptionPane.PLAIN_MESSAGE );
+	}
+
+	private void initButtonListeners()
+	{
+		jButtonOK.addActionListener( new java.awt.event.ActionListener()
+		{
+			@Override
+			public void actionPerformed( java.awt.event.ActionEvent evt )
+			{
+				jButtonOKActionPerformed( evt );
+			}
+		} );
+		jButtonCancel.addActionListener( new java.awt.event.ActionListener()
+		{
+			@Override
+			public void actionPerformed( java.awt.event.ActionEvent evt )
+			{
+				jButtonCancelActionPerformed( evt );
+			}
+		} );
+	}
+
+	abstract protected void jButtonOKActionPerformed( java.awt.event.ActionEvent evt );
+
+	abstract protected void jButtonCancelActionPerformed( java.awt.event.ActionEvent evt );
 
 	@SuppressWarnings( "unchecked" )
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -79,9 +93,6 @@ public class BaseView extends javax.swing.JFrame
         jTextFieldMessageArea = new javax.swing.JTextField();
         jPanelCentral = new javax.swing.JPanel();
         jPanelInfo = new javax.swing.JPanel();
-        jLabelInfoNTS = new javax.swing.JLabel();
-        jLabelInfoNomHosp = new javax.swing.JLabel();
-        jLabelInfoData = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(428, 300));
@@ -117,7 +128,7 @@ public class BaseView extends javax.swing.JFrame
         );
         jPanelCentralLayout.setVerticalGroup(
             jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 148, Short.MAX_VALUE)
+            .addGap(0, 297, Short.MAX_VALUE)
         );
 
         jPanelInfo.setBackground(new java.awt.Color(255, 204, 204));
@@ -125,11 +136,6 @@ public class BaseView extends javax.swing.JFrame
         jPanelInfo.setMinimumSize(new java.awt.Dimension(0, 79));
         jPanelInfo.setPreferredSize(new java.awt.Dimension(0, 50));
         jPanelInfo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabelInfoNTS.setPreferredSize(new java.awt.Dimension(200, 14));
-        jPanelInfo.add(jLabelInfoNTS, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 5, 180, -1));
-        jPanelInfo.add(jLabelInfoNomHosp, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-        jPanelInfo.add(jLabelInfoData, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 20, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,9 +163,6 @@ public class BaseView extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancel;
     private javax.swing.JButton jButtonOK;
-    private javax.swing.JLabel jLabelInfoData;
-    private javax.swing.JLabel jLabelInfoNTS;
-    private javax.swing.JLabel jLabelInfoNomHosp;
     private javax.swing.JPanel jPanelButtons;
     private javax.swing.JPanel jPanelCentral;
     private javax.swing.JPanel jPanelInfo;

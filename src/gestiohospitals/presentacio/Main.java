@@ -26,8 +26,7 @@ public class Main
 			@Override
 			public void run()
 			{
-				IngressarPacientIntroduirEspecialitatViewCtrl viewCtrl =
-															  new IngressarPacientIntroduirEspecialitatViewCtrl();
+				IngressarPacientIntroduirEspecialitatViewCtrl viewCtrl = new IngressarPacientIntroduirEspecialitatViewCtrl();
 			}
 		} );
 	}

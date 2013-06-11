@@ -7,7 +7,14 @@ public class IngressarPacientBaseViewCtrl extends BaseViewCtrl
 	{
 	}
 
-	public void enviarInformeIngres()
+	protected void enviarInformeIngres()
 	{
+		try {
+			//ingressarPacient.enviarInformeIngres()
+
+		}
+		catch ( Exception e ) {
+		}
+
 	}
 }
