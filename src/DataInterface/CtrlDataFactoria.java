@@ -8,6 +8,7 @@ public class CtrlDataFactoria {
     private CtrlHabitacio ctrlHabitacio;
 	private CtrlPacient ctrlPacient;
 	private CtrlHospital ctrlHospital;
+	private CtrlMetge ctrlMetge;
     private static CtrlDataFactoria instancia;  
 
     private CtrlDataFactoria() {  
@@ -47,5 +48,12 @@ public class CtrlDataFactoria {
             ctrlHospital = new CtrlHospital();
         }
         return ctrlHospital;
+    }
+	
+	public CtrlMetge getCtrlMetge() {
+        if (ctrlMetge == null) {
+            ctrlMetge = new CtrlMetge();
+        }
+        return ctrlMetge;
     }
 }

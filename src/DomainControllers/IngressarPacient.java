@@ -61,7 +61,11 @@ public class IngressarPacient {
     
     
     public void assignarMetgeAIngres( String dni ) {
-        
+        AssignarMetgeIngres aMi = new AssignarMetgeIngres();
+		java.util.Date utilDate = new java.util.Date();
+		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+		aMi.setMetgeAIngres( dni,nTsPacient,sqlDate );
+		dniMetge = dni;
     }
     
     public void enviarInformeIngres() {
