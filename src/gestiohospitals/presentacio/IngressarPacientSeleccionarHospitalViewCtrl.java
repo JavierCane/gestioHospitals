@@ -1,36 +1,19 @@
 package gestiohospitals.presentacio;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class IngressarPacientSeleccionarHospitalViewCtrl extends IngressarPacientBaseViewCtrl
 {
-
-	private class InfoMetge
-	{
-
-		public String dni;
-		public String nom;
-		public String categoria;
-	}
-	private InfoMetge metges[];
-
-	private class InfoHosp
-	{
-
-		public String nomHosp;
-		public int habLliures[];
-	}
-	private InfoHosp llistaHospitals[];
 	private IngressarPacientSeleccionarHospitalView view;
 	private String nomEsp;
 
-	public IngressarPacientSeleccionarHospitalViewCtrl( InfoHosp llistaHospitals[], String nomEsp )
+	public IngressarPacientSeleccionarHospitalViewCtrl( List llista, String nomEsp )
 	{
 		view = new IngressarPacientSeleccionarHospitalView();
 		view.setCtrl( this );
 		this.nomEsp = nomEsp;
 		view.setInfoEsp( nomEsp );
-		view.mostraHospitals( null );
+		view.mostraHospitals( llista );
 		view.actualitzaHabitacionsLliures( null );
 	}
 

@@ -1,6 +1,7 @@
 package gestiohospitals.presentacio;
 
 import java.awt.Insets;
+import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -12,13 +13,6 @@ import javax.swing.ListSelectionModel;
 
 public class IngressarPacientSeleccionarHospitalView extends BaseView
 {
-
-	private class InfoHosp
-	{
-
-		private String nomHosp;
-		int habLliures[];
-	}
 	private IngressarPacientSeleccionarHospitalViewCtrl viewCtrl;
 	private String nomHospital;
 	private int numHabitacio;
@@ -199,7 +193,7 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 		viewCtrl.canviarSeleccionarHospital( nomHospital );
 	}
 
-	public void mostraHospitals( InfoHosp llistaHospitals[] )
+	public void mostraHospitals( List llistaHospitals )
 	{
 		//codigo de rellenar la tabla
 		jTableHospitals.setRowSelectionInterval( 0, 0 );
