@@ -31,18 +31,12 @@ public class CtrlEspecialitat {
 		// TODO  ??????
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
-//		session.beginTransaction();
-//		Session session = factory.getCurrentSession();
 		Transaction tx = session.beginTransaction();
 		
 		Especialitat e = (Especialitat) session.get(Especialitat.class, nomEsp);
 		
-		//CmpKeyViatge vk = new CmpKeyViatge();
-		
-		//vk.setClient(c);
-		//vk.setDataInici(dataInici);
-		//Viatge v = (Viatge) session.get(Viatge.class, vk);
 		tx.commit();
+                //session.close();
 		return e;
 		
 	}

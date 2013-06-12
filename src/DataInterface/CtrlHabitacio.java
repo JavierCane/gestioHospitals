@@ -52,6 +52,7 @@ public class CtrlHabitacio
 		
 		Habitacio e = (Habitacio) session.get(Habitacio.class, hi);
 		tx.commit();
+                //session.close();
 		return e;
 	}
 }

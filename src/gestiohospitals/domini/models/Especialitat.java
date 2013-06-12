@@ -106,9 +106,12 @@ public class Especialitat
             Metge m=(Metge) it.next();
             if(m.getNomHospital().equals( nomHosp )){
                 String[] dades=new String[3];
-                dades[0]=m.getCategoria();
-                dades[1]=m.obteDadesPersona()[0];
-                dades[2]=m.obteDadesPersona()[1];
+                //CodiEmpleat
+                dades[0]=m.obteDadesPersona()[0];
+                //Nom
+                dades[1]=m.obteDadesPersona()[1];
+                //Categoria
+                dades[2]=m.getCategoria();
                 metgesHospital.add(dades);
             }
         }

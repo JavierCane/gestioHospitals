@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -14,7 +15,7 @@ public class IngresId implements Serializable
 	@Column( name = "data_inici" )
 	private Date dataInici;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn( name = "n_ts_pacient" )
 	private Pacient pacient;
 

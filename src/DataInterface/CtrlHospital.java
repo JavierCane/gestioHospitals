@@ -39,6 +39,7 @@ public class CtrlHospital
 		
 		Hospital e = (Hospital) session.get(Hospital.class, nomHosp);
 		tx.commit();
+                //session.close();
 		return e;
 	}
 }

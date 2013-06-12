@@ -16,7 +16,8 @@ public class IngressarPacient {
     private String nomHospital;
     private Integer numeroHabitacio;
     private String nTsPacient;
-    private String dniMetge;
+    private String codiEmpleatMetge;
+    private AssignarMetgeIngres assignarMetgeIngres; 
 
     
     public List obteHospitalsLliuresPerEspecialitat( String nomEsp ) {
@@ -31,9 +32,7 @@ public class IngressarPacient {
         CtrlDataFactoria ctrlDataFactoria = CtrlDataFactoria.getInstance();
         CtrlPacient ctrlPacient = ctrlDataFactoria.getCtrlPacient();
         Pacient pacient = ctrlPacient.get( nTS );
-		
-//		CtrlHospital ctrlHospital = ctrlDataFactoria.getCtrlHospital();
-//		Hospital hospital = ctrlHospital.get( nomHosp );
+
 		
 		CtrlHabitacio ctrlHabitacio = ctrlDataFactoria.getCtrlHabitacio();
         Habitacio habitacio = ctrlHabitacio.get( nomHosp, numHab );
@@ -46,26 +45,26 @@ public class IngressarPacient {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		
 		session.saveOrUpdate( i );
-		
 		session.getTransaction().commit();
-        session.close();
+                //session.close();
     }
     
     public List<String[]> mostraMetgesHospitalPerEspecialitat() throws Exception {
         //: Set( TupleType( dni: String, nom: String, categoria: String )
         AssignarMetgeIngres ami = new AssignarMetgeIngres();
-        return ami.getMetgesHospitalPerEspecialitat(nomHospital, nomEspecialitat);
+        assignarMetgeIngres=ami;
+        List<String[]> result=assignarMetgeIngres.getMetgesHospitalPerEspecialitat(nomHospital, nomEspecialitat);
+        return result;
     }
     
     
-    public void assignarMetgeAIngres( String dni ) {
+    public void assignarMetgeAIngres( String codiEmpleat ) throws Exception {
         AssignarMetgeIngres aMi = new AssignarMetgeIngres();
 		java.util.Date utilDate = new java.util.Date();
 		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-		aMi.setMetgeAIngres( dni,nTsPacient,sqlDate );
-		dniMetge = dni;
+		assignarMetgeIngres.setMetgeAIngres( codiEmpleat,nTsPacient,sqlDate );
+		codiEmpleatMetge = codiEmpleat;
     }
     
     public void enviarInformeIngres() {

@@ -117,4 +117,23 @@ public class Ingres implements Serializable
 	{
 		return ( dataAlta != null );
 	}
+
+    public void setMetgeAIngres(Metge metge, String nomHospital, String nomEspecialitat) throws Exception 
+    {
+        if(habitacio.esEspecialitat(nomEspecialitat))
+        {
+            if(habitacio.getHabitacioId().getHospital().getNom().equals(nomHospital))
+            {
+                this.metge=metge;
+            }
+            else
+            {
+                throw new Exception("noHospitalIngres");
+            }
+        }
+        else
+        {
+            throw new Exception("noCoincideixenEspecialitats");
+        }
+    }
 }

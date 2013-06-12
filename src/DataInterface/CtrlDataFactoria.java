@@ -10,7 +10,7 @@ public class CtrlDataFactoria {
 	private CtrlHospital ctrlHospital;
 	private CtrlMetge ctrlMetge;
     private static CtrlDataFactoria instancia;  
-
+    private CtrlIngres ctrlIngres;
     private CtrlDataFactoria() {  
     
     }
@@ -55,5 +55,11 @@ public class CtrlDataFactoria {
             ctrlMetge = new CtrlMetge();
         }
         return ctrlMetge;
+    }
+        public CtrlIngres getCtrlIngres() {
+        if (ctrlIngres == null) {
+            ctrlIngres = new CtrlIngres();
+        }
+        return ctrlIngres;
     }
 }

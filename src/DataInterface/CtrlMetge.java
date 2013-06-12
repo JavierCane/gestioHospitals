@@ -24,15 +24,16 @@ public class CtrlMetge
 		
     }
 	//String dni, String nom, String nTs, String email
-	public Metge get( String dni )
+	public Metge get( String codiEmpleat )
 	{
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 
 		Transaction tx = session.beginTransaction();
 		
-		Metge c = (Metge) session.get(Metge.class, dni);		
+		Metge c = (Metge) session.get(Metge.class, codiEmpleat);		
 		tx.commit();
+                //session.close();
 		return c;
 	}
 }
