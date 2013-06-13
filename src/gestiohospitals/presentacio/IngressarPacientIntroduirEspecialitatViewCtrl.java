@@ -19,27 +19,28 @@ public class IngressarPacientIntroduirEspecialitatViewCtrl extends BaseViewCtrl
 	public void prOkObteHospitals( String nomEsp )
 	{
 		if ( nomEsp.isEmpty() ) {
-			view.mostraMissatge( "No hi ha especialitat." );
+			view.mostraMissatge( "L'especialitat no existeix." );
 		}
 		else {
 			try {
 				List llista = ingressarPacient.obteHospitalsLliuresPerEspecialitat( nomEsp );
 				view.tancar();
 				IngressarPacientSeleccionarHospitalViewCtrl ingresPacientSelecHospViewCtrl = new IngressarPacientSeleccionarHospitalViewCtrl( llista, nomEsp );
+				ingresPacientSelecHospViewCtrl.setUseCase(ingressarPacient);
 			}
 			catch ( Exception e ) {
 				String cause = e.getMessage();
 				if ( cause.equals( "noHiHaEspecialitat" ) ) {
-					view.mostraMissatge( "No hi ha especialitat." );
+					view.mostraMissatge( "L'especialitat no existeix." );
 				}
 				else {
 					if ( cause.equals( "noHiHaHospitals" ) ) {
-						view.mostraMissatge( "No hi ha hospitals." );
+						view.mostraMissatge( "No hi ha hospitals disponibles amb l'especialitat indicada." );
 					}
 					else {
+						view.mostraMissatge( "Error desconegut." );
 					}
 				}
-				view.mostraMissatge( cause );
 			}
 
 		}

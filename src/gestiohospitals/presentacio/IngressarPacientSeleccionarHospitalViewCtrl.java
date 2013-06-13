@@ -6,6 +6,7 @@ public class IngressarPacientSeleccionarHospitalViewCtrl extends IngressarPacien
 {
 	private IngressarPacientSeleccionarHospitalView view;
 	private String nomEsp;
+	private DomainControllers.IngressarPacient ingressarPacient;
 
 	public IngressarPacientSeleccionarHospitalViewCtrl( List llista, String nomEsp )
 	{
@@ -13,8 +14,13 @@ public class IngressarPacientSeleccionarHospitalViewCtrl extends IngressarPacien
 		view.setCtrl( this );
 		this.nomEsp = nomEsp;
 		view.setInfoEsp( nomEsp );
-		view.mostraHospitals( llista );
+		view.setLlistaHospitals(llista);
+		view.mostraHospitals();
 		view.actualitzaHabitacionsLliures( null );
+	}
+	
+	public void setUseCase(DomainControllers.IngressarPacient ingressarPacient) {
+		this.ingressarPacient = ingressarPacient;
 	}
 
 	public void canviarSeleccionarHospital( String nomHosp )

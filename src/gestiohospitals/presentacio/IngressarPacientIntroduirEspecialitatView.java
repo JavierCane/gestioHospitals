@@ -34,7 +34,7 @@ public class IngressarPacientIntroduirEspecialitatView extends BaseView
 
 		jPanelCentral = getPanelCentral();
 		jPanelCentral.setLayout( new FlowLayout() );
-		jPanelCentral.add( jLabelEspecialitat, BorderLayout.CENTER ); //no centra
+		jPanelCentral.add( jLabelEspecialitat, BorderLayout.CENTER ); 
 		jPanelCentral.add( jTextFieldEspecialitat, BorderLayout.CENTER );
 	}
 

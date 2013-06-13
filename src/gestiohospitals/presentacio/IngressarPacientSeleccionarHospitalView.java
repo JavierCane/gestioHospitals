@@ -13,6 +13,7 @@ import javax.swing.ListSelectionModel;
 
 public class IngressarPacientSeleccionarHospitalView extends BaseView
 {
+
 	private IngressarPacientSeleccionarHospitalViewCtrl viewCtrl;
 	private String nomHospital;
 	private int numHabitacio;
@@ -29,6 +30,7 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 	private JList jListHabLliures;
 	private JTextField jTextFieldNTS;
 	private JCheckBox jCheckBoxAssignarMetge;
+	private List llistaHospitals;
 
 	public IngressarPacientSeleccionarHospitalView()
 	{
@@ -44,8 +46,14 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 	{
 		jLabelInfoEsp.setText( "ESPECIALITAT: " + nomEsp.toUpperCase() );
 	}
-	
-	public boolean getAssignarMetgeCheckBoxIsChecked() {
+
+	public void setLlistaHospitals( List llistaHospitals )
+	{
+		this.llistaHospitals = llistaHospitals;
+	}
+
+	public boolean getAssignarMetgeCheckBoxIsChecked()
+	{
 		return jCheckBoxAssignarMetge.isSelected();
 	}
 
@@ -88,12 +96,7 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 		jTableHospitals = new JTable();
 		jScrollPaneTable = new JScrollPane();
 		jTableHospitals.setModel( new javax.swing.table.DefaultTableModel(
-				new Object[][]{
-			{ null, null, null },
-			{ null, null, null },
-			{ null, null, null },
-			{ null, null, null }
-		},
+				new Object[ llistaHospitals.size() ][ 3 ],
 				new String[]{
 			"Nom", "Descripció", "Adreça"
 		} )
@@ -181,8 +184,8 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 	protected void jButtonOKActionPerformed( java.awt.event.ActionEvent evt )
 	{
 		nTS = jTextFieldNTS.getText();
-		String numHabitacioString =  jListHabLliures.getSelectedValue().toString();
-		numHabitacio = Integer.parseInt( numHabitacioString);
+		String numHabitacioString = jListHabLliures.getSelectedValue().toString();
+		numHabitacio = Integer.parseInt( numHabitacioString );
 		viewCtrl.prOkEnviarInforme( nomHospital, numHabitacio, nTS );
 	}
 
@@ -193,9 +196,23 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 		viewCtrl.canviarSeleccionarHospital( nomHospital );
 	}
 
-	public void mostraHospitals( List llistaHospitals )
+	public void mostraHospitals()
 	{
-		//codigo de rellenar la tabla
+		for ( int j = 0; j < llistaHospitals.size(); j++ ) {
+			for ( int i = 0; i < 3; i++ ) {
+				if ( i == 1 ) {
+					jTableHospitals.setValueAt( llistaHospitals.get( j ), i, j );
+				}
+				else {
+					if ( i == 2 ) {
+					}
+					else {
+						if ( i == 3 ) {
+						}
+					}
+				}
+			}
+		}
 		jTableHospitals.setRowSelectionInterval( 0, 0 );
 	}
 
