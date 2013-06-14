@@ -2,20 +2,15 @@ package gestiohospitals.presentacio;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
-public class IngressarPacientAssignarMetgeViewCtrl extends IngressarPacientBaseViewCtrl
+public class IngressarPacientAssignarMetgeViewCtrl
 {
 
-	private class InfoMetge
-	{
-
-		public String dni;
-		public String nom;
-		public String categoria;
-	}
 	private IngressarPacientAssignarMetgeView view;
+	private DomainControllers.IngressarPacient ingressarPacient;
 
-	public IngressarPacientAssignarMetgeViewCtrl( InfoMetge[] metges, String nomEsp, String nomHosp, String nTS )
+	public IngressarPacientAssignarMetgeViewCtrl( String nomEsp, String nomHosp, String nTS, List<String[]> llistaMetges )
 	{
 		view = new IngressarPacientAssignarMetgeView();
 		view.setCtrl( this );
@@ -23,20 +18,42 @@ public class IngressarPacientAssignarMetgeViewCtrl extends IngressarPacientBaseV
 		view.setInfoHosp( nomHosp );
 		view.setInfoData( getDate() );
 		view.setInfoNTS( nTS );
-		view.mostraMetges();
+		view.mostraMetges( llistaMetges );
 	}
 
 	private String getDate()
 	{
-		String date = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+		String date = new SimpleDateFormat( "dd/MM/yyyy" ).format( Calendar.getInstance().getTime() );
 		return date;
 	}
 
-	public void prCancelEnviarInforme()
+	public void setUseCase( DomainControllers.IngressarPacient ingressarPacient )
 	{
+		this.ingressarPacient = ingressarPacient;
+	}
+
+	public void enviarInforme()
+	{
+		try {
+			ingressarPacient.enviarInformeIngres();
+			view.mostraPopUp( "S'ha ingressat correctament i s'ha notificat al servei de sanitat." );
+		}
+		catch ( Exception e ) {
+			if ( e.getMessage().equals( "serveiNoDisponible" ) ) {
+				view.mostraPopUp( "S'ha ingressat correctament pero no s'ha pogut notificar al servei de sanitat.");
+			}
+		}
+		System.exit( 0 );
 	}
 
 	public void prOkIAssignarMetge( String dni )
 	{
+		try { //el try sobra
+			ingressarPacient.assignarMetgeAIngres( dni );
+		}
+		catch ( Exception e ) {
+			view.mostraMissatge( e.getMessage() );
+		}
+		enviarInforme();
 	}
 }

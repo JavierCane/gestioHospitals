@@ -1,10 +1,12 @@
 package gestiohospitals.presentacio;
 
+import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
 public class IngressarPacientAssignarMetgeView extends BaseView
 {
@@ -19,6 +21,7 @@ public class IngressarPacientAssignarMetgeView extends BaseView
 	private JLabel jLabelInfoNTS;
 	private JTable jTableMetges;
 	private JScrollPane jScrollPaneTable;
+	private DefaultTableModel tableModel;
 
 	public IngressarPacientAssignarMetgeView()
 	{
@@ -89,15 +92,10 @@ public class IngressarPacientAssignarMetgeView extends BaseView
 
 		jTableMetges = new JTable();
 		jScrollPaneTable = new JScrollPane();
-		jTableMetges.setModel( new javax.swing.table.DefaultTableModel(
-				new Object[][]{
-			{ null, null, null },
-			{ null, null, null },
-			{ null, null, null },
-			{ null, null, null }
-		},
+		tableModel = new javax.swing.table.DefaultTableModel(
+				new Object[ 0 ][ 3 ],
 				new String[]{
-			"Nom", "DNI", "Categoria"
+			"DNI", "Nom", "Categoria"
 		} )
 		{
 			boolean[] canEdit = new boolean[]{
@@ -109,7 +107,8 @@ public class IngressarPacientAssignarMetgeView extends BaseView
 			{
 				return canEdit[columnIndex];
 			}
-		} );
+		};
+		jTableMetges.setModel( tableModel );
 		jTableMetges.setRowSelectionAllowed( true );
 		jTableMetges.setSelectionMode( ListSelectionModel.SINGLE_SELECTION );
 		jTableMetges.getTableHeader().setReorderingAllowed( false );
@@ -126,24 +125,27 @@ public class IngressarPacientAssignarMetgeView extends BaseView
 	protected void jButtonOKActionPerformed( java.awt.event.ActionEvent evt )
 	{
 		int rowIndex = jTableMetges.getSelectedRow();
-		String dniMetge = jTableMetges.getModel().getValueAt( rowIndex, 1 ).toString();
+		String dniMetge = jTableMetges.getModel().getValueAt( rowIndex, 0 ).toString();
 		viewCtrl.prOkIAssignarMetge( dniMetge );
 	}
 
 	@Override
 	protected void jButtonCancelActionPerformed( java.awt.event.ActionEvent evt )
 	{
-		//mostraPopup
+		viewCtrl.enviarInforme();
 	}
 
-	public void mostraMetges()
-	{ //le tiene que pasar el set de medicos y llenar la tabla
-		jTableMetges.setRowSelectionInterval( 0, 0 );
+	public void mostraMetges( List<String[]> llistaMetges )
+	{
+		for ( int i = 0; i < llistaMetges.size(); i++ ) {
+			tableModel.addRow( llistaMetges.get( i ) );
+		}
+		jTableMetges.setRowSelectionInterval(0, 0 );
 	}
 
 	public void mostraPantallaEnviat()
 	{
-		//????
+		//???? supongo que sobra
 	}
 
 	public void mostraPantallaNoEnviat()

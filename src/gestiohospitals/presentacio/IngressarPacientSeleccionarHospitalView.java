@@ -1,7 +1,9 @@
 package gestiohospitals.presentacio;
 
 import java.awt.Insets;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -10,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
 public class IngressarPacientSeleccionarHospitalView extends BaseView
 {
@@ -30,6 +33,8 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 	private JList jListHabLliures;
 	private JTextField jTextFieldNTS;
 	private JCheckBox jCheckBoxAssignarMetge;
+	private DefaultTableModel tableModel;
+	private DefaultListModel listModel;
 	private List llistaHospitals;
 
 	public IngressarPacientSeleccionarHospitalView()
@@ -95,8 +100,8 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 
 		jTableHospitals = new JTable();
 		jScrollPaneTable = new JScrollPane();
-		jTableHospitals.setModel( new javax.swing.table.DefaultTableModel(
-				new Object[ llistaHospitals.size() ][ 3 ],
+		tableModel = new javax.swing.table.DefaultTableModel(
+				new Object[ 0 ][ 3 ],
 				new String[]{
 			"Nom", "Descripció", "Adreça"
 		} )
@@ -110,7 +115,8 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 			{
 				return canEdit[columnIndex];
 			}
-		} );
+		};
+		jTableHospitals.setModel( tableModel );
 		jTableHospitals.setRowSelectionAllowed( true );
 		jTableHospitals.setSelectionMode( ListSelectionModel.SINGLE_SELECTION );
 		jTableHospitals.getTableHeader().setReorderingAllowed( false );
@@ -118,6 +124,7 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 		jScrollPaneTable.setViewportView( jTableHospitals );
 		jTableHospitals.addMouseListener( new java.awt.event.MouseAdapter()
 		{
+			@Override
 			public void mouseClicked( java.awt.event.MouseEvent evt )
 			{
 				jTableHospitalsMouseClicked( evt );
@@ -141,22 +148,8 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 
 		jListHabLliures = new JList();
 		jScrollPaneList = new JScrollPane();
-		jListHabLliures.setModel( new javax.swing.AbstractListModel()
-		{
-			String[] strings = { "8", "10", "22" };
-
-			@Override
-			public int getSize()
-			{
-				return strings.length;
-			}
-
-			@Override
-			public Object getElementAt( int i )
-			{
-				return strings[i];
-			}
-		} );
+		listModel = new DefaultListModel();
+		jListHabLliures.setModel( listModel );
 		jScrollPaneList.setMinimumSize( new java.awt.Dimension( 100, 340 ) );
 		jScrollPaneList.setViewportView( jListHabLliures );
 
@@ -177,7 +170,7 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 	@Override
 	protected void jButtonCancelActionPerformed( java.awt.event.ActionEvent evt )
 	{
-		viewCtrl.prCancel( this );
+		viewCtrl.prCancel( );
 	}
 
 	@Override
@@ -185,6 +178,8 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 	{
 		nTS = jTextFieldNTS.getText();
 		String numHabitacioString = jListHabLliures.getSelectedValue().toString();
+		int rowIndex = jTableHospitals.getSelectedRow();
+		nomHospital = jTableHospitals.getModel().getValueAt( rowIndex, 0 ).toString();
 		numHabitacio = Integer.parseInt( numHabitacioString );
 		viewCtrl.prOkEnviarInforme( nomHospital, numHabitacio, nTS );
 	}
@@ -192,22 +187,26 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 	private void jTableHospitalsMouseClicked( java.awt.event.MouseEvent evt )
 	{
 		int rowIndex = jTableHospitals.getSelectedRow();
-		nomHospital = jTableHospitals.getModel().getValueAt( rowIndex, 0 ).toString();
-		viewCtrl.canviarSeleccionarHospital( nomHospital );
+		viewCtrl.canviarSeleccionarHospital( rowIndex );
 	}
 
 	public void mostraHospitals()
 	{
-		for ( int j = 0; j < llistaHospitals.size(); j++ ) {
-			for ( int i = 0; i < 3; i++ ) {
-				if ( i == 1 ) {
-					jTableHospitals.setValueAt( llistaHospitals.get( j ), i, j );
+		gestiohospitals.domini.models.Dada dada;
+		for ( int i = 0; i < llistaHospitals.size(); i++ ) {
+			tableModel.addRow( new Object[ 3 ] );
+			for ( int j = 0; j < 3; j++ ) {
+				dada = ( gestiohospitals.domini.models.Dada ) llistaHospitals.get( i );
+				if ( j == 0 ) {
+					jTableHospitals.setValueAt( dada.getNom(), i, j );
 				}
 				else {
-					if ( i == 2 ) {
+					if ( j == 1 ) {
+						jTableHospitals.setValueAt( dada.getDescripcio(), i, j );
 					}
 					else {
-						if ( i == 3 ) {
+						if ( j == 2 ) {
+							jTableHospitals.setValueAt( dada.getAdreca(), i, j );
 						}
 					}
 				}
@@ -216,9 +215,12 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 		jTableHospitals.setRowSelectionInterval( 0, 0 );
 	}
 
-	public void actualitzaHabitacionsLliures( int numHabitacions[] )
+	public void actualitzaHabitacionsLliures( ArrayList<Integer> numHabitacions )
 	{
-		//codigo para rellenar la lista
+		listModel.removeAllElements();
+		for ( int i = 0; i < numHabitacions.size(); i++ ) {
+			listModel.addElement( numHabitacions.get( i ) );
+		}
 		jListHabLliures.setSelectionInterval( 0, 0 );
 	}
 }

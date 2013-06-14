@@ -34,7 +34,7 @@ public class IngressarPacientIntroduirEspecialitatView extends BaseView
 
 		jPanelCentral = getPanelCentral();
 		jPanelCentral.setLayout( new FlowLayout() );
-		jPanelCentral.add( jLabelEspecialitat, BorderLayout.CENTER ); 
+		jPanelCentral.add( jLabelEspecialitat, BorderLayout.CENTER );
 		jPanelCentral.add( jTextFieldEspecialitat, BorderLayout.CENTER );
 	}
 
@@ -47,6 +47,6 @@ public class IngressarPacientIntroduirEspecialitatView extends BaseView
 	@Override
 	protected void jButtonCancelActionPerformed( java.awt.event.ActionEvent evt )
 	{
-		viewCtrl.prCancel( this );
+		viewCtrl.prCancel();
 	}
 }

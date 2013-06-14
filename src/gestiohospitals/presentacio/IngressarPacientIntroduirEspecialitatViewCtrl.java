@@ -3,7 +3,7 @@ package gestiohospitals.presentacio;
 import DomainControllers.IngressarPacient;
 import java.util.List;
 
-public class IngressarPacientIntroduirEspecialitatViewCtrl extends BaseViewCtrl
+public class IngressarPacientIntroduirEspecialitatViewCtrl 
 {
 
 	private IngressarPacientIntroduirEspecialitatView view;
@@ -26,7 +26,7 @@ public class IngressarPacientIntroduirEspecialitatViewCtrl extends BaseViewCtrl
 				List llista = ingressarPacient.obteHospitalsLliuresPerEspecialitat( nomEsp );
 				view.tancar();
 				IngressarPacientSeleccionarHospitalViewCtrl ingresPacientSelecHospViewCtrl = new IngressarPacientSeleccionarHospitalViewCtrl( llista, nomEsp );
-				ingresPacientSelecHospViewCtrl.setUseCase(ingressarPacient);
+				ingresPacientSelecHospViewCtrl.setUseCase( ingressarPacient );
 			}
 			catch ( Exception e ) {
 				String cause = e.getMessage();
@@ -38,11 +38,16 @@ public class IngressarPacientIntroduirEspecialitatViewCtrl extends BaseViewCtrl
 						view.mostraMissatge( "No hi ha hospitals disponibles amb l'especialitat indicada." );
 					}
 					else {
-						view.mostraMissatge( "Error desconegut." );
+						view.mostraMissatge( "Error desconegut: " + cause );
 					}
 				}
 			}
 
 		}
+	}
+
+	public void prCancel()
+	{
+		System.exit( 0 );
 	}
 }
