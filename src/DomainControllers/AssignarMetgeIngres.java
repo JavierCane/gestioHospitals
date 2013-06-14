@@ -40,22 +40,19 @@ public class AssignarMetgeIngres {
          return metges;
      }
 
-	void setMetgeAIngres( String codiEmpleat, String nTsPacient, Date dataInici ) throws Exception
+	void setMetgeAIngres( String dni, String nTsPacient, Date dataInici ) throws Exception
 	{
 		CtrlDataFactoria ctrlDataFactoria = CtrlDataFactoria.getInstance();
 		CtrlMetge ctrlMetge = ctrlDataFactoria.getCtrlMetge();
-                Metge metge = ctrlMetge.get( codiEmpleat );
+                Metge metge = ctrlMetge.get( dni );
                 CtrlIngres ctrlIngres = ctrlDataFactoria.getCtrlIngres();
                 System.out.println(dataInici.toString());
                 Ingres ingres = ctrlIngres.get(nTsPacient, dataInici);
-                               System.out.println("nomhosp "+nomHospital +" nom esp " +nomEspecialitat);
- 
-		ingres.setMetgeAIngres(metge, nomHospital, nomEspecialitat);
+                ingres.setMetgeAIngres(metge, nomHospital, nomEspecialitat);
                 SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		session.saveOrUpdate( ingres );
+		session.update(ingres);
                 session.getTransaction().commit();
-                //session.close();
 	}
 }
