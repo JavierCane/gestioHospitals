@@ -49,7 +49,7 @@ public class TestAssignarMetgeIngres
 			--cont1;
 		}
                 
-                ip.assignarMetgeAIngres( "76576" );
+                ip.assignarMetgeAIngres( "12823423K" );
                 
                 
                 

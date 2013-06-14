@@ -4,14 +4,14 @@
  */
 package DataInterface;
 
-import gestiohospitals.domini.models.Habitacio;
-import gestiohospitals.domini.models.HabitacioId;
 import gestiohospitals.domini.models.HibernateUtil;
-import gestiohospitals.domini.models.Hospital;
 import gestiohospitals.domini.models.Metge;
+import gestiohospitals.domini.models.Sanitari;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -24,16 +24,21 @@ public class CtrlMetge
 		
     }
 	//String dni, String nom, String nTs, String email
-	public Metge get( String codiEmpleat )
+	public Metge get( String dni )
 	{
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 
 		Transaction tx = session.beginTransaction();
+                
 		
-		Metge c = (Metge) session.get(Metge.class, codiEmpleat);		
+                Criteria criteria = session.createCriteria(Sanitari.class);
+                criteria.add(Restrictions.eq("dni", dni));
+                Sanitari s= (Sanitari)criteria.list().get(0);
+                System.out.println(s.getCodiEmpleat());
+		Metge m = (Metge) session.get(Metge.class, s.getCodiEmpleat());
 		tx.commit();
                 //session.close();
-		return c;
+		return m;
 	}
 }
