@@ -16,7 +16,7 @@ public class IngressarPacient {
     private String nomHospital;
     private Integer numeroHabitacio;
     private String nTsPacient;
-    private String dniMetge;
+    private String codiEmpleatMetge;
     private AssignarMetgeIngres assignarMetgeIngres; 
 
     
@@ -59,12 +59,12 @@ public class IngressarPacient {
     }
     
     
-    public void assignarMetgeAIngres( String dni ) throws Exception {
+    public void assignarMetgeAIngres( String codiEmpleat ) throws Exception {
         AssignarMetgeIngres aMi = new AssignarMetgeIngres();
 		java.util.Date utilDate = new java.util.Date();
 		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-		assignarMetgeIngres.setMetgeAIngres( dni,nTsPacient,sqlDate );
-		dniMetge = dni;
+		assignarMetgeIngres.setMetgeAIngres( codiEmpleat,nTsPacient,sqlDate );
+		codiEmpleatMetge = codiEmpleat;
     }
     
     public void enviarInformeIngres() {

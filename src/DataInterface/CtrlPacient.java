@@ -29,7 +29,7 @@ public class CtrlPacient
 		
 		Pacient e = (Pacient) session.get(Pacient.class, nTS);
 		tx.commit();
-               //session.close();
+               // session.close();
 		return e;
 	}
 }
