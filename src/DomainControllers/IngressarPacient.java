@@ -72,13 +72,13 @@ public class IngressarPacient {
 		CtrlDataFactoria ctrlDataFactoria = CtrlDataFactoria.getInstance();
         CtrlPacient ctrlPacient = ctrlDataFactoria.getCtrlPacient();
         Pacient pacient = ctrlPacient.get( nTsPacient );
-		String mail = pacient.getEmail();
 		
 		EnviadorInformesFactoria enviadorInformesFactoria = EnviadorInformesFactoria.getInstance();
         EnviadorInformesMail enviadorInformesMail = enviadorInformesFactoria.getEnviadorInformes();
+		
 		java.util.Date utilDate = new java.util.Date();
 		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-		enviadorInformesMail.enviarInformeIngres( nomEspecialitat, sqlDate, nomHospital, numeroHabitacio, nTsPacient, mail, nTsPacient );
+		enviadorInformesMail.enviarInformeIngres( nomEspecialitat, sqlDate, nomHospital, numeroHabitacio, nTsPacient, dniMetge, pacient.getEmail() );
     }
 
 }

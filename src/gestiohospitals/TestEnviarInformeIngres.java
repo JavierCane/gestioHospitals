@@ -5,8 +5,6 @@
 package gestiohospitals;
 
 import DomainControllers.IngressarPacient;
-import gestiohospitals.domini.models.Dada;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -22,6 +20,7 @@ public class TestEnviarInformeIngres
 		List llista1 = ip.obteHospitalsLliuresPerEspecialitat( "espe_molona" );
 		ip.creaIngres( "hospital molon", 1, "1248712");
 		List<String[]> llista= ip.mostraMetgesHospitalPerEspecialitat();
+		ip.assignarMetgeAIngres( "12823423K" );
 		ip.enviarInformeIngres();
 		
 	}

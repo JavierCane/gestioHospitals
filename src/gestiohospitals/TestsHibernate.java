@@ -44,7 +44,7 @@ public class TestsHibernate
                 session.saveOrUpdate( especialitat2 );
 		
 		// Creamos paciente
-		Pacient pacient1 = new Pacient( "42872323K", "persona mundial", "1248712", "sjhvwkbgw@at.com" );
+		Pacient pacient1 = new Pacient( "42872323K", "persona mundial", "1248712", "javier.mailserio@gmail.com" );
                 Pacient pacient2 = new Pacient( "5627831K", "persona mundial2", "4321712", "sjhgw@at.com" );
 
 		session.saveOrUpdate( pacient1 );
