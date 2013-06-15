@@ -11,7 +11,7 @@ package DomainControllers;
 public class EnviadorInformesFactoria
 {
 	private static EnviadorInformesFactoria enviadorInformesFactoria;
-	
+	private EnviadorInformesMail enviadorInformesMail;
 	    
     public static EnviadorInformesFactoria getInstance() {
         if(enviadorInformesFactoria == null){
@@ -20,9 +20,11 @@ public class EnviadorInformesFactoria
         return enviadorInformesFactoria;
     }
 	
-	public EnviadorInformes getEnviadorInformes() 
+	public EnviadorInformesMail getEnviadorInformes() 
 	{
-		
-		return null;
-	}
+        if (enviadorInformesMail == null) {
+            enviadorInformesMail = new EnviadorInformesMail();
+        }
+        return enviadorInformesMail;
+    }
 }

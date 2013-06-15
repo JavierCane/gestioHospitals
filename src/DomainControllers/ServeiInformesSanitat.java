@@ -4,102 +4,61 @@
  */
 package DomainControllers;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import sun.net.www.http.HttpClient;
+import java.net.URLEncoder;
+import java.io.DataOutputStream;
+import java.io.DataInputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- *
- * @author William
- */
+
 public class ServeiInformesSanitat
 {
 	public ServeiInformesSanitat()
 	{
 		
 	}
-	/*
-	public static String excutePost(String targetURL, String urlParameters)
-	{
-		URL url;
-		HttpURLConnection connection = null;  
-		try {
-		  //Create connection
-		  url = new URL(targetURL);
-		  connection = (HttpURLConnection)url.openConnection();
-		  connection.setRequestMethod("POST");
-		  connection.setRequestProperty("Content-Type", 
-			   "application/x-www-form-urlencoded");
 
-		  connection.setRequestProperty("Content-Length", "" + 
-				   Integer.toString(urlParameters.getBytes().length));
-		  connection.setRequestProperty("Content-Language", "en-US");  
-
-		  connection.setUseCaches (false);
-		  connection.setDoInput(true);
-		  connection.setDoOutput(true);
-
-		  //Send request
-		  DataOutputStream wr = new DataOutputStream (
-					  connection.getOutputStream ());
-		  wr.writeBytes (urlParameters);
-		  wr.flush ();
-		  wr.close ();
-
-		  //Get Response	
-		  InputStream is = connection.getInputStream();
-		  BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-		  String line;
-		  StringBuffer response = new StringBuffer(); 
-		  while((line = rd.readLine()) != null) {
-			response.append(line);
-			response.append('\r');
-		  }
-		  rd.close();
-		  return response.toString();
-
-		} catch (Exception e) {
-
-		  e.printStackTrace();
-		  return null;
-
-		} finally {
-		  if(connection != null) {
-			connection.disconnect(); 
-		  }
-		}
-	  }*/
-	
-	
 	public void enviarInformeIngres() 
 	{
-		HttpClient httpclient = new DefaultH
-				DefaultHttpClient();
-		HttpPost httppost = new HttpPost("http://www.a-domain.com/foo/");
+		final String server = "localhost";
+		URL url = null;
+		try {
+			url = new URL("http://" + server);
+			HttpURLConnection urlConn = null;
+			urlConn = (HttpURLConnection) url.openConnection();
+			// Let the run-time system (RTS) know that we want input.
+			urlConn.setDoInput (true);
+			// Let the RTS know that we want to do output.
+			urlConn.setDoOutput (true);
+			// No caching, we want the real thing.
+			urlConn.setUseCaches (false);
+			urlConn.setRequestMethod("POST");
+			urlConn.connect();
+			
+			DataOutputStream output = null;
+			DataInputStream input = null;
+			output = new DataOutputStream(urlConn.getOutputStream());
 
-		// Request parameters and other properties.
-		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
-		params.add(new BasicNameValuePair("param-1", "12345"));
-		params.add(new BasicNameValuePair("param-2", "Hello!"));
-		httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
-
-		//Execute and get the response.
-		HttpResponse response = httpclient.execute(httppost);
-		HttpEntity entity = response.getEntity();
-
-		if (entity != null) 
-		{
-			InputStream instream = entity.getContent();
-			try 
-			{
-				// do something useful
-			} finally {
-				instream.close();
+			// Construct the POST data.
+			String content =
+			  "firstname=" + URLEncoder.encode("William") +
+			  "&secondname=" + URLEncoder.encode("Friede Espinosa");
+			// Send the request data.
+			output.writeBytes(content);
+			output.flush();
+			output.close();
+			// Get response data.
+			String str = null;
+			input = new DataInputStream (urlConn.getInputStream());
+			while (null != ((str = input.readLine()))) {
+				System.out.println(str);
 			}
+			input.close ();
+		} catch (IOException ex) {
+			Logger.getLogger(ServeiInformesSanitat.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 }
