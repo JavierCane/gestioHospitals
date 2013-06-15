@@ -1,30 +1,30 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package DomainControllers;
 
-import java.net.URLEncoder;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- *
- * @author William
- */
 public class EnviadorInformesMail implements IEnviadorInformes
 {
 
 	@Override
-	public void enviarInformeIngres( String nomEspecialitat, Date dataAvui, String nomHospital, Integer numeroHabitacio, String nTsPacient, String dniMetge, String emailPacient )
+	public void enviarInformeIngres( String nomEspecialitat, Date dataAvui, String nomHospital, Integer numeroHabitacio, String nTsPacient, String dniMetge, String emailPacient ) throws Exception
 	{
 		ServiceLocator sl = ServiceLocator.getInstance();
 		ServeiInformesSanitat sis = sl.find( "serveiInformesSanitat" );
-		
-		List<String> dnisMetges = new ArrayList();
-		dnisMetges.add( dniMetge );
-		
-		sis.enviarInformeIngres( nomEspecialitat, dataAvui, nomHospital, numeroHabitacio, nTsPacient, dnisMetges, emailPacient );
+
+		if ( !sis.estaDisponible() )
+		{
+			throw new Exception( "serveiNoDisponible" );
+		}
+		else
+		{
+			List<String> dnisMetges = new ArrayList();
+			dnisMetges.add( dniMetge );
+
+			sis.enviarInformeIngres( nomEspecialitat, dataAvui, nomHospital, numeroHabitacio, nTsPacient, dnisMetges, emailPacient );
+		}
 	}
 }

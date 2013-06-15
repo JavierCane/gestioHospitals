@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package DomainControllers;
 
 import java.io.IOException;
@@ -28,7 +24,8 @@ public class ServeiInformesSanitat
 
 		URL url = null;
 
-		try {
+		try
+		{
 			url = new URL( server );
 
 			HttpURLConnection urlConn = null;
@@ -67,25 +64,60 @@ public class ServeiInformesSanitat
 
 			int status = urlConn.getResponseCode();
 
-			if ( 400 == status ) {
+			if ( 400 == status )
+			{
 				// TODO: En vez de sacar por consola el urlConn.getResponseMessage(), mostrarlo como error en presentación.
 				System.out.println( urlConn.getResponseMessage() );
 			}
-			else {
+			else
+			{
 				// Get response data.
 				String str = null;
 
 				input = new DataInputStream( urlConn.getInputStream() );
 
-				while ( null != ( ( str = input.readLine() ) ) ) {
+				while ( null != ( ( str = input.readLine() ) ) )
+				{
 					System.out.println( str );
 				}
 
 				input.close();
 			}
 		}
-		catch ( IOException ex ) {
+		catch ( IOException ex )
+		{
 			Logger.getLogger( ServeiInformesSanitat.class.getName() ).log( Level.SEVERE, null, ex );
 		}
+	}
+
+	boolean estaDisponible()
+	{
+		final String server = "http://puntoyaporte.com/tests/sistema-sanitat/status.php";
+
+		try
+		{
+			URL url = new URL( server );
+
+			HttpURLConnection urlConn = ( HttpURLConnection ) url.openConnection();
+
+			// No caching, we want the real thing.
+			urlConn.setUseCaches( false );
+			urlConn.connect();
+
+			if ( 200 == urlConn.getResponseCode() )
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		catch ( IOException ex )
+		{
+			Logger.getLogger( ServeiInformesSanitat.class.getName() ).log( Level.SEVERE, null, ex );
+		}
+		
+		return false;
 	}
 }
