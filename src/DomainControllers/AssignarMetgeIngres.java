@@ -30,6 +30,7 @@ public class AssignarMetgeIngres {
          CtrlDataFactoria cdf = CtrlDataFactoria.getInstance();
          CtrlEspecialitat ce=cdf.getCtrlEspecialitat();
          Especialitat e = ce.get(nomEsp);
+         if(e==null)throw new Exception("noHiHaEspecialitat");
          CtrlHospital ch = cdf.getCtrlHospital();
          Boolean existeixHospital = ch.exist(nomHosp);
          if( !existeixHospital ) throw new Exception("NoHiHaHospitals");
@@ -48,6 +49,7 @@ public class AssignarMetgeIngres {
                 CtrlIngres ctrlIngres = ctrlDataFactoria.getCtrlIngres();
                 System.out.println(dataInici.toString());
                 Ingres ingres = ctrlIngres.get(nTsPacient, dataInici);
+                if(ingres==null) throw new Exception("noIngres");
                 ingres.setMetgeAIngres(metge, nomHospital, nomEspecialitat);
                 SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();

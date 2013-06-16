@@ -116,7 +116,10 @@ public class Especialitat
             }
         }
         if(metgesHospital.isEmpty()) throw new Exception("noHiHaMetges");
-        //Falta Ordenar!!!!!!!!
+        
+        NameOrder no= new NameOrder();
+        no.ordenar(metgesHospital);
+        
         return metgesHospital;
   
     }

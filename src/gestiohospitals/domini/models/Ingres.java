@@ -93,16 +93,6 @@ public class Ingres implements Serializable
 		this.habitacio = habitacio;
 	}
 
-	/*	public Hospital getHospital()
-	 {
-	 return hospital;
-	 }
-
-	 public void setHospital( Hospital hospital )
-	 {
-	 this.hospital = hospital;
-	 }
-	 */
 	public Metge getMetge()
 	{
 		return metge;
@@ -120,6 +110,8 @@ public class Ingres implements Serializable
 
     public void setMetgeAIngres(Metge metge, String nomHospital, String nomEspecialitat) throws Exception 
     {
+        if(this.getDataAlta()!=null) throw new Exception("altaIngres");
+        if(this.getMetge()!=null) throw new Exception("ingresAmbMetge"); 
         if(habitacio.esEspecialitat(nomEspecialitat))
         {
             if(habitacio.getHabitacioId().getHospital().getNom().equals(nomHospital))
