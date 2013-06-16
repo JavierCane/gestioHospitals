@@ -39,6 +39,9 @@ public class Ingres implements Serializable
 		
 	}
 	
+	/*
+	 * Seguint amb el disseny del diagrama de sequencia, s'afageix un pacient (hem utilitzat la classe ingresId d'hibernate, que refelexa a un pacient que ha fet un ingres) i s'afageix l'ingres del pacient a la classe ingresId i a la classe habitacio.
+	 */
 	public Ingres( Pacient pacient, Habitacio habitacio) throws Exception
 	{
 		this.habitacio = habitacio;

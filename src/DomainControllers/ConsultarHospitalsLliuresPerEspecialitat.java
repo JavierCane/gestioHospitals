@@ -10,7 +10,10 @@ import java.util.*;
 
 public class ConsultarHospitalsLliuresPerEspecialitat {
 
-    public List getHospitalsLliuresPerEspecialitat(String nomEsp) {
+    /*
+	 * Seguint amb el disseny del diagrama de sequencia, es demana l'instancia del controlador de factoria per desrés demonaar el controladro d'especialitat per més tard aconseguir l'objecte d'especialitat que volem tractar. Un cop el tenim invoquem l'operacion getHabitacionsLliuresHospitals sobre aquest.
+	 */
+	public List getHospitalsLliuresPerEspecialitat(String nomEsp) throws Exception {
         //Set( TupleType( nom:String, adreça:String, descripció:String, habLliures:Set( núm: Integer )))
         CtrlDataFactoria ctrlDataFactoria = CtrlDataFactoria.getInstance();
         CtrlEspecialitat ctrlEspecialitat = ctrlDataFactoria.getCtrlEspecialitat();

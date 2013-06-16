@@ -56,6 +56,9 @@ public class Pacient extends Persona
 		this.email = email;
 	}
 	
+	/*
+	 * Seguint amb el disseny del diagrama de sequencia, es comprova si el pacient esta o no ingressat.
+	 */
 	public Boolean estaIngressat() 
 	{
 		boolean ingressat = false;

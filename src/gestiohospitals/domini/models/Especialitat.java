@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.swing.JOptionPane;
 
 @Entity
 @Table( name = "especialitat" )
@@ -80,7 +79,10 @@ public class Especialitat
 		return hospitals;
 	}
 	
-	public List getHabitacionsLliuresHospitals()
+	/*
+	 * Seguint amb el disseny del diagrama de sequencia, recorrem tots els hospitals associats a l'especialitat, on per cada hospital li consultem les habitacions lliures que té per despres retornar un conjunt d'informacio (classe Dada) de cada hospitals que ens interessa
+	 */
+	public List getHabitacionsLliuresHospitals() throws Exception
 	{
 		ArrayList<Dada> llistaHabitacions = new ArrayList();
 		Iterator it = hospitals.iterator();
@@ -92,7 +94,7 @@ public class Especialitat
 				llistaHabitacions.add( d );
 			}
 			else {
-				JOptionPane.showMessageDialog( null, "Exc: noHiHaHopstials -> habLliures no es > 0 " + ( ( Hospital ) h ).getNom() );
+				throw new Exception("noHiHaHopstials");
 			}
 		}
 		return llistaHabitacions;

@@ -17,7 +17,10 @@ public class IngressarPacient
 	private String dniMetge;
 	private AssignarMetgeIngres assignarMetgeIngres;
 
-	public List obteHospitalsLliuresPerEspecialitat( String nomEsp )
+	/*
+	 * Seguint amb el disseny del diagrama de sequencia, es guarda el nom de l'especialitat i s'instancia la classe ConsultarHospitalsLliuresPerEspecialitat per després cridar l'operacio de getHospitalsLliuresPerEspecialitat
+	 */
+	public List obteHospitalsLliuresPerEspecialitat( String nomEsp ) throws Exception
 	{
 		//: Set( TupleType( nom:String, adreça:String, descripció:String, habLliures:Set( núm: Integer )))
 		nomEspecialitat = nomEsp;
@@ -25,6 +28,9 @@ public class IngressarPacient
 		return c.getHospitalsLliuresPerEspecialitat( nomEsp );
 	}
 
+	/*
+	 * Seguint amb el disseny del diagrama de sequencia, fem una crida de l'instancia de la factoria, on després demanem tots els controladors necessaries per a demanar els objectes que necessitem per treballar: Pacient, Hospital i Habitacio. Seguidament fem una crida a la constructua de la classe ingres. Despres de crear l'instancia, es fan crides a hibernate per reflectir els canvis en la BD.
+	 */
 	public void creaIngres( String nomHosp, Integer numHab, String nTS ) throws Exception
 	{
 		CtrlDataFactoria ctrlDataFactoria = CtrlDataFactoria.getInstance();

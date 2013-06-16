@@ -7,7 +7,7 @@ import java.util.*;
 public class TestObteHospitals
 {
 
-	public static void main( String[] args )
+	public static void main( String[] args ) throws Exception
 	{
 		IngressarPacient ip = new IngressarPacient();
 		List llista = ip.obteHospitalsLliuresPerEspecialitat( "espe_molona" );

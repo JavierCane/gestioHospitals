@@ -76,6 +76,9 @@ public class Hospital
 		this.descripcio = descripcio;
 	}
 
+	/*
+	 * Seguint amb el disseny del diagrama de sequencia, recorrem les habitacions de l'hopital, on si l'habitacio resulta ser lliure, retornem aquesta habitacio juntamnet amb tota l'informacio que ens interessa de l'hopital.
+	 */
 	public Dada getHabitacionsLliures( String nom )
 	{
 		Dada d = new Dada();
