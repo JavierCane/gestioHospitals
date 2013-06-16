@@ -7,6 +7,8 @@ import java.net.URLEncoder;
 import java.io.DataOutputStream;
 import java.io.DataInputStream;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,15 +49,32 @@ public class ServeiInformesSanitat
 			DataInputStream input = null;
 			output = new DataOutputStream( urlConn.getOutputStream() );
 
-			// Construct the POST data.
-			String content =
-				   "nomEspecialitat=" + URLEncoder.encode( nomEspecialitat )
-				   + "&data=" + URLEncoder.encode( dataAvui.toString() )
-				   + "&nomHospital=" + URLEncoder.encode( nomHospital )
-				   + "&numeroHabitacio=" + URLEncoder.encode( numeroHabitacio.toString() )
-				   + "&nTsPacient=" + URLEncoder.encode( nTsPacient )
-				   + "&dnisMetges=" + URLEncoder.encode( dnisMetges.get( 0 ) )
-				   + "&emailPacient=" + URLEncoder.encode( emailPacient );
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			String content;
+			
+			if ( dnisMetges.size() == 1 )
+			{
+				// Construct the POST data.
+				content =
+					   "nomEspecialitat=" + URLEncoder.encode( nomEspecialitat )
+					   + "&data=" + URLEncoder.encode( df.format( dataAvui ) )
+					   + "&nomHospital=" + URLEncoder.encode( nomHospital )
+					   + "&numeroHabitacio=" + URLEncoder.encode( numeroHabitacio.toString() )
+					   + "&nTsPacient=" + URLEncoder.encode( nTsPacient )
+					   + "&dnisMetges=" + URLEncoder.encode( dnisMetges.get( 0 ) )
+					   + "&emailPacient=" + URLEncoder.encode( emailPacient );
+			}
+			else
+			{
+				// Construct the POST data.
+				content =
+					   "nomEspecialitat=" + URLEncoder.encode( nomEspecialitat )
+					   + "&data=" + URLEncoder.encode( df.format( dataAvui ) )
+					   + "&nomHospital=" + URLEncoder.encode( nomHospital )
+					   + "&numeroHabitacio=" + URLEncoder.encode( numeroHabitacio.toString() )
+					   + "&nTsPacient=" + URLEncoder.encode( nTsPacient )
+					   + "&emailPacient=" + URLEncoder.encode( emailPacient );
+			}
 
 			// Send the request data.
 			output.writeBytes( content );
@@ -66,7 +85,6 @@ public class ServeiInformesSanitat
 
 			if ( 400 == status )
 			{
-				// TODO: En vez de sacar por consola el urlConn.getResponseMessage(), mostrarlo como error en presentación.
 				System.out.println( urlConn.getResponseMessage() );
 			}
 			else
@@ -117,7 +135,7 @@ public class ServeiInformesSanitat
 		{
 			Logger.getLogger( ServeiInformesSanitat.class.getName() ).log( Level.SEVERE, null, ex );
 		}
-		
+
 		return false;
 	}
 }

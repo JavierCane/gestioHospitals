@@ -37,26 +37,29 @@ public class IngressarPacient
 		CtrlPacient ctrlPacient = ctrlDataFactoria.getCtrlPacient();
 		Pacient pacient = ctrlPacient.get( nTS );
 
+		if ( null == pacient )
+		{
+			throw new Exception( "pacientNoExisteix" );
+		}
 
 		CtrlHabitacio ctrlHabitacio = ctrlDataFactoria.getCtrlHabitacio();
 		Habitacio habitacio = ctrlHabitacio.get( nomHosp, numHab );
 
-		Ingres i = new Ingres( pacient, habitacio );
+		Ingres ingres = new Ingres( pacient, habitacio );
 
 		nomHospital = nomHosp;
 		numeroHabitacio = numHab;
 		nTsPacient = nTS;
+
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		session.saveOrUpdate( i );
+		session.saveOrUpdate( ingres );
 		session.getTransaction().commit();
-		//session.close();
 	}
 
 	public List<String[]> mostraMetgesHospitalPerEspecialitat() throws Exception
 	{
-		//: Set( TupleType( dni: String, nom: String, categoria: String )
 		AssignarMetgeIngres ami = new AssignarMetgeIngres();
 		assignarMetgeIngres = ami;
 		List<String[]> result = assignarMetgeIngres.getMetgesHospitalPerEspecialitat( nomHospital, nomEspecialitat );

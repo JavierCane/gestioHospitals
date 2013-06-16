@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.swing.JOptionPane;
 
 @Entity
 @Table( name = "pacient" )
@@ -55,27 +54,31 @@ public class Pacient extends Persona
 	{
 		this.email = email;
 	}
-	
+
 	/*
 	 * Seguint amb el disseny del diagrama de sequencia, es comprova si el pacient esta o no ingressat.
 	 */
-	public Boolean estaIngressat() 
+	public Boolean estaIngressat()
 	{
 		boolean ingressat = false;
+		
 		Iterator it = ingresos.iterator();
-		while ( it.hasNext() && ingressat ) {
+		while ( it.hasNext() && !ingressat )
+		{
 			Object h = it.next();
-			ingressat = ( (Ingres) h).teAlta();
+			ingressat = !( ( Ingres ) h ).teAlta();
 		}
+		
 		return ingressat;
 	}
-	
-	public void addIngresos( Ingres ingres) throws Exception 
+
+	public void addIngresos( Ingres ingres ) throws Exception
 	{
-		if ( estaIngressat() ) 
+		if ( estaIngressat() )
 		{
-			throw new Exception( "pacientIngressat");
+			throw new Exception( "pacientIngressat" );
 		}
+
 		ingresos.add( ingres );
 	}
 }

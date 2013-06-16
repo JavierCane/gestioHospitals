@@ -1,6 +1,7 @@
 package gestiohospitals.domini.models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Dada
 {
@@ -8,11 +9,10 @@ public class Dada
 	private String nom;
 	private String adreca;
 	private String descripcio;
-	private ArrayList<Integer> habLliures;
+	private List<Integer> habLliures = new ArrayList<>();
 
 	public Dada()
 	{
-		habLliures = new ArrayList<>();
 	}
 
 	public void setNom( String nom )
@@ -50,7 +50,7 @@ public class Dada
 		return descripcio;
 	}
 
-	public ArrayList<Integer> getHabLliures()
+	public List<Integer> getHabLliures()
 	{
 		return habLliures;
 	}

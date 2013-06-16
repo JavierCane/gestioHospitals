@@ -35,7 +35,6 @@ public class CtrlMetge
                 Criteria criteria = session.createCriteria(Sanitari.class);
                 criteria.add(Restrictions.eq("dni", dni));
                 Sanitari s= (Sanitari)criteria.list().get(0);
-                System.out.println(s.getCodiEmpleat());
 		Metge m = (Metge) session.get(Metge.class, s.getCodiEmpleat());
 		tx.commit();
                 //session.close();

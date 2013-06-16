@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -19,18 +18,16 @@ public class Habitacio implements Serializable
 
 	@EmbeddedId
 	private HabitacioId habitacioId;
-	
 	@ManyToOne
 	@JoinColumn( name = "nom_especialitat" )
 	private Especialitat especialitat;
-	
 	@OneToMany( mappedBy = "habitacio" )
 	private List<Ingres> ingresos = new ArrayList<>();
 
 	public Habitacio()
 	{
 	}
-	
+
 	public Habitacio( HabitacioId habitacioId, Especialitat especialitat )
 	{
 		this.habitacioId = habitacioId;
@@ -58,10 +55,13 @@ public class Habitacio implements Serializable
 	{
 		Boolean lliure = true;
 		Iterator it = ingresos.iterator();
-		while ( it.hasNext() && lliure ) {
+
+		while ( it.hasNext() && lliure )
+		{
 			Object i = it.next();
-			lliure = ( ( ( Ingres ) i ).teAlta() );
+			lliure = ( ( Ingres ) i ).teAlta();
 		}
+
 		return lliure;
 	}
 
@@ -89,9 +89,9 @@ public class Habitacio implements Serializable
 	{
 		this.especialitat = especialitat;
 	}
-	
-	public void addIngresos( Ingres i ) 
+
+	public void addIngresos( Ingres i )
 	{
-		ingresos.add( i  );
+		ingresos.add( i );
 	}
 }

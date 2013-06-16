@@ -1,9 +1,7 @@
 package gestiohospitals.domini.models;
 
 import java.io.Serializable;
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -11,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 @Entity
 @Table( name = "ingres" )
@@ -21,6 +20,7 @@ public class Ingres implements Serializable
 	private IngresId ingresId;
 	
 	@Column( name = "data_alta" )
+	@Temporal( javax.persistence.TemporalType.DATE )
 	private Date dataAlta;
 	
 	@ManyToOne
@@ -42,19 +42,19 @@ public class Ingres implements Serializable
 	/*
 	 * Seguint amb el disseny del diagrama de sequencia, s'afageix un pacient (hem utilitzat la classe ingresId d'hibernate, que refelexa a un pacient que ha fet un ingres) i s'afageix l'ingres del pacient a la classe ingresId i a la classe habitacio.
 	 */
-	public Ingres( Pacient pacient, Habitacio habitacio) throws Exception
+	public Ingres( Pacient pacient, Habitacio habitacio ) throws Exception
 	{
 		this.habitacio = habitacio;
+
 		//Ingres no tiene hospital, se encuentra en habitacion l hosp
 		java.util.Date utilDate = new java.util.Date();
 		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-//		System.out.println("utilDate:" + utilDate);
-//		System.out.println("sqlDate:" + sqlDate);
+
 		ingresId = new IngresId( sqlDate, pacient );
 		
 		ingresId.getPacient().addIngresos( this );
-		habitacio.addIngresos( this );
 		
+		habitacio.addIngresos( this );
 	}
 
 	public Ingres( IngresId ingresId )
@@ -108,7 +108,7 @@ public class Ingres implements Serializable
 
 	public Boolean teAlta()
 	{
-		return ( dataAlta != null );
+		return !( dataAlta == null );
 	}
 
     public void setMetgeAIngres(Metge metge, String nomHospital, String nomEspecialitat) throws Exception 

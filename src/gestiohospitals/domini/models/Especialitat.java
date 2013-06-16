@@ -27,12 +27,19 @@ public class Especialitat
 	@OneToMany( mappedBy = "especialitat" )
 	private List<Habitacio> habitacions = new ArrayList<>();
 	
-	@ManyToMany( cascade = { CascadeType.ALL } )
+	@ManyToMany( cascade =
+	{
+		CascadeType.ALL
+	} )
 	@JoinTable( name = "hospital_especialitat",
-				joinColumns = {
-		@JoinColumn( name = "nom_especialitat" ) },
-				inverseJoinColumns = {
-		@JoinColumn( name = "nom_hospital" ) } )
+				joinColumns =
+	{
+		@JoinColumn( name = "nom_especialitat" )
+	},
+				inverseJoinColumns =
+	{
+		@JoinColumn( name = "nom_hospital" )
+	} )
 	private List<Hospital> hospitals = new ArrayList<>();
 
 	public Especialitat()
@@ -53,7 +60,7 @@ public class Especialitat
 	{
 		this.nom = nom;
 	}
-	
+
 	public List<Habitacio> getHabitacions()
 	{
 		return habitacions;
@@ -78,7 +85,7 @@ public class Especialitat
 	{
 		return hospitals;
 	}
-	
+
 	/*
 	 * Seguint amb el disseny del diagrama de sequencia, recorrem tots els hospitals associats a l'especialitat, on per cada hospital li consultem les habitacions lliures que té per despres retornar un conjunt d'informacio (classe Dada) de cada hospitals que ens interessa
 	 */
@@ -87,51 +94,61 @@ public class Especialitat
 		ArrayList<Dada> llistaHabitacions = new ArrayList();
 		Iterator it = hospitals.iterator();
 		Dada d;
-		while ( it.hasNext() ) {
+		
+		while ( it.hasNext() )
+		{
 			Object h = it.next();
 			d = ( ( Hospital ) h ).getHabitacionsLliures( nom );
-			if ( d.getHabLliures().size() > 0 ) {
+			
+			if ( d.getHabLliures().size() > 0 )
+			{
 				llistaHabitacions.add( d );
 			}
-			else {
-				throw new Exception("noHiHaHopstials");
+			else
+			{
+				throw new Exception( "noHiHaHospitals" );
 			}
 		}
 		return llistaHabitacions;
 	}
-	
-	public List<String[]> getMetgesHospital(String nomHosp) throws Exception 
-	{
-        List<String[]> metgesHospital=new ArrayList<String[]>();
-        Iterator it=metges.iterator();
-        while(it.hasNext()){
-            Metge m=(Metge) it.next();
-            if(m.getNomHospital().equals( nomHosp )){
-                String[] dades=new String[3];
-                //dni
-                dades[0]=m.obteDadesPersona()[0];
-                //Nom
-                dades[1]=m.obteDadesPersona()[1];
-                //Categoria
-                dades[2]=m.getCategoria();
-                metgesHospital.add(dades);
-            }
-        }
-        if(metgesHospital.isEmpty()) throw new Exception("noHiHaMetges");
-        
-        NameOrder no= new NameOrder();
-        no.ordenar(metgesHospital);
-        
-        return metgesHospital;
-  
-    }
 
-	public boolean hospitalConteEspecialitat(String nomHosp)
+	public List<String[]> getMetgesHospital( String nomHosp ) throws Exception
 	{
-		Iterator it = hospitals.iterator();
-		while ( it.hasNext() ) {
-			Hospital h = (Hospital) it.next();
-			if( h.getNom().equals( nomHosp )  ) return true;
+		List<String[]> metgesHospital = new ArrayList<String[]>();
+		for ( Metge metge : metges )
+		{
+			if ( metge.getNomHospital().equals( nomHosp ) )
+			{
+				String[] dades = new String[ 3 ];
+				//dni
+				dades[0] = metge.obteDadesPersona()[0];
+				//Nom
+				dades[1] = metge.obteDadesPersona()[1];
+				//Categoria
+				dades[2] = metge.getCategoria();
+				metgesHospital.add( dades );
+			}
+		}
+		if ( metgesHospital.isEmpty() )
+		{
+			throw new Exception( "noHiHaMetges" );
+		}
+
+		NameOrder no = new NameOrder();
+		no.ordenar( metgesHospital );
+
+		return metgesHospital;
+
+	}
+
+	public boolean hospitalConteEspecialitat( String nomHosp )
+	{
+		for ( Hospital hospital : hospitals )
+		{
+			if ( hospital.getNom().equals( nomHosp ) )
+			{
+				return true;
+			}
 		}
 		return false;
 	}

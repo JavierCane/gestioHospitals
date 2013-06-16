@@ -1,18 +1,20 @@
 package gestiohospitals.domini.models;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
 @Embeddable
 public class IngresId implements Serializable
 {
 
 	@Column( name = "data_inici" )
+	@Temporal( javax.persistence.TemporalType.DATE )
 	private Date dataInici;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

@@ -22,7 +22,11 @@ public class EnviadorInformesMail implements IEnviadorInformes
 		else
 		{
 			List<String> dnisMetges = new ArrayList();
-			dnisMetges.add( dniMetge );
+			
+			if ( null != dniMetge)
+			{
+				dnisMetges.add( dniMetge );
+			}
 
 			sis.enviarInformeIngres( nomEspecialitat, dataAvui, nomHospital, numeroHabitacio, nTsPacient, dnisMetges, emailPacient );
 		}

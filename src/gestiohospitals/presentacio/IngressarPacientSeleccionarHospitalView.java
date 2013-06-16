@@ -215,7 +215,7 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 		jTableHospitals.setRowSelectionInterval( 0, 0 );
 	}
 
-	public void actualitzaHabitacionsLliures( ArrayList<Integer> numHabitacions )
+	public void actualitzaHabitacionsLliures( List<Integer> numHabitacions )
 	{
 		listModel.removeAllElements();
 		for ( int i = 0; i < numHabitacions.size(); i++ ) {

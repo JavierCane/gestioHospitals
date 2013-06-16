@@ -1,9 +1,10 @@
 package gestiohospitals.presentacio;
 
 import DomainControllers.IngressarPacient;
+import gestiohospitals.domini.models.Dada;
 import java.util.List;
 
-public class IngressarPacientIntroduirEspecialitatViewCtrl 
+public class IngressarPacientIntroduirEspecialitatViewCtrl
 {
 
 	private IngressarPacientIntroduirEspecialitatView view;
@@ -18,28 +19,34 @@ public class IngressarPacientIntroduirEspecialitatViewCtrl
 
 	public void prOkObteHospitals( String nomEsp )
 	{
-		if ( nomEsp.isEmpty() ) {
+		if ( nomEsp.isEmpty() )
+		{
 			view.mostraMissatge( "L'especialitat no existeix." );
 		}
-		else {
-			try {
+		else
+		{
+			try
+			{
 				List llista = ingressarPacient.obteHospitalsLliuresPerEspecialitat( nomEsp );
 				view.tancar();
 				IngressarPacientSeleccionarHospitalViewCtrl ingresPacientSelecHospViewCtrl = new IngressarPacientSeleccionarHospitalViewCtrl( llista, nomEsp );
 				ingresPacientSelecHospViewCtrl.setUseCase( ingressarPacient );
 			}
-			catch ( Exception e ) {
+			catch ( Exception e )
+			{
 				String cause = e.getMessage();
-				if ( cause.equals( "noHiHaEspecialitat" ) ) {
+
+				if ( cause.equals( "noHiHaEspecialitat" ) )
+				{
 					view.mostraMissatge( "L'especialitat no existeix." );
 				}
-				else {
-					if ( cause.equals( "noHiHaHospitals" ) ) {
-						view.mostraMissatge( "No hi ha hospitals disponibles amb l'especialitat indicada." );
-					}
-					else {
-						view.mostraMissatge( "Error desconegut: " + cause );
-					}
+				else if ( cause.equals( "noHiHaHospitals" ) )
+				{
+					view.mostraMissatge( "No hi ha hospitals disponibles amb l'especialitat indicada." );
+				}
+				else
+				{
+					view.mostraMissatge( "Error desconegut: " + cause );
 				}
 			}
 
