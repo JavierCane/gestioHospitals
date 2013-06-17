@@ -5,6 +5,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * Clase abstraca, con operaciones abstractas en los listeners de los botones OK y Cancel. De esta superclase heredan
+ * todas las pantallas del caso de uso de ingresar paciente.
+ */
 abstract public class BaseView extends javax.swing.JFrame
 {
 
@@ -41,18 +45,33 @@ abstract public class BaseView extends javax.swing.JFrame
 		return jButtonCancel;
 	}
 
+	/**
+	 * Muestra los errores que se pueden producir a la hora de interactuar con el sistema, se muestran en el campo de
+	 * texto inferior de la pantalla.
+	 *
+	 * @param textMessageArea
+	 */
 	public void mostraMissatge( String textMessageArea )
 	{
 		jTextFieldMessageArea.setText( textMessageArea );
 	}
 
+	/**
+	 * Cierra la ventana actual.
+	 */
 	public void tancar()
 	{
 		this.setVisible( false );
 		this.dispose();
 	}
 
-	public void mostraPopUp( String text ) //en baseview o en baseviewCtrl?
+	/**
+	 * Se encarga de mostrar el mensaje informatico de finalización del caso de uso. En el diseño UML se encontraba
+	 * erroneamente colocado en un controlador.
+	 *
+	 * @param text
+	 */
+	public void mostraPopUp( String text )
 	{
 		JOptionPane.showMessageDialog( this, text, "Ingressar pacient", JOptionPane.PLAIN_MESSAGE );
 	}

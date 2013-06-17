@@ -94,11 +94,13 @@ public class IngressarPacientAssignarMetgeView extends BaseView
 		jScrollPaneTable = new JScrollPane();
 		tableModel = new javax.swing.table.DefaultTableModel(
 				new Object[ 0 ][ 3 ],
-				new String[]{
+				new String[]
+		{
 			"DNI", "Nom", "Categoria"
 		} )
 		{
-			boolean[] canEdit = new boolean[]{
+			boolean[] canEdit = new boolean[]
+			{
 				false, false, false
 			};
 
@@ -121,6 +123,11 @@ public class IngressarPacientAssignarMetgeView extends BaseView
 		jPanelCentral.add( jScrollPaneTable, gridBagConstraints );
 	}
 
+	/**
+	 * Obtiene el DNI del médico de la tabla de médicos y trata de asignarlo al ingreso.
+	 *
+	 * @param evt
+	 */
 	@Override
 	protected void jButtonOKActionPerformed( java.awt.event.ActionEvent evt )
 	{
@@ -135,21 +142,17 @@ public class IngressarPacientAssignarMetgeView extends BaseView
 		viewCtrl.enviarInforme();
 	}
 
+	/**
+	 * Operación que se encarga de rellenar la tabla de médicos.
+	 *
+	 * @param llistaMetges
+	 */
 	public void mostraMetges( List<String[]> llistaMetges )
 	{
-		for ( int i = 0; i < llistaMetges.size(); i++ ) {
+		for ( int i = 0; i < llistaMetges.size(); i++ )
+		{
 			tableModel.addRow( llistaMetges.get( i ) );
 		}
-		jTableMetges.setRowSelectionInterval(0, 0 );
-	}
-
-	public void mostraPantallaEnviat()
-	{
-		//???? supongo que sobra
-	}
-
-	public void mostraPantallaNoEnviat()
-	{
-		//????
+		jTableMetges.setRowSelectionInterval( 0, 0 );
 	}
 }
