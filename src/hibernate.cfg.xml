@@ -4,19 +4,20 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/AS?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:8889/gestio_hospitals?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">somachigun</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.hbm2ddl.auto">validate</property>
     <property name="hibernate.jdbc.batch_size">0</property>
-    <mapping class="gestiohospitals.domini.models.Hospital"/>
-    <mapping class="gestiohospitals.domini.models.Especialitat"/>
-    <mapping class="gestiohospitals.domini.models.Habitacio"/>
-    <mapping class="gestiohospitals.domini.models.Sanitari"/>
-    <mapping class="gestiohospitals.domini.models.Persona"/>
-    <mapping class="gestiohospitals.domini.models.Pacient"/>
-    <mapping class="gestiohospitals.domini.models.Infermera"/>
-    <mapping class="gestiohospitals.domini.models.Metge"/>
-    <mapping class="gestiohospitals.domini.models.Ingres"/>
+    <mapping class="DomainLayer.DomainModel.Hospital"/>
+    <mapping class="DomainLayer.DomainModel.Especialitat"/>
+    <mapping class="DomainLayer.DomainModel.Habitacio"/>
+    <mapping class="DomainLayer.DomainModel.Sanitari"/>
+    <mapping class="DomainLayer.DomainModel.Persona"/>
+    <mapping class="DomainLayer.DomainModel.Pacient"/>
+    <mapping class="DomainLayer.DomainModel.Infermera"/>
+    <mapping class="DomainLayer.DomainModel.Metge"/>
+    <mapping class="DomainLayer.DomainModel.Ingres"/>
   </session-factory>
 </hibernate-configuration>
