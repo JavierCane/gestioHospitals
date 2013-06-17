@@ -111,7 +111,15 @@ public class Especialitat
 		}
 		return llistaHabitacions;
 	}
-
+/**
+ * Seguint el disseny del diagrama de seqüencia, per cada metge m comprobem si és de l'Hospital amb nom nomHosp,
+ * si ho és aleshores obtenim les seves dades i la guardem en una llista. Un cop obtinguts els metges ordenem la llista
+ * per el seu nom, seguint el patró estrategia.
+ * 
+ * @param nomHosp
+ * @return
+ * @throws Exception 
+ */
 	public List<String[]> getMetgesHospital( String nomHosp ) throws Exception
 	{
 		List<String[]> metgesHospital = new ArrayList<String[]>();

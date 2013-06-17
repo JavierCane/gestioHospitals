@@ -110,7 +110,15 @@ public class Ingres implements Serializable
 	{
 		return !( dataAlta == null );
 	}
-
+/**
+ * Seguint el disseny del diagrama de seqüencia, primerament comprobem que no hi hagi cap excepció que podem activar
+ * si és així posem al variable metge del ingrés el metge que pasem per paràmetre.
+ * 
+ * @param metge
+ * @param nomHospital
+ * @param nomEspecialitat
+ * @throws Exception 
+ */
     public void setMetgeAIngres(Metge metge, String nomHospital, String nomEspecialitat) throws Exception 
     {
         if(this.getDataAlta()!=null) throw new Exception("altaIngres");

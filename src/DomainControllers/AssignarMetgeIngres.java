@@ -23,7 +23,17 @@ public class AssignarMetgeIngres
 	public AssignarMetgeIngres()
 	{
 	}
-
+	/**
+	 * Seguint el disseny del diagrama de seqüencia, primer agafem l'instancia del CtrlDataFactoria, a través del 
+	 * CtrlDataFactoria obtenim els CtrlEspecialitat i el CtrlHospital per després obtenir l'especialitat amb nom nomEsp
+	 * A través de l'especialitat aconseguim el llistat dels metges, que retornarem, finalment emmagatzamem les dades 
+	 * nomHospital -> nomHosp i nomEspecialitat -> nomEsp a l'instancia del controlador.
+	 * 
+	 * @param nomHosp
+	 * @param nomEsp
+	 * @return
+	 * @throws Exception 
+	 */
 	public List<String[]> getMetgesHospitalPerEspecialitat( String nomHosp, String nomEsp ) throws Exception
 	{
 		CtrlDataFactoria cdf = CtrlDataFactoria.getInstance();
@@ -55,7 +65,17 @@ public class AssignarMetgeIngres
 		
 		return metges;
 	}
-
+/**
+ * Seguint el disseny del diagrama de seqüencia, primer agafem l'instancia del CtrlDataFactoria, a través del 
+ * CtrlDataFactoria obtenim els CtrlMetge i el CtrlIngres. per despres obtenir el metge a través del CtrlMetge
+ * i l'ingres a través del CtrlIngres. A través del ingres modifiquem l'ingres incluïnt el metge. Finalment fem
+ * el update a la base de dades.
+ * 
+ * @param dni
+ * @param nTsPacient
+ * @param dataInici
+ * @throws Exception 
+ */
 	void setMetgeAIngres( String dni, String nTsPacient, Date dataInici ) throws Exception
 	{
 		CtrlDataFactoria ctrlDataFactoria = CtrlDataFactoria.getInstance();
