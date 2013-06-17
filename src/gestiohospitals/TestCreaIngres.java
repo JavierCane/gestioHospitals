@@ -4,11 +4,7 @@
  */
 package gestiohospitals;
 
-import gestiohospitals.domini.models.*;
 import DomainControllers.IngressarPacient;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
 
 public class TestCreaIngres
 {
@@ -17,5 +13,4 @@ public class TestCreaIngres
 		IngressarPacient ip = new IngressarPacient();
 		ip.creaIngres( "hospital molon", 1, "1248712");
 	}
-//	ip.creaIngres ( "hospital molon", "1", "65468432" );
 }

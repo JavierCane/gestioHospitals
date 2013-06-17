@@ -1,8 +1,5 @@
 package DataInterface;
 
-/**
- * @author William
- */
 public class CtrlDataFactoria {
     private CtrlEspecialitat ctrlEspecialitat;
     private CtrlHabitacio ctrlHabitacio;

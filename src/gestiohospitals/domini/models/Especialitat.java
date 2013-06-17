@@ -1,16 +1,15 @@
 package gestiohospitals.domini.models;
 
+import java.util.*;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
-
-import java.util.*;
-import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table( name = "especialitat" )
@@ -86,8 +85,11 @@ public class Especialitat
 		return hospitals;
 	}
 
-	/*
-	 * Seguint amb el disseny del diagrama de sequencia, recorrem tots els hospitals associats a l'especialitat, on per cada hospital li consultem les habitacions lliures que té per despres retornar un conjunt d'informacio (classe Dada) de cada hospitals que ens interessa
+	/**
+	 * Seguint amb el disseny del diagrama de sequencia, recorrem tots els hospitals associats a l'especialitat, on		* per cada hospital li consultem les habitacions lliures que té per despres retornar un conjunt d'informacio (	
+	 * classe Dada) de cada hospitals que ens interessa
+	 * @return
+	 * @throws Exception 
 	 */
 	public List getHabitacionsLliuresHospitals() throws Exception
 	{
@@ -111,15 +113,15 @@ public class Especialitat
 		}
 		return llistaHabitacions;
 	}
-/**
- * Seguint el disseny del diagrama de seqüencia, per cada metge m comprobem si és de l'Hospital amb nom nomHosp,
- * si ho és aleshores obtenim les seves dades i la guardem en una llista. Un cop obtinguts els metges ordenem la llista
- * per el seu nom, seguint el patró estrategia.
- * 
- * @param nomHosp
- * @return
- * @throws Exception 
- */
+	/**
+	 * Seguint el disseny del diagrama de seqüencia, per cada metge m comprobem si és de l'Hospital amb nom nomHosp,
+	 * si ho és aleshores obtenim les seves dades i la guardem en una llista. Un cop obtinguts els metges ordenem la	 * llista
+	 * per el seu nom, seguint el patró estrategia.
+	 * 
+	 * @param nomHosp
+	 * @return
+	 * @throws Exception 
+	 */
 	public List<String[]> getMetgesHospital( String nomHosp ) throws Exception
 	{
 		List<String[]> metgesHospital = new ArrayList<String[]>();
@@ -148,7 +150,12 @@ public class Especialitat
 		return metgesHospital;
 
 	}
-
+	/**
+	 * Seguint el disseny del diagrama de seqüencia, es comprova que l'hopsital amb nom 'nomHosp' estigui dintre de l
+	 * llista d'hospitals de l'especialitat
+	 * @param nomHosp
+	 * @return 
+	 */
 	public boolean hospitalConteEspecialitat( String nomHosp )
 	{
 		for ( Hospital hospital : hospitals )

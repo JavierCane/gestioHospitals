@@ -26,16 +26,3 @@ public class TestObteHospitals
 		}
 	}
 }
-
-
-/*
- String[][]
- for ( UsuariHex usuari_classificat : classificacio )
-  {
-   if ( usuari_classificat.getTipusJugador() == TipusJugadors.JUGADOR )
-   {
-    comprovaTempsMinim( usuari_classificat.getTempsMinim(), usuari_classificat.getNom() );
-   }
-  }
-
- */
