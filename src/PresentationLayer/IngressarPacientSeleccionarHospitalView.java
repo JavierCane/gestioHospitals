@@ -1,7 +1,6 @@
 package PresentationLayer;
 
 import java.awt.Insets;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JCheckBox;
@@ -102,11 +101,13 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 		jScrollPaneTable = new JScrollPane();
 		tableModel = new javax.swing.table.DefaultTableModel(
 				new Object[ 0 ][ 3 ],
-				new String[]{
+				new String[]
+		{
 			"Nom", "Descripció", "Adreça"
 		} )
 		{
-			boolean[] canEdit = new boolean[]{
+			boolean[] canEdit = new boolean[]
+			{
 				false, false, false
 			};
 
@@ -170,7 +171,7 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 	@Override
 	protected void jButtonCancelActionPerformed( java.awt.event.ActionEvent evt )
 	{
-		viewCtrl.prCancel( );
+		viewCtrl.prCancel();
 	}
 
 	@Override
@@ -184,28 +185,43 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 		viewCtrl.prOkEnviarInforme( nomHospital, numHabitacio, nTS );
 	}
 
+	/**
+	 * Listener para mostrar las habitaciones libres del hospital seleccionado
+	 *
+	 * @param evt
+	 */
 	private void jTableHospitalsMouseClicked( java.awt.event.MouseEvent evt )
 	{
 		int rowIndex = jTableHospitals.getSelectedRow();
 		viewCtrl.canviarSeleccionarHospital( rowIndex );
 	}
 
+	/**
+	 * Rellena la tabla de hospitals con toda su respectiva información.
+	 */
 	public void mostraHospitals()
 	{
 		DomainLayer.DomainModel.Dada dada;
-		for ( int i = 0; i < llistaHospitals.size(); i++ ) {
+		for ( int i = 0; i < llistaHospitals.size(); i++ )
+		{
 			tableModel.addRow( new Object[ 3 ] );
-			for ( int j = 0; j < 3; j++ ) {
+			for ( int j = 0; j < 3; j++ )
+			{
 				dada = ( DomainLayer.DomainModel.Dada ) llistaHospitals.get( i );
-				if ( j == 0 ) {
+				if ( j == 0 )
+				{
 					jTableHospitals.setValueAt( dada.getNom(), i, j );
 				}
-				else {
-					if ( j == 1 ) {
+				else
+				{
+					if ( j == 1 )
+					{
 						jTableHospitals.setValueAt( dada.getDescripcio(), i, j );
 					}
-					else {
-						if ( j == 2 ) {
+					else
+					{
+						if ( j == 2 )
+						{
 							jTableHospitals.setValueAt( dada.getAdreca(), i, j );
 						}
 					}
@@ -215,10 +231,16 @@ public class IngressarPacientSeleccionarHospitalView extends BaseView
 		jTableHospitals.setRowSelectionInterval( 0, 0 );
 	}
 
+	/**
+	 * Rellena la lista de habitaciones libres.
+	 *
+	 * @param numHabitacions
+	 */
 	public void actualitzaHabitacionsLliures( List<Integer> numHabitacions )
 	{
 		listModel.removeAllElements();
-		for ( int i = 0; i < numHabitacions.size(); i++ ) {
+		for ( int i = 0; i < numHabitacions.size(); i++ )
+		{
 			listModel.addElement( numHabitacions.get( i ) );
 		}
 		jListHabLliures.setSelectionInterval( 0, 0 );

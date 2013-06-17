@@ -1,6 +1,5 @@
 package PresentationLayer;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class IngressarPacientSeleccionarHospitalViewCtrl
@@ -24,24 +23,45 @@ public class IngressarPacientSeleccionarHospitalViewCtrl
 
 	}
 
+	/**
+	 * Establece el caso de uso.
+	 *
+	 * @param ingressarPacient
+	 */
 	public void setUseCase( DomainLayer.DomainControllers.IngressarPacient ingressarPacient )
 	{
 		this.ingressarPacient = ingressarPacient;
 	}
 
+	/**
+	 * Establece las habitaciones libres para el hospital que indica el índice. Se utiliza un índice en lugar del nombre
+	 * del hospital, como se había diseñado en el UML, porque da más facilidad programarlo con el índice.
+	 *
+	 * @param rowIndex Índice que indica qué hospital está seleccionado en la lista de hospitales.
+	 */
 	public void canviarSeleccionarHospital( int rowIndex )
 	{
 		List<Integer> habLliures = ( ( DomainLayer.DomainModel.Dada ) llistaHospitals.get( rowIndex ) ).getHabLliures();
 		view.actualitzaHabitacionsLliures( habLliures );
 	}
 
+	/**
+	 * Crea el ingreso y, según el estado del checkbox, envía el informe o bien avanza hacia la pantalla de asignar
+	 * médico. Controla todas las excepciones que puedan surgir. El envío del informe se ha pasado a esta clase y se ha
+	 * eliminado la clase de la que heredaba, "IngressarPacientBaseViewCtrl", porque al implementarla nos dimos cuenta
+	 * que solo tenía una operación de una línea de código y era un tanto absurda su existencia.
+	 *
+	 * @param nomHosp
+	 * @param numHab
+	 * @param nTS
+	 */
 	public void prOkEnviarInforme( String nomHosp, int numHab, String nTS )
 	{
 		try
 		{
 			ingressarPacient.creaIngres( nomHosp, numHab, nTS );
 			boolean checkBoxAssignarMetge = view.getAssignarMetgeCheckBoxIsChecked();
-			
+
 			if ( checkBoxAssignarMetge )
 			{
 				try
@@ -90,6 +110,9 @@ public class IngressarPacientSeleccionarHospitalViewCtrl
 		}
 	}
 
+	/**
+	 * Acaba el caso de uso.
+	 */
 	public void prCancel()
 	{
 		System.exit( 0 );

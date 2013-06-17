@@ -1,9 +1,12 @@
 package PresentationLayer;
 
 import DomainLayer.DomainControllers.IngressarPacient;
-import DomainLayer.DomainModel.Dada;
 import java.util.List;
 
+/**
+ * Esta clase y los otros dos controladores de vistas no heredan de BaseViewCtrl porque la superclase resultó tener solo
+ * una operación de una línea de código, concretamente la operación prCancel(), así que decidimos eliminarla.
+ */
 public class IngressarPacientIntroduirEspecialitatViewCtrl
 {
 
@@ -17,6 +20,11 @@ public class IngressarPacientIntroduirEspecialitatViewCtrl
 		view.setCtrl( this );
 	}
 
+	/**
+	 * Obtiene los hospitals de la especialidad nomEsp y controla las excepciones que puedan ocurrir.
+	 *
+	 * @param nomEsp
+	 */
 	public void prOkObteHospitals( String nomEsp )
 	{
 		if ( nomEsp.isEmpty() )
@@ -53,6 +61,9 @@ public class IngressarPacientIntroduirEspecialitatViewCtrl
 		}
 	}
 
+	/**
+	 * Acaba el caso de uso.
+	 */
 	public void prCancel()
 	{
 		System.exit( 0 );
