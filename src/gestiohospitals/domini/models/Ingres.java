@@ -24,7 +24,8 @@ public class Ingres implements Serializable
 	private Date dataAlta;
 	
 	@ManyToOne
-	@JoinColumns( {
+	@JoinColumns( 
+	{
 		@JoinColumn( name = "numero_habitacio", referencedColumnName = "numero" ),
 		@JoinColumn( name = "nom_hospital", referencedColumnName = "nom_hospital" )
 	} )
@@ -36,9 +37,8 @@ public class Ingres implements Serializable
 
 	public Ingres()
 	{
-		
 	}
-	
+
 	/*
 	 * Seguint amb el disseny del diagrama de sequencia, s'afageix un pacient (hem utilitzat la classe ingresId d'hibernate, que refelexa a un pacient que ha fet un ingres) i s'afageix l'ingres del pacient a la classe ingresId i a la classe habitacio.
 	 */
@@ -48,12 +48,12 @@ public class Ingres implements Serializable
 
 		//Ingres no tiene hospital, se encuentra en habitacion l hosp
 		java.util.Date utilDate = new java.util.Date();
-		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+		java.sql.Date sqlDate = new java.sql.Date( utilDate.getTime() );
 
 		ingresId = new IngresId( sqlDate, pacient );
-		
+
 		ingresId.getPacient().addIngresos( this );
-		
+
 		habitacio.addIngresos( this );
 	}
 
@@ -110,33 +110,41 @@ public class Ingres implements Serializable
 	{
 		return !( dataAlta == null );
 	}
-/**
- * Seguint el disseny del diagrama de seqüencia, primerament comprobem que no hi hagi cap excepció que podem activar
- * si és així posem al variable metge del ingrés el metge que pasem per paràmetre.
- * 
- * @param metge
- * @param nomHospital
- * @param nomEspecialitat
- * @throws Exception 
- */
-    public void setMetgeAIngres(Metge metge, String nomHospital, String nomEspecialitat) throws Exception 
-    {
-        if(this.getDataAlta()!=null) throw new Exception("altaIngres");
-        if(this.getMetge()!=null) throw new Exception("ingresAmbMetge"); 
-        if(habitacio.esEspecialitat(nomEspecialitat))
-        {
-            if(habitacio.getHabitacioId().getHospital().getNom().equals(nomHospital))
-            {
-                this.metge=metge;
-            }
-            else
-            {
-                throw new Exception("noHospitalIngres");
-            }
-        }
-        else
-        {
-            throw new Exception("noCoincideixenEspecialitats");
-        }
-    }
+
+	/**
+	 * Seguint el disseny del diagrama de seqüencia, primerament comprobem que no hi hagi cap excepció que podem activar
+	 * si és així posem al variable metge del ingrés el metge que pasem per paràmetre.
+	 *
+	 * @param metge
+	 * @param nomHospital
+	 * @param nomEspecialitat
+	 *
+	 * @throws Exception
+	 */
+	public void setMetgeAIngres( Metge metge, String nomHospital, String nomEspecialitat ) throws Exception
+	{
+		if ( this.getDataAlta() != null )
+		{
+			throw new Exception( "altaIngres" );
+		}
+		if ( this.getMetge() != null )
+		{
+			throw new Exception( "ingresAmbMetge" );
+		}
+		if ( habitacio.esEspecialitat( nomEspecialitat ) )
+		{
+			if ( habitacio.getHabitacioId().getHospital().getNom().equals( nomHospital ) )
+			{
+				this.metge = metge;
+			}
+			else
+			{
+				throw new Exception( "noHospitalIngres" );
+			}
+		}
+		else
+		{
+			throw new Exception( "noCoincideixenEspecialitats" );
+		}
+	}
 }

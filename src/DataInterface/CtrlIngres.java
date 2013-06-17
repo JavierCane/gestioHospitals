@@ -9,24 +9,25 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+public class CtrlIngres
+{
 
-public class CtrlIngres {
-    
-    public CtrlIngres(){
-    
-    }
-    public Ingres get( String nTs, Date dataInici )
+	public CtrlIngres()
+	{
+	}
+
+	public Ingres get( String nTs, Date dataInici )
 	{
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
-        Transaction tx = session.beginTransaction();
-		
-		Pacient p = (Pacient) session.get(Pacient.class, nTs);
+		Transaction tx = session.beginTransaction();
 
-		IngresId ii = new IngresId( dataInici, p );            
-                
-		Ingres i = ( Ingres ) session.get(Ingres.class, ii);
-                
+		Pacient p = ( Pacient ) session.get( Pacient.class, nTs );
+
+		IngresId ii = new IngresId( dataInici, p );
+
+		Ingres i = ( Ingres ) session.get( Ingres.class, ii );
+
 		tx.commit();
 		return i;
 	}

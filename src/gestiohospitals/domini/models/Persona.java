@@ -6,6 +6,7 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class Persona
 {
+
 	@Column( name = "dni" )
 	protected String dni;
 	

@@ -19,9 +19,11 @@ public class IngressarPacient
 	/**
 	 * Seguint amb el disseny del diagrama de sequencia, es guarda el nom de l'especialitat i s'instancia la classe
 	 * ConsultarHospitalsLliuresPerEspecialitat per després cridar l'operacio de getHospitalsLliuresPerEspecialitat
+	 *
 	 * @param nomEsp
+	 *
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public List obteHospitalsLliuresPerEspecialitat( String nomEsp ) throws Exception
 	{
@@ -29,15 +31,18 @@ public class IngressarPacient
 		ConsultarHospitalsLliuresPerEspecialitat c = new ConsultarHospitalsLliuresPerEspecialitat();
 		return c.getHospitalsLliuresPerEspecialitat( nomEsp );
 	}
+
 	/**
-	 * Seguint amb el disseny del diagrama de sequencia, fem una crida de l'instancia de la factoria, on després
-	 * demanem tots els controladors necessaries per a demanar els objectes que necessitem per treballar: Pacient,
-	 * Hospital i Habitacio. Seguidament fem una crida a la constructua de la classe ingres. Despres de crear l
-	 * instancia, es fan crides a hibernate per reflectir els canvis en la BD.
+	 * Seguint amb el disseny del diagrama de sequencia, fem una crida de l'instancia de la factoria, on després demanem
+	 * tots els controladors necessaries per a demanar els objectes que necessitem per treballar: Pacient, Hospital i
+	 * Habitacio. Seguidament fem una crida a la constructua de la classe ingres. Despres de crear l instancia, es fan
+	 * crides a hibernate per reflectir els canvis en la BD.
+	 *
 	 * @param nomHosp
 	 * @param numHab
 	 * @param nTS
-	 * @throws Exception 
+	 *
+	 * @throws Exception
 	 */
 	public void creaIngres( String nomHosp, Integer numHab, String nTS ) throws Exception
 	{
@@ -65,13 +70,14 @@ public class IngressarPacient
 		session.saveOrUpdate( ingres );
 		session.getTransaction().commit();
 	}
+
 	/**
 	 * Seguint el disseny del diagrama de seqüencia, crea una instancia del controlador de cas d'ús assignar metge
 	 * ingres, reutilitzant la funció getMetgesHospitalPerEspecialitat. Guardem l'instancia del controlador de cas d'us
 	 * per després utilitzar-lo en la funcio assignarMetgeAIngres
-	 * 
+	 *
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public List<String[]> mostraMetgesHospitalPerEspecialitat() throws Exception
 	{
@@ -80,12 +86,14 @@ public class IngressarPacient
 		List<String[]> result = assignarMetgeIngres.getMetgesHospitalPerEspecialitat( nomHospital, nomEspecialitat );
 		return result;
 	}
+
 	/**
 	 * Seguint el disseny del diagrama de seqüencia, reutilitzem la funció setMetgeAIngres del controlador cas d'ús
 	 * assignar metge ingres, instanciat a la funció anterior.
-	 * 
+	 *
 	 * @param dni
-	 * @throws Exception 
+	 *
+	 * @throws Exception
 	 */
 	public void assignarMetgeAIngres( String dni ) throws Exception
 	{

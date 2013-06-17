@@ -18,9 +18,11 @@ public class Habitacio implements Serializable
 
 	@EmbeddedId
 	private HabitacioId habitacioId;
+	
 	@ManyToOne
 	@JoinColumn( name = "nom_especialitat" )
 	private Especialitat especialitat;
+	
 	@OneToMany( mappedBy = "habitacio" )
 	private List<Ingres> ingresos = new ArrayList<>();
 

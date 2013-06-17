@@ -6,33 +6,30 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-/**
- *
- * @author William
- */
 public class CtrlHospital
 {
-	public CtrlHospital() 
+
+	public CtrlHospital()
 	{
-		
-    }
-	
-	public Boolean exist( String nomHosp ) 
+	}
+
+	public Boolean exist( String nomHosp )
 	{
-		if ( this.get( nomHosp ) == null ) {
+		if ( this.get( nomHosp ) == null )
+		{
 			return false;
 		}
 		return true;
 	}
-	
+
 	public Hospital get( String nomHosp )
 	{
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 
 		Transaction tx = session.beginTransaction();
-		
-		Hospital e = (Hospital) session.get(Hospital.class, nomHosp);
+
+		Hospital e = ( Hospital ) session.get( Hospital.class, nomHosp );
 		tx.commit();
 		return e;
 	}

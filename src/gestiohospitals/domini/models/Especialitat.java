@@ -86,22 +86,24 @@ public class Especialitat
 	}
 
 	/**
-	 * Seguint amb el disseny del diagrama de sequencia, recorrem tots els hospitals associats a l'especialitat, on		* per cada hospital li consultem les habitacions lliures que té per despres retornar un conjunt d'informacio (	
+	 * Seguint amb el disseny del diagrama de sequencia, recorrem tots els hospitals associats a l'especialitat, on	*
+	 * per cada hospital li consultem les habitacions lliures que té per despres retornar un conjunt d'informacio (
 	 * classe Dada) de cada hospitals que ens interessa
+	 *
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public List getHabitacionsLliuresHospitals() throws Exception
 	{
 		ArrayList<Dada> llistaHabitacions = new ArrayList();
 		Iterator it = hospitals.iterator();
 		Dada d;
-		
+
 		while ( it.hasNext() )
 		{
 			Object h = it.next();
 			d = ( ( Hospital ) h ).getHabitacionsLliures( nom );
-			
+
 			if ( d.getHabLliures().size() > 0 )
 			{
 				llistaHabitacions.add( d );
@@ -113,14 +115,16 @@ public class Especialitat
 		}
 		return llistaHabitacions;
 	}
+
 	/**
-	 * Seguint el disseny del diagrama de seqüencia, per cada metge m comprobem si és de l'Hospital amb nom nomHosp,
-	 * si ho és aleshores obtenim les seves dades i la guardem en una llista. Un cop obtinguts els metges ordenem la	 * llista
-	 * per el seu nom, seguint el patró estrategia.
-	 * 
+	 * Seguint el disseny del diagrama de seqüencia, per cada metge m comprobem si és de l'Hospital amb nom nomHosp, si
+	 * ho és aleshores obtenim les seves dades i la guardem en una llista. Un cop obtinguts els metges ordenem la	*
+	 * llista per el seu nom, seguint el patró estrategia.
+	 *
 	 * @param nomHosp
+	 *
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public List<String[]> getMetgesHospital( String nomHosp ) throws Exception
 	{
@@ -150,11 +154,14 @@ public class Especialitat
 		return metgesHospital;
 
 	}
+
 	/**
 	 * Seguint el disseny del diagrama de seqüencia, es comprova que l'hopsital amb nom 'nomHosp' estigui dintre de l
 	 * llista d'hospitals de l'especialitat
+	 *
 	 * @param nomHosp
-	 * @return 
+	 *
+	 * @return
 	 */
 	public boolean hospitalConteEspecialitat( String nomHosp )
 	{

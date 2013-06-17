@@ -11,11 +11,11 @@ public class TestObteHospitals
 	{
 		IngressarPacient ip = new IngressarPacient();
 		List llista = ip.obteHospitalsLliuresPerEspecialitat( "espe_molona" );
-		
-		//printo
+
 		Iterator it = llista.iterator();
 		int cont = llista.size();
-		while ( cont != 0 ) {
+		while ( cont != 0 )
+		{
 			Object a = it.next();
 			System.out.println( "Nom: " + ( ( Dada ) a ).getNom() );
 			System.out.println( "Adreça Hospital: " + ( ( Dada ) a ).getAdreca() );

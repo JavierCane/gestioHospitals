@@ -22,12 +22,12 @@ public class ConsultarHospitalsLliuresPerEspecialitat
 		CtrlDataFactoria ctrlDataFactoria = CtrlDataFactoria.getInstance();
 		CtrlEspecialitat ctrlEspecialitat = ctrlDataFactoria.getCtrlEspecialitat();
 		Especialitat especialitat = ctrlEspecialitat.get( nomEsp );
-		
+
 		if ( especialitat == null )
 		{
 			throw new Exception( "noHiHaEspecialitat" );
 		}
-		
+
 		return especialitat.getHabitacionsLliuresHospitals();
 	}
 }

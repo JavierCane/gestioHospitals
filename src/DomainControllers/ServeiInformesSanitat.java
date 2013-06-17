@@ -49,31 +49,31 @@ public class ServeiInformesSanitat
 			DataInputStream input = null;
 			output = new DataOutputStream( urlConn.getOutputStream() );
 
-			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			DateFormat df = new SimpleDateFormat( "yyyy-MM-dd" );
 			String content;
-			
+
 			if ( dnisMetges.size() == 1 )
 			{
 				// Construct the POST data.
 				content =
-					   "nomEspecialitat=" + URLEncoder.encode( nomEspecialitat )
-					   + "&data=" + URLEncoder.encode( df.format( dataAvui ) )
-					   + "&nomHospital=" + URLEncoder.encode( nomHospital )
-					   + "&numeroHabitacio=" + URLEncoder.encode( numeroHabitacio.toString() )
-					   + "&nTsPacient=" + URLEncoder.encode( nTsPacient )
-					   + "&dnisMetges=" + URLEncoder.encode( dnisMetges.get( 0 ) )
-					   + "&emailPacient=" + URLEncoder.encode( emailPacient );
+				"nomEspecialitat=" + URLEncoder.encode( nomEspecialitat )
+				+ "&data=" + URLEncoder.encode( df.format( dataAvui ) )
+				+ "&nomHospital=" + URLEncoder.encode( nomHospital )
+				+ "&numeroHabitacio=" + URLEncoder.encode( numeroHabitacio.toString() )
+				+ "&nTsPacient=" + URLEncoder.encode( nTsPacient )
+				+ "&dnisMetges=" + URLEncoder.encode( dnisMetges.get( 0 ) )
+				+ "&emailPacient=" + URLEncoder.encode( emailPacient );
 			}
 			else
 			{
 				// Construct the POST data.
 				content =
-					   "nomEspecialitat=" + URLEncoder.encode( nomEspecialitat )
-					   + "&data=" + URLEncoder.encode( df.format( dataAvui ) )
-					   + "&nomHospital=" + URLEncoder.encode( nomHospital )
-					   + "&numeroHabitacio=" + URLEncoder.encode( numeroHabitacio.toString() )
-					   + "&nTsPacient=" + URLEncoder.encode( nTsPacient )
-					   + "&emailPacient=" + URLEncoder.encode( emailPacient );
+				"nomEspecialitat=" + URLEncoder.encode( nomEspecialitat )
+				+ "&data=" + URLEncoder.encode( df.format( dataAvui ) )
+				+ "&nomHospital=" + URLEncoder.encode( nomHospital )
+				+ "&numeroHabitacio=" + URLEncoder.encode( numeroHabitacio.toString() )
+				+ "&nTsPacient=" + URLEncoder.encode( nTsPacient )
+				+ "&emailPacient=" + URLEncoder.encode( emailPacient );
 			}
 
 			// Send the request data.

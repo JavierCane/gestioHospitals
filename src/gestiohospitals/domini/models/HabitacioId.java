@@ -14,7 +14,7 @@ public class HabitacioId implements Serializable
 	@Column( name = "numero" )
 	private int numero;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne( fetch = FetchType.LAZY )
 	@JoinColumn( name = "nom_hospital" )
 	private Hospital hospital;
 

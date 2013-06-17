@@ -20,8 +20,8 @@ public class EnviadorInformesMail implements IEnviadorInformes
 		else
 		{
 			List<String> dnisMetges = new ArrayList();
-			
-			if ( null != dniMetge)
+
+			if ( null != dniMetge )
 			{
 				dnisMetges.add( dniMetge );
 			}

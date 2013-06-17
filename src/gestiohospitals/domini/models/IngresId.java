@@ -17,7 +17,7 @@ public class IngresId implements Serializable
 	@Temporal( javax.persistence.TemporalType.DATE )
 	private Date dataInici;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne( fetch = FetchType.LAZY )
 	@JoinColumn( name = "n_ts_pacient" )
 	private Pacient pacient;
 

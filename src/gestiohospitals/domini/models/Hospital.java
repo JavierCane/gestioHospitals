@@ -19,14 +19,19 @@ public class Hospital
 	@Id
 	@Column( name = "nom_hospital" )
 	private String nom;
+	
 	@Column( name = "adreca" )
 	private String adreca;
+	
 	@Column( name = "descripcio" )
 	private String descripcio;
+	
 	@OneToMany( mappedBy = "habitacioId.hospital", fetch = FetchType.LAZY )
 	private List<Habitacio> habitacions = new ArrayList<>();
+	
 	@OneToMany( mappedBy = "hospital" )
 	private List<Sanitari> sanitaris = new ArrayList<>();
+	
 	@ManyToMany( mappedBy = "hospitals" )
 	private List<Especialitat> especialitats = new ArrayList<>();
 
@@ -77,9 +82,9 @@ public class Hospital
 	public Dada getHabitacionsLliures( String nom )
 	{
 		Dada d = new Dada();
-		
+
 		Iterator it = habitacions.iterator();
-		
+
 		while ( it.hasNext() )
 		{
 			Object h = it.next();
@@ -91,15 +96,15 @@ public class Hospital
 				}
 			}
 		}
-		
-		
+
+
 		if ( d.getHabLliures().size() > 0 )
 		{
 			d.setNom( this.nom );
 			d.setAdreca( adreca );
 			d.setDescripcio( descripcio );
 		}
-		
+
 		/*
 		 dada:TupleType( nom:String, adreca:String, descripcio:String, habLliures:Set( num: Integer ))
 		 * */

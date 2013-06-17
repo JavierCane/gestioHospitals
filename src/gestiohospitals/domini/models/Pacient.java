@@ -61,14 +61,14 @@ public class Pacient extends Persona
 	public Boolean estaIngressat()
 	{
 		boolean ingressat = false;
-		
+
 		Iterator it = ingresos.iterator();
 		while ( it.hasNext() && !ingressat )
 		{
 			Object h = it.next();
 			ingressat = !( ( Ingres ) h ).teAlta();
 		}
-		
+
 		return ingressat;
 	}
 
