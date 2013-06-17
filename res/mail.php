@@ -108,7 +108,7 @@ class HomeCtrl
 		// Por cada campo a recibir por POST, valido su existencia y su correcto formato
 		foreach ( $this->post_fields as $field_name => $field_post_key )
 		{
-			if ( isset( $_POST[$field_post_key] ) )
+			if ( isset( $_POST[$field_post_key] ) || 'dni_metge' == $field_name )
 			{
 				// Si es de tipo email, valido explícitamente que cumpla el formato establecido y exista
 				if ( 'email' == $field_name )
@@ -120,7 +120,7 @@ class HomeCtrl
 				}
 				else
 				{
-					if ( false == ( $this->post_values[$field_name] = $this->getPostString( $field_post_key ) ) )
+					if ( false == ( $this->post_values[$field_name] = $this->getPostString( $field_post_key ) ) && 'dni_metge' != $field_name )
 					{
 						$this->returnInvalidFieldException( $field_post_key, 'not valid' );
 					}
@@ -222,7 +222,7 @@ class HomeCtrl
 	 * @param bool $check_dns
 	 * @return bool
 	 */
-	private function getPostEmail( $var_name, $check_dns = false )
+	private function getPostEmail( $var_name, $check_dns = true )
 	{
 		if ( !isset( $_POST[$var_name] ) )
 		{
